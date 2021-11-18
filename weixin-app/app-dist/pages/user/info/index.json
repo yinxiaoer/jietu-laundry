@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "修改资料",
+  "usingComponents": {
+    "wux-upload": "../../../packages/@wuxui/upload/index",
+    "card": "../../../components/card/index",
+    "wxc-avatar": "../../../packages/@minui/wxc-avatar/dist/index",
+    "wux-button": "../../../packages/@wuxui/button/index",
+    "wux-cell": "../../../packages/@wuxui/cell/index",
+    "wux-input": "../../../packages/@wuxui/input/index",
+    "wux-select": "../../../packages/@wuxui/select/index",
+    "wux-toast": "../../../packages/@wuxui/toast/index"
+  }
+}

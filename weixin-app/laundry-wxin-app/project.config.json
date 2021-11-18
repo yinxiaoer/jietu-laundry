@@ -1,0 +1,16 @@
+{
+  "miniprogramRoot": "dist",
+	"description": "项目配置文件。",
+	"compileType": "miniprogram",
+	"libVersion": "1.9.1",
+	"appid": "wx675995fdc2833600",
+	"projectname": "laundry-wxin-app",
+  "setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"condition": {}
+}

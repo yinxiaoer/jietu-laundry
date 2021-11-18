@@ -1,0 +1,153 @@
+.cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  background: #666666;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.cart .buy {
+  width: 260rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  flex-shrink: 0;
+  background: #019AEA;
+  color: #ffffff;
+}
+
+.cart.empty .buy {
+  font-size: 32rpx;
+  background: #CCCCCC;
+}
+
+.cart-left {
+  position: relative;
+  padding-left: 180rpx;
+}
+
+
+
+.cart.empty .cart-left .cart-icon {
+  background: #737373;
+}
+
+.cart .cart-left .cart-icon .badge {
+  position: absolute;
+  right: 10rpx;
+  top: -46rpx;
+}
+
+.cart .cart-left .price {
+  color: #FFFFFF;
+  font-size: 32rpx;
+}
+
+.cart.empty .cart-left .price {
+  display: none;
+}
+
+.cart-left .cart-icon {
+  position: absolute;
+  width: 114rpx;
+  height: 114rpx;
+  background: #019AEA;
+  border-radius: 50%;
+  line-height: 128rpx;
+  text-align: center;
+  z-index: 99;
+  left: 24rpx;
+  bottom: 11rpx;
+}
+
+
+.cart-con {
+  position: fixed;
+  bottom: 100rpx;
+  width: 100%;
+  max-height: 0;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.cart-con.open {
+  min-height: 400rpx;
+  max-height: 500rpx;
+  padding-bottom:50rpx;
+}
+
+
+
+.cart-con .con-header {
+  height: 80rpx;
+  width: 100%;
+  background: #E5E5E5;
+  color: #999999;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-con .con-header .con-header-clear {
+  margin: 0 27rpx;
+}
+
+.cart-con .con-shop {
+  padding-left: 24rpx;
+}
+
+.cart-con .con-shop .item {
+  width: 100%;
+  height: 115rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.cart-con .con-shop .item .name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: bold;
+  width: 280rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cart-con .con-shop .item .price {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.cart-con .con-shop .item .handle {
+  width: 144rpx;
+  flex-shrink: 0;
+  margin-right: 33rpx;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-con .con-shop .item .handle .add {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.cart-con .con-shop .item .handle .reduce {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.cart-con .con-shop .item .handle .number {
+  color: #333333;
+  font-size: 30rpx;
+}

@@ -1,0 +1,110 @@
+page{
+  background-color: #F0EFF5;
+}
+
+.address-main {
+  position: relative;
+  margin-bottom: 150rpx;
+  height: 100vh;
+}
+
+.address-item {
+  position: relative;
+}
+
+.list{
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background-color: white;
+  margin-top: 2rpx;
+  padding: 0 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  min-height: 150rpx;
+}
+.handle-list{
+  position: absolute;
+  top:0rpx;
+  width: 360rpx;
+  text-align: center;
+  z-index: 1;
+  right: 0;
+  color: #fff;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handle-list .set-default {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+}
+
+.handle-list .delete {
+  background: #F24439;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 26rpx;
+}
+
+.handle-list .delete.disabled {
+  opacity: 0.3;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.info view:first-child{
+  text-align: center;
+  font-size: 35rpx;
+  margin-bottom: 10rpx;
+}
+.info view:nth-child(2){
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
+.def{
+  font-size: 30rpx;
+  border:1rpx solid #F24439;
+  border-radius: 5rpx;
+  padding:0 10rpx;
+  color: #F24439;
+  margin-right: 10rpx;
+}
+.phone{
+  color:gray;font-size:30rpx;margin: 0 20rpx;
+}
+.edit{
+  padding:40rpx;
+}
+.edit image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:10rpx;
+}
+.add{
+ position: fixed;
+  bottom: -20rpx;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.add-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}

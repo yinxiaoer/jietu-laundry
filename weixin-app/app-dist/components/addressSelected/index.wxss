@@ -1,0 +1,78 @@
+.model-contain {
+  width: 100%;
+}
+
+.model-contain .header {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 101rpx;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.model-contain .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #CCCCCC;
+  height: 101rpx;
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.model-contain .footer .icon {
+  font-size: 24rpx;
+  color: #019AEA;
+  transform: rotate(45deg);
+}
+
+.model-contain .footer .add_btn {
+  margin-left: 10rpx;
+}
+
+.address-con {
+  width: 100%;
+  background: #ffffff;
+  height: 60vh;
+  box-sizing: border-box;
+  padding: 24rpx 36rpx 0;
+}
+
+.address-con .address-con-box {
+  width: 100%;
+}
+
+.address-con .address-con-box .address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.address-con .address-con-box .address-item .address-detail {
+  width: 100%;
+  text-align: left;
+  padding: 32rpx 0;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.address-con .address-con-box .address-item .address-detail .address-name {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+}
+
+.address-con .address-con-box .address-item .address-detail .user-info {
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 50rpx;
+}
+
+.address-con .address-con-box .address-item .address-detail .user-info text {
+  margin-right: 40rpx;
+}

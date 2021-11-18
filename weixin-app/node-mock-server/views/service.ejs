@@ -1,0 +1,31 @@
+<div class="panel panel-white" data-tpl="service">
+	<div class="panel-heading">
+		<h4 class="panel-title">
+			<a class="collapsed" data-toggle="collapse" href="#panel__<%=service.id%>">
+				/<%=service.name%>
+			</a>
+			<span class="methods">
+				<% for(var l=0; l<service.methods.length; l++) { %>
+					<% var method = service.methods[l]; %>
+					<a href="#" data-toggle="modal" data-target="#_<%=service.id%>_<%=method.id%>">
+						<% include method-badge %>
+					</a>
+				<% } %>
+			</span>
+		</h4>
+	</div>
+	<div id="panel__<%=service.id%>" class="panel-collapse collapse">
+		<div class="panel-body">
+			<div class="list-group">
+				<% for(var l=0; l<service.methods.length; l++) { %>
+					<% var method = service.methods[l]; %>
+					<% include method-panel %>
+				<% } %>
+			</div>
+		</div>
+	</div>
+	<% for(var l=0; l<service.methods.length; l++) { %>
+		<% var method = service.methods[l]; %>
+		<% include method-modal %>
+	<% } %>
+</div>

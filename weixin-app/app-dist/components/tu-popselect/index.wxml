@@ -1,0 +1,25 @@
+<!--components/tu-popout/index.wxml-->
+<wux-backdrop id="wux-backdrop" wx:if="{{ mask }}" bind:click="onMaskClick" zIndex="{{ zIndex }}" />
+<view wx:if="{{visible}}" class="choosebox">
+  <view class="choosedetail" wx:if="{{chooseArray.length>1}}">
+    <view class="title">{{title}}</view>
+    <view class="choice" wx:for="{{chooseArray}}" wx:key="index" data-name="{{item.label}}" bindtap="chooseitem">{{item.label}}  </view>
+  </view>
+  <view class="choosedetail" wx:else>
+    <wux-upload
+        defaultFileList="{{ fileList }}"
+        max="1"
+        controlled
+        name="file"
+        formData="{{formData}}"
+        header="{{header}}"
+        url="{{config.baseURL}}/fileUpload"
+        bind:before="uploadBefore"
+        bind:complete="uploadComplete"
+        bind:fail="uploadFail"
+        count="1">
+                <view class="choice" wx:for="{{chooseArray}}" wx:key="index" data-name="{{item.label}}">{{item.label}}  </view>
+            </wux-upload>
+  </view>
+  <view class="cancel" bindtap="close">取消</view>
+</view>

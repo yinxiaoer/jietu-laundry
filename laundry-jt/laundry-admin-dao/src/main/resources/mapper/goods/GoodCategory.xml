@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.goods.GoodsCategoryDao">
+
+	<insert id="insert" parameterType="goodsCategory">
+		INSERT INTO gd_goods_category (
+			`merchant_id`,
+			`name`,
+			`desc`,
+			`sort_order`,
+			`create_name`
+		) VALUES (
+			#{merchantId},
+			#{name},
+			#{desc},
+			#{sortOrder},
+			#{createName}
+		)
+	</insert>
+
+	<update id="update" parameterType="goodsCategory">
+		UPDATE gd_goods_category SET
+			`merchant_id`=#{merchantId},
+			`name`=#{name},
+			`desc`=#{desc},
+			`sort_order`=#{sortOrder},
+			`update_name`=#{updateName}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM gd_goods_category WHERE `id`=#{id}
+	</delete>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="long" parameterType="goodsCategory">
+		SELECT count(*) FROM gd_goods_category c
+		left join  mt_merchant m on c.merchant_id = m.id
+		<include refid="whereSql" />
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="goodsCategory" resultType="goodsCategory">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+		gd_goods_category c
+		left join  mt_merchant m on c.merchant_id = m.id
+		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by c.sort_order,c.${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+ 	
+ 	<select id="getById" parameterType="long" resultType="goodsCategory">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+		gd_goods_category c
+		left join  mt_merchant m on c.merchant_id = m.id
+ 		where c.id=#{id}
+		order by c.sort_order desc
+ 	</select>
+
+	<select id="findByMerchantId" parameterType="long" resultType="goodsCategory">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+		gd_goods_category c
+		left join  mt_merchant m on c.merchant_id = m.id
+ 		where c.merchant_id=#{merchantId}
+		order by c.sort_order desc
+ 	</select>
+
+	<sql id="fieldSql">
+		c.`id`,
+		c.`merchant_id`,
+		m.`name` as 'merchant_name',
+		c.`name`,
+		c.`desc`,
+		c.`sort_order`,
+		c.`create_name`,
+		c.`create_date`,
+		c.`update_name`,
+		c.`update_date`
+	</sql>
+
+	<sql id="whereSql">
+		<where>
+			<if test="name != null and name != ''">
+				c.`name` like concat(#{name}, "%")
+			</if>
+			<if test="merchantId != null">
+				c.`merchant_id`=#{merchantId}
+			</if>
+		</where>
+	</sql>
+</mapper>

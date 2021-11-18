@@ -1,0 +1,26 @@
+<!--components/merchantAppraise/index.wxml-->
+<view class='container'>
+  <view class='content'>
+    <view class='content_top'>
+      <text class='top_left'>洗衣评价</text>
+      <text class='top_right'>查看到店评价></text>
+    </view>
+    <view class='tagbox'>
+      <view wx:for="{{tags}}"
+        wx:key="index"
+        class="tag {{selected === item.id?'actived':''}}"
+        data-id="{{item.id}}"
+        bindtap="selectedTag">
+        <text>{{item.name}}</text>
+        <text wx:if="{{item.count!=='all'}}">({{item.count}})</text>
+      </view>
+    </view>
+    <view class='appraises'>
+      <appraises-detail class='appraise'
+      wx:for="{{appraiselist}}"
+      wx:key="{{index}}"
+      appraisedetail="{{item}}"></appraises-detail>
+    </view>
+  </view>
+  <view class='message' wx:if="{{!commentPagination.hasNextPage}}">我是有底线的</view>
+</view>

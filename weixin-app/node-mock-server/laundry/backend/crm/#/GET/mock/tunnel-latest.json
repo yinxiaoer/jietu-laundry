@@ -1,0 +1,15 @@
+{
+  "success": true,
+	"data": {
+		"products":	[
+			{
+				"image": {
+					"url": "http://pic17.nipic.com/20111023/8104044_230939695000_2.jpg",
+					"alt": "product",
+					"name": "产品1"
+				}
+			}
+		]
+	}
+
+}

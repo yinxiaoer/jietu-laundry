@@ -1,0 +1,14 @@
+{
+  "success": "boolean",
+	"data": {
+		"products": [
+			{
+				"image": {
+					"url": "string",
+					"alt": "string",
+					"name": "string"
+				}
+			}
+		]
+	}
+}

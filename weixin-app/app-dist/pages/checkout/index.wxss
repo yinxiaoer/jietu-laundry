@@ -1,0 +1,95 @@
+.checkout {
+ background: #F5F5F5;
+ padding-top: 10rpx;
+ padding-bottom: 200px;
+}
+
+.checkout .wux-cell .wux-cell__text {
+ font-size: 30rpx;
+ color: #333333;
+ line-height: 36rpx;
+ font-weight: bold;
+ margin-bottom: 24rpx;
+
+}
+
+.checkout .wux-cell .cell-label {
+ color: #666666;
+ font-size: 28rpx;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.checkout .wux-cell .address-info {
+ font-size: 26rpx;
+ color: #333333;
+ font-weight: normal;
+}
+
+.checkout .wux-cell .address-info text {
+ margin-right: 50rpx;
+}
+
+.checkout-products {
+ padding: 25rpx 31rpx;
+}
+
+
+.checkout .user-order-info {
+ padding: 25rpx 31rpx;
+}
+
+.checkout .user-order-info .wux-input__label {
+ font-size: 26rpx;
+}
+
+.checkout .user-order-info .wux-input__item {
+ font-size: 26rpx;
+}
+
+.checkout .checkout-bottom {
+ position: fixed;
+ width: 100%;
+ bottom: 0;
+ left: 0;
+ height: 100rpx;
+ background: #666666;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.checkout .checkout-bottom .left {
+ display: flex;
+ width: 100%;
+ justify-content: flex-end;
+ align-items: center;
+ height: 100%;
+ padding-right: 46rpx;
+ color: #ffffff;
+ font-size: 32rpx
+}
+
+.checkout .checkout-bottom .left .price {
+ font-size: 32rpx;
+ color: #ffffff;
+ font-weight: normal;
+}
+
+.checkout .checkout-bottom .payment {
+ flex-shrink: 0;
+ width: 260rpx;
+ height: 100%;
+ background: #019AEA;
+ color: #ffffff;
+ font-size: 32rpx;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.checkout .checkout-bottom .payment.disabled {
+ background: #444444;
+ opacity: 0.4;
+}

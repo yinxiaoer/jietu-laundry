@@ -1,0 +1,22 @@
+.order-info {
+  margin-left: 26rpx;
+  padding-right: 26rpx;
+  padding-bottom: 40rpx;
+  border-top: 2rpx solid #E5E5E5;
+}
+
+.order-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666666;
+  font-size: 26rpx;
+  padding-top: 40rpx;
+}
+
+.order-address {
+  color: #666666;
+  font-size: 26rpx;
+  text-align: right;
+  margin-top: 10rpx;
+}

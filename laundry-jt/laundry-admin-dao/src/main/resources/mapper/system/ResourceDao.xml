@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.system.ResourceDao">
+
+	<resultMap id="ResourceResult" type="ResourceEntity">
+		<id column="id" property="id"/>
+		<result column="icon" property="icon"/>
+		<result column="name" property="name"/>
+		<result column="resource_type" property="resourceType"/>
+		<result column="url" property="url"/>
+		<result column="path" property="path"/>
+		<result column="permission" property="permission"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="seq" property="seq"/>
+		<collection property="children" javaType="java.util.List" ofType="ResourceEntity">
+			<id column="children_id" property="id"/>
+			<result column="children_icon" property="icon"/>
+			<result column="children_name" property="name"/>
+			<result column="children_resource_type" property="resourceType"/>
+			<result column="children_url" property="url"/>
+			<result column="children_path" property="path"/>
+			<result column="children_permission" property="permission"/>
+			<result column="children_parent_id" property="parentId"/>
+			<result column="children_seq" property="seq"/>
+		</collection>
+	</resultMap>
+
+	<resultMap id="ResourceTreeResult" type="com.jietu.admin.model.TreeModel">
+		<id column="id" property="id"/>
+		<result column="label" property="label"/>
+		<result column="hasPermission" property="hasPermission"/>
+		<collection property="children" javaType="java.util.List" ofType="com.jietu.admin.model.TreeModel">
+			<id column="children_id" property="id"/>
+			<result column="children_label" property="label"/>
+			<result column="children_hasPermission" property="hasPermission"/>
+		</collection>
+	</resultMap>
+
+	<insert id="insert" parameterType="resourceEntity">
+		INSERT INTO sys_resource (
+			`id`,
+			`icon`,
+			`name`,
+			`resource_type`,
+			`url`,
+			`path`,
+			`permission`,
+			`parent_id`,
+			`seq`,
+			`create_name`,
+			`create_date`
+		) VALUES (
+			#{id},
+			#{icon},
+			#{name},
+			#{resourceType},
+			#{url},
+			#{path},
+			#{permission},
+			#{parentId},
+			#{seq},
+			#{createName},
+			#{createDate}
+		)
+	</insert>
+
+	<update id="update" parameterType="resourceEntity">
+		UPDATE sys_resource SET
+			`icon`=#{icon},
+			`name`=#{name},
+			`resource_type`=#{resourceType},
+			`url`=#{url},
+			`path`=#{path},
+			`permission`=#{permission},
+			`parent_id`=#{parentId},
+			`seq`=#{seq},
+			`update_name`=#{updateName},
+			`update_date`=#{updateDate}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM sys_resource WHERE id=#{id}
+	</delete>
+
+ 	<select id="getById" parameterType="java.lang.String" resultMap="ResourceResult">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			sys_resource
+ 		where id=#{id}
+ 	</select>
+
+	<select id="findByRoleId" parameterType="java.lang.String" resultMap="ResourceResult">
+		SELECT
+		<include refid="fieldSql" />
+		FROM sys_resource
+		WHERE id in (SELECT resource_id FROM sys_role_resource WHERE role_id=#{roleId})
+	</select>
+
+	<select id="findByRoleMenu" parameterType="java.lang.String" resultMap="ResourceResult">
+		SELECT
+		r.id,
+		r.icon,
+		r.name,
+		r.resource_type,
+		r.url,
+		r.path,
+		r.permission,
+		r.parent_id,
+		r.seq,
+		cr.id AS children_id,
+		cr.icon AS children_icon,
+		cr.name AS children_name,
+		cr.resource_type AS children_resource_type,
+		cr.url AS children_url,
+		cr.path AS children_path,
+		cr.permission AS children_permission,
+		cr.parent_id children_parent_id,
+		cr.seq AS children_seq
+		FROM
+		sys_resource r
+		LEFT JOIN sys_resource cr ON r.id = cr.parent_id
+		LEFT JOIN sys_role_resource rr ON cr.id = rr.resource_id
+		WHERE
+		r.parent_id = '0'  AND rr.role_id =#{roleId}
+		ORDER BY r.seq, cr.seq ASC
+	</select>
+
+	<select id="findByRoleMenuTree" parameterType="java.lang.String" resultMap="ResourceTreeResult">
+		SELECT
+		r.id,
+		r.`name` AS label,
+		cr.id AS children_id,
+		cr.`name` AS children_label,
+		case rr.checked when true then 1 else 0 end as children_hasPermission
+		FROM
+		sys_resource r
+		LEFT JOIN sys_resource cr ON r.id = cr.parent_id
+		LEFT JOIN ( select role_id,resource_id,true as checked from sys_role_resource where role_id=#{roleId}) rr ON cr.id = rr.resource_id
+		WHERE
+		r.parent_id = '0'
+		ORDER BY r.seq, cr.seq ASC
+	</select>
+	
+	<select id="findByRoleButtonTree" parameterType="com.jietu.admin.model.RoleResourceModel" resultMap="ResourceTreeResult">
+		SELECT
+			r.id,
+			r.`name` AS label,
+			case rr.checked when true then 1 else 0 end as hasPermission
+		FROM
+			sys_resource r
+			LEFT JOIN ( select role_id,resource_id,true as checked from sys_role_resource where role_id=#{roleId}) rr ON r.id = rr.resource_id
+		WHERE
+			r.parent_id = #{resourceId} and r.resource_type='button'
+		ORDER BY r.seq ASC
+	</select>
+
+	<select id="findMenu"  resultMap="ResourceResult">
+		SELECT
+			r.id,
+			r.icon,
+			r.name,
+			r.resource_type,
+			r.url,
+			r.path,
+			r.permission,
+			r.parent_id,
+			r.seq,
+			cr.id AS children_id,
+			cr.icon AS children_icon,
+			cr.name AS children_name,
+			cr.resource_type AS children_resource_type,
+			cr.url AS children_url,
+			cr.path AS children_path,
+			cr.permission AS children_permission,
+			cr.parent_id children_parent_id,
+			cr.seq AS children_seq
+		FROM
+			sys_resource r
+		LEFT JOIN sys_resource cr ON r.id = cr.parent_id
+		LEFT JOIN sys_role_resource rr ON cr.id = rr.resource_id
+		WHERE
+			r.parent_id = '0'
+		ORDER BY r.seq, cr.seq ASC
+
+	</select>
+
+	<select id="findButtonByMenuId" parameterType="java.lang.String"   resultMap="ResourceResult">
+		select
+		<include refid="fieldSql"/>
+		from
+			sys_resource
+		where resource_type='button' and parent_id=#{menuId}
+		order by seq asc
+	</select>
+
+	<sql id="whereSql">
+		<where>
+			<if test="resourceType!=null and resourceType!=''">
+				and resource_type=#{resourceType}
+			</if>
+			<if test="parentId!=null and parentId!=''">
+				and parent_id=#{parentId}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="fieldSql">
+		id,
+		icon,
+		name,
+		resource_type,
+		url,
+		path,
+		permission,
+		parent_id,
+		seq,
+		create_name,
+		create_date,
+		update_name,
+		update_date
+	</sql>
+
+
+</mapper> 

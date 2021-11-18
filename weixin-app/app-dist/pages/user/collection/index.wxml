@@ -1,0 +1,5 @@
+<view>
+    <view wx:for="{{collectionList}}" wx:key="index" class="collection-item">
+        <merchant-card item="{{item}}" itemType="collection" bind:cancelCollect="cancelCollect" bind:click="goMerchant"></merchant-card>
+    </view>
+</view>

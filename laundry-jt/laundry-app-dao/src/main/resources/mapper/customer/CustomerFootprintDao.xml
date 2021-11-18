@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.customer.CustomerFootprintDao">
+
+	<insert id="save" parameterType="customerFootprint" useGeneratedKeys="true" keyProperty="id">
+		insert into cst_customer_footprint (
+			`customer_id`,
+			`merchant_id`
+		) values (
+			#{customerId},
+			#{merchantId}
+		)
+	</insert>
+
+	<update id="updateDate" >
+		update cst_customer_footprint set
+			update_date = #{updateDate}
+		where id = #{id}
+	</update>
+
+	<select id="findByCustomerIdAndMerchantId" resultType="CustomerFootprint">
+		select
+			`id`,
+			`customer_id`,
+			`merchant_id`,
+			`create_date`
+		from cst_customer_footprint
+		where customer_id = #{customerId} and merchant_id = #{merchantId}
+	</select>
+
+	<select id="getFootprintList" resultType="merchant">
+		  SELECT
+			mm.`id`,
+			mm.`name`,
+			mm.`address`,
+			mm.`logo`,
+			IFNULL(ms.sales, 0) as 'month_sales',
+			mm.`total_sales`,
+			mm.`grade`,
+			cf.`update_date`
+		FROM
+			cst_customer_footprint cf
+		LEFT JOIN mt_merchant mm ON cf.merchant_id = mm.id
+		LEFT JOIN mt_month_sales ms ON cf.merchant_id = ms.merchant_id AND ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+		WHERE cf.customer_id = #{customerId}
+		ORDER BY cf.update_date DESC
+		limit ${(page-1)*limit}, ${limit}
+	</select>
+
+</mapper>

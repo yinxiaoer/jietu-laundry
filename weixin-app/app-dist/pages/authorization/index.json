@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "tu-image": "../../components/tu-image",
+    "wux-icon": "../../packages/@wuxui/icon/index"
+  },
+  "navigationBarTitleText": "登录"
+}

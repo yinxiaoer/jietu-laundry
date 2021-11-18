@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "wux-tabs": "../../../packages/@wuxui/tabs/index",
+    "wux-tab": "../../../packages/@wuxui/tab/index",
+    "product": "../../../components/product",
+    "cart": "../../../components/cart",
+    "imgIcon": "../../../components/imgIcon",
+    "tu-image": "../../../components/tu-image",
+    "tuPopup": "../../../components/tu-popup",
+    "rater": "../../../packages/@wuxui/rater",
+    "wux-button": "../../../packages/@wuxui/button",
+    "wux-icon": "../../../packages/@wuxui/icon",
+    "price": "../../../components/price",
+    "merchant-detail":"../../../components/merchantDetail",
+    "merchant-appraise":"../../../components/merchantAppraise"
+  },
+  "enablePullDownRefresh": true
+}

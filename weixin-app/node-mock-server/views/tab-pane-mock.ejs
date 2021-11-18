@@ -1,0 +1,104 @@
+<div data-tpl="tab-pane-mock" class="tab-pane active" id="_<%=service.id%>_<%=method.id%>_mock">
+	<% var urlMock = urlBase + urlPath + method.pathCleaned;%>
+	<h3>Url:</h3>
+	<p>
+		<a href="<%=urlMock%>">
+			<%=urlMock%>
+		</a>
+	</p>
+	<div class="form-group">
+		<label for="<%=service.id%><%=method.id%>_mockdown">
+			Choose an expected response:
+		</label>
+		<p>
+			<a
+				class="btn btn-default btn-xs js-open-ide"
+				data-path="<%=method.path%>/mock"
+			>
+				open directory
+			</a>
+		</p>
+		<% for(var m=0; m<method.availableMockResponses.length; m++) { %>
+			<% var mock = method.availableMockResponses[m]; %>
+			<% var checked = mock.isSelected ? 'checked' : ''; %>
+
+			<% var isDocument = true; %>
+			<% var isMiddleware = mock.name.search(/^middleware$/) >= 0; %>
+			<% var isTunnel = mock.name.search(/^tunnel$/) >= 0; %>
+			<% var isImage = (mock.mime || '').search(/^image\//) >= 0; %>
+			<% var isJSON = (mock.mime || '').search(/json$/) >= 0; %>
+			<% var isError = mock.name.search(/error/) >= 0; %>
+			<% if (isImage || isJSON || isError || isMiddleware || isTunnel) { isDocument = false;  } %>
+
+			<% var noInteractionPossible = isMiddleware || isImage || isTunnel; %>
+
+			<% var showValidationResult = isJSON && !isError; %>
+			<% var showDeleteBtn = isJSON || isImage || isDocument; %>
+			<% var showOpenBtn = isJSON || isDocument; %>
+			<% var showValidateBtn = isJSON && !isError; %>
+
+			<%
+				var label = '';
+				if (mock.isValidated && showValidationResult) {
+					if (mock.isValid) {
+						label = '<span class="label label-success">Valid</span>';
+					} else {
+						label = '<span class="label label-danger">Invalid (' + mock.inValidCounter + ')</span>';
+					}
+				}
+			%>
+			<div class="radio">
+				<label>
+					<input
+						class="js-change-response-data"
+						data-path="<%=method.mockPath%>"
+						type="radio" <%-checked%>
+						name="<%=service.id%><%=method.id%>_mockdown"
+						id="<%=service.id%><%=method.id%><%=m%>"
+						value="<%=mock.name%>"
+					/>
+					<%-label%>
+					<%=mock.name%>
+				</label>
+				<% if (showDeleteBtn) { %>
+					<a
+						class="spacer-left btn btn-danger pull-right btn-xs js-delete-response"
+						data-path="<%=method.basePath%>"
+						data-method="<%=method.id%>"
+						data-name="<%=mock.name%>"
+					>
+						delete
+					</a>
+				<% } if (showOpenBtn) { %>
+					<a
+						class="spacer-left btn btn-default pull-right btn-xs js-open-ide"
+						data-path="<%=method.path%>/mock/<%=mock.name%>"
+					>
+						open
+					</a>
+				<% }  %>
+				<% if (showValidateBtn) { %>
+					&nbsp;<a target="_blank" href="<%=urlBase%>/view/response?path=<%=encodeURIComponent(method.basePath);%>&method=<%=method.id%>&expected=<%=mock.name%>">preview</a>
+					<button
+						class="btn btn-primary btn-xs pull-right js-validate-single"
+						href="#"
+						data-path="<%=method.basePath%>"
+						data-method="<%=method.id%>"
+						data-expected="<%=mock.name%>"
+					>
+						Validate
+					</button>
+				<% }  %>
+
+			</div>
+		<% } %>
+		<button
+			class="btn btn-primary btn-xs js-add-response"
+			href="#"
+			data-path="<%=method.basePath%>"
+			data-method="<%=method.id%>"
+		>
+			+ add new response
+		</button>
+	</div>
+</div>

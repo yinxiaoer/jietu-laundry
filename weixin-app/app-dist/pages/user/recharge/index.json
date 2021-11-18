@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "wux-button": "../../../packages/@wuxui/button/index",
+    "wux-input": "../../../packages/@wuxui/input/index",
+    "wux-cell": "../../../packages/@wuxui/cell/index",
+    "recharge": "../../components/recharge/index"
+  }
+}

@@ -1,0 +1,33 @@
+<!--components/appraisesDetail/index.wxml-->
+<view class='container'>
+  <view class='content'>
+    <view class='userimg'>
+       <tuImage src="{{appraisedetail.customerPortrait}}" class='img'></tuImage>
+    </view>
+    <view class='right'>
+      <view class='top'>
+        <view class='top_left'>
+          <text wx:if="{{username_type}}" class='top_left_title'>匿名用户</text>
+          <text wx:else class='top_left_title'>{{appraisedetail.customerName}}</text>
+          <view class='top_left_box'>
+            <text class='top_left_box_title'>评分</text>
+            <rater value="{{appraisedetail.grade}}"
+            controlled
+            fontSize="16"
+            activeColor="#F24439" class='top_left_box_grade'>{{appraisedetail.grade}}</rater>
+          </view>
+        </view>
+        <text class='top_right_title'>{{date}}</text>
+      </view>
+      <view class='comment'>{{appraisedetail.comment}}</view>
+      <view class='mid' wx:if="{{appraiseimg}}">
+        <view class='pic' wx:for="{{appraisedetail.imageList}}" wx:key="{{index}}">
+          <tuImage src="{{item.url}}" urlType="absolute"></tuImage>
+        </view>
+      </view>
+      <view class='replybox' wx:if="{{visibleMerchantreply}}">
+        <text class='replay'>商家回复：{{appraisedetail.merchantReply}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<wux-cell title="配送信息"></wux-cell>
+
+<view class="order-info">
+    <!--<view class="order-info-item">-->
+        <!--<text>配送骑手：</text>-->
+        <!--<view>-->
+            <!--<text style="margin-right: 28rpx;">小金猪</text>-->
+            <!--<wux-button size="small" outline bind:click="makePhone">联系骑手</wux-button>-->
+        <!--</view>-->
+    <!--</view>-->
+    <view class="order-info-item">
+        <text>配送地址：</text>
+        <text>{{orderDetail.receiverName}}   {{orderDetail.receiverMobile}}</text>
+    </view>
+    <view class="order-address">{{orderDetail.receiverAddress}}</view>
+</view>

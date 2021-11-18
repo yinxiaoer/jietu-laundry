@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.order.OrderDao">
+
+	<resultMap id="orderResultMap" type="order">
+		<id property="id" column="id"/>
+		<result property="sn" column="sn"/>
+		<result property="customerId" column="customer_id"/>
+		<result property="merchantId" column="merchant_id"/>
+		<result property="merchantName" column="merchant_name"/>
+		<result property="status" column="status"/>
+		<result property="receiverName" column="receiver_name"/>
+		<result property="receiverMobile" column="receiver_mobile"/>
+		<result property="receiverAddress" column="receiver_address"/>
+		<result property="buyerRemark" column="buyer_remark"/>
+		<result property="goodsTailAmount" column="goods_tail_amount"/>
+		<result property="freightFee" column="freight_fee"/>
+		<result property="discountAmount" column="discount_amount"/>
+		<result property="payAmount" column="pay_amount"/>
+		<result property="currencyCode" column="currency_code"/>
+		<result property="fetchStartDate" column="fetch_start_date"/>
+		<result property="fetchEndDate" column="fetch_end_date"/>
+		<result property="deliverStartDate" column="deliver_start_date"/>
+		<result property="deliverEndDate" column="deliver_end_date"/>
+		<result property="payType" column="pay_type"/>
+		<result property="createDate" column="create_date"/>
+		<collection property="orderGoodsList" ofType="orderGoods">
+			<id property="id" column="g_id"/>
+			<result property="name" column="g_name"/>
+			<result property="picUrl" column="g_pic_url"/>
+			<result property="number" column="g_number"/>
+			<result property="price" column="g_price"/>
+			<result property="retailPrice" column="g_retail_price"/>
+			<result property="marketPrice" column="g_market_price"/>
+		</collection>
+	</resultMap>
+
+	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="long" parameterType="order">
+		SELECT count(*) FROM or_order
+		<include refid="whereSql" />
+	</select>
+
+	<select id="findLimitByQuery" parameterType="order" resultType="order">
+		select
+			id,sn,status,pay_amount,buyer_remark,create_date
+		from
+			or_order
+		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by ${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+	</select>
+
+	<select id="getById" parameterType="long" resultMap="orderResultMap">
+		SELECT
+            o.`id`,
+            o.`sn`,
+            o.customer_id,
+            o.`merchant_id`,
+            mm.`name` as 'merchant_name',
+            o.`status`,
+            o.`receiver_name`,
+            o.`receiver_mobile`,
+            o.`receiver_address`,
+            o.`buyer_remark`,
+            o.`goods_tail_amount`,
+            o.`freight_fee`,
+            o.`discount_amount`,
+            o.`pay_amount`,
+            o.`currency_code`,
+            o.`fetch_start_date`,
+            o.`fetch_end_date`,
+            o.`deliver_start_date`,
+            o.`deliver_end_date`,
+            o.`pay_type`,
+            o.`create_date`,
+            og.`id` as 'g_id',
+            og.`name` as 'g_name',
+            og.`pic_url` as 'g_pic_url',
+            og.`number` as 'g_number',
+            og.`price` as 'g_price',
+            og.`retail_price` as 'g_retail_price',
+            og.`market_price` as 'g_market_price'
+        FROM
+            or_order o
+        LEFT JOIN mt_merchant mm ON o.merchant_id = mm.id
+        LEFT JOIN or_order_goods og ON o.id = og.order_id
+        WHERE o.id=#{id}
+	</select>
+
+	<update id="updateStatus">
+		update or_order set
+			status = #{status}
+		where id = #{id}
+	</update>
+
+	<sql id="whereSql">
+		<where>
+			<if test="merchantId != null">
+				and merchant_id = #{merchantId}
+			</if>
+		</where>
+	</sql>
+
+
+	<!--======================================订单评价====================================-->
+	<resultMap id="orderCommentResultMap" type="orderComment">
+		<id property="id" column="id"/>
+		<result property="orderId" column="order_id"/>
+		<result property="merchantId" column="merchant_id"/>
+		<result property="customerId" column="customer_id"/>
+		<result property="customerName" column="customer_name"/>
+		<result property="customerPortrait" column="customer_portrait"/>
+		<result property="grade" column="grade"/>
+		<result property="comment" column="comment"/>
+		<result property="merchantReply" column="merchant_reply"/>
+		<result property="createDate" column="create_date"/>
+		<collection property="imageList" ofType="merchantImage">
+			<result property="url" column="img_url"/>
+		</collection>
+	</resultMap>
+
+	<select id="getOrderComment" resultMap="orderCommentResultMap">
+		SELECT
+			oc.id,
+			oc.order_id,
+			oc.merchant_id,
+			oc.customer_id,
+			c.nickname as 'customer_name',
+			c.portrait as 'customer_portrait',
+			oc.grade,
+			oc.`comment`,
+			oc.`merchant_reply`,
+			oc.create_date,
+			mi.url as 'img_url'
+		FROM or_order_comment oc
+		LEFT JOIN cst_customer c ON oc.customer_id = c.id
+		LEFT JOIN mt_merchant_image mi ON oc.order_id = mi.order_id AND oc.merchant_id = mi.merchant_id AND mi.types = 1
+		<include refid="commentWhereSql" />
+		ORDER BY mi.sort_order asc
+	</select>
+
+	<update id="commentReply" >
+		update or_order_comment set
+			`merchant_reply` = #{replyContent}
+		where `id` = #{orderCommentId}
+	</update>
+
+	<sql id="commentWhereSql">
+		<where>
+			<if test="orderId != null">
+				and oc.order_id = #{orderId}
+			</if>
+			<if test="merchantId != null">
+				and oc.merchant_id = #{merchantId}
+			</if>
+		</where>
+	</sql>
+
+</mapper>

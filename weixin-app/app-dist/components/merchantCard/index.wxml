@@ -1,0 +1,29 @@
+<view class="card-wrapper" bindtap="clickEvent">
+    <view class="card-left">
+        <tuImage src="{{item.logo}}"
+                 class="picture"
+                 urlType="absolute"
+                    mode="aspectFill"></tuImage>
+    </view>
+    <view class="card-right {{itemType==='home' ? has-border : ''}} ">
+        <text class="title">{{item.name}}</text>
+        <view class="content">
+            <rater value="{{item.grade}}"
+                   controlled
+                   fontSize="16"
+                   style="display: flex;align-items: center;"
+                   activeColor="#F24439">
+                {{item.grade}}
+            </rater>
+            <text style="display: flex;align-items: center;">月销售：{{item.monthSales}}</text>
+            <text wx:if="{{itemType==='home'}}">{{item.distance}}</text>
+            <text wx:if="{{itemType==='userLaundry'}}">¥{{item.balance}}</text>
+            <wux-icon wx:if="{{itemType==='collection'}}"
+                      bindtap="cancelCollect"
+                      style="color: #129EEF;"
+                      type="icon-shoucangxuanzhong"></wux-icon>
+            <wux-timeago wx:if="{{itemType==='history'}}" lang="zh-CN" to="{{item.updateDate}}"></wux-timeago>
+        </view>
+        <text class="address">{{item.address}}</text>
+    </view>
+</view>

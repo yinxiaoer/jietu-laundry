@@ -1,0 +1,30 @@
+{
+  "style": {
+    "brandColor": "#FF0077",
+    "controlColor": "#FF5777",
+    "titleColor": "#333333",
+    "subTitleColor": "#666666",
+    "lightTitleColor": "#999999",
+    "borderColor": "#ECECEC",
+    "backgroundColour": "#EFEFEF"
+  },
+  "prefix": "wxc",
+  "dest": "dist",
+  "npm": {
+    "dest": "dist/packages"
+  },
+  "compilers": {
+    "babel": {
+      "sourceMaps": "inline",
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "syntax-export-extensions",
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        "transform-export-extensions"
+      ]
+    }
+  }
+}

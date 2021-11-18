@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.system.RoleDao">
+
+	<insert id="insert" parameterType="roleEntity">
+		INSERT INTO sys_role (
+			`id`,
+			`name`,
+			`description`,
+			`available`,
+			`create_name`,
+			`create_date`
+		) VALUES (
+			#{id},
+			#{name},
+			#{description},
+			#{available},
+			#{createName},
+			#{createDate}
+		)
+	</insert>
+
+	<update id="update" parameterType="roleEntity">
+		UPDATE sys_role SET
+			`name`=#{name},
+			`description`=#{description},
+			`available`=#{available},
+			`update_name`=#{updateName},
+			`update_date`=#{updateDate}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM sys_role WHERE `id`=#{id}
+	</delete>
+
+	<update id="updateStatus" parameterType="RoleEntity" >
+		UPDATE sys_role SET available=#{available} WHERE id=#{id}
+	</update>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="java.lang.Long" parameterType="RoleEntity">
+		SELECT count(*) FROM sys_role
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="RoleEntity" resultType="RoleEntity">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			sys_role
+ 	</select>
+ 	
+ 	<select id="getById" parameterType="java.lang.String" resultType="RoleEntity">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			sys_role
+ 		where id=#{id}
+ 	</select>
+
+	<sql id="fieldSql">
+		id,
+		name,
+		description,
+		available,
+		create_name,
+		create_date,
+		update_name,
+		update_date
+	</sql>
+
+	<insert id="saveRoleResource" parameterType="java.util.List" >
+		INSERT INTO sys_role_resource (
+			role_id,
+			resource_id,
+			resource_type
+		)VALUES
+		<foreach collection="roleResourceList" item="item" open="(" separator="),(" close=")">
+			'${item.roleId}', '${item.resourceId}','${item.resourceType}'
+		</foreach>
+	</insert>
+
+	<delete id="deleteRoleResource" parameterType="java.util.Map">
+		delete from sys_role_resource where role_id=#{roleId} and resource_type=#{resourceType}
+		<if test="parentId != null and parentId != ''">
+			and resource_id in (select id from sys_resource where parent_id=#{parentId})
+		</if>
+	</delete>
+	
+</mapper>

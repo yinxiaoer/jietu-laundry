@@ -1,0 +1,84 @@
+/* components/appraisesDetail/index.wxss */
+.container{
+  padding: 24rpx 0;
+  height: 100%;
+}
+.container .content{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.container .content .userimg{
+  width: 114rpx;
+  height: 114rpx;
+  background: #CCCCCC;
+  border-radius: 50%;
+  border: 2rpx solid #cccccc;
+  overflow: hidden;
+}
+
+.container .content .right{
+  padding-left: 16rpx;
+  width: 578rpx;
+  height: 100%;
+  /* border-bottom: 1px solid #E5E5E5; */
+  padding-bottom: 20rpx;
+}
+/* .container .content .right:last-child{
+  border-bottom: none;
+} */
+.container .content .right .top{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+ .container .content .right .top .top_left .top_left_title{
+  display: block;
+  font-size: 30rpx;
+  color: #333333;
+  padding-top: 20rpx;
+}
+ .top .top_left .top_left_box .top_left_box_title{
+  font-size: 24rpx;
+  color: #666666;
+}
+ .top .top_left .top_left_box .top_left_box_grade{
+  font-size: 24rpx;
+  color: #666666;
+}
+ .top .top_right_title{
+  font-size: 24rpx;
+  color: #666666;
+  padding: 20rpx 0 0 180rpx;
+}
+.container .content .right .comment{
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 150%;
+}
+.container .content .right .mid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: auto;
+  padding-top:14rpx;
+  margin-left: -16rpx;
+}
+.container .content .right .mid .pic{
+  flex-shrink: 0;
+  width: 180rpx;
+  height: 180rpx;
+  padding-left: 16rpx;
+}
+.container .content .right .replybox{
+  width: 100%;
+  background: #E5E5E5;
+  margin-top: 20rpx;
+}
+.container .content .right .replybox .replay{
+  font-size: 26rpx;
+  color: #333;
+  padding: 10rpx;
+  display: block;
+}

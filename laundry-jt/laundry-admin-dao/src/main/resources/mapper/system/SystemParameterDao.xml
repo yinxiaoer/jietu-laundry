@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.system.SystemParameterDao">
+
+	<resultMap id="areaResultMap" type="com.jietu.admin.model.ElCascaderModel">
+		<result column="label" property="label" />
+		<result column="value" property="value" />
+		<collection property="children" ofType="com.jietu.admin.model.ElCascaderModel">
+			<result column="c_label" property="label" />
+			<result column="c_value" property="value" />
+			<collection property="children" ofType="com.jietu.admin.model.ElCascaderModel">
+				<result column="a_label" property="label" />
+				<result column="a_value" property="value" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<insert id="insert" parameterType="systemParameter">
+		INSERT INTO sys_system_parameter (
+			`id`,
+			`value`,
+			`description`,
+			`seq`,
+			`type_id`,
+			`create_name`,
+			`create_date`
+		) VALUES (
+			#{id},
+			#{value},
+			#{description},
+			#{seq},
+			#{typeId},
+			#{createName},
+			#{createDate}
+		)
+	</insert>
+
+	<update id="update" parameterType="systemParameter">
+		UPDATE sys_system_parameter SET
+			`value`=#{value},
+			`description`=#{description},
+			`seq`=#{seq},
+			`type_id`=#{typeId},
+			`update_name`=#{updateName},
+			`update_date`=#{updateDate}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM sys_system_parameter WHERE id=#{id}
+	</delete>
+
+ 	<select id="getById" parameterType="java.lang.String" resultType="systemParameter">
+		SELECT id,
+		<include refid="selectSql"/>
+ 		FROM sys_system_parameter 
+ 		WHERE id=#{id}
+	</select>
+
+ 	 <!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="java.lang.Long" parameterType="SystemParameter">
+		SELECT count(*) FROM sys_system_parameter 
+		<include refid="whereSql" />
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="SystemParameter" resultType="systemParameter">
+ 		select
+		<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter 
+ 		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by ${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+ 	
+ 	<select id="findByType" parameterType="java.lang.String" resultType="systemParameter">
+ 		select 
+ 			<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter
+ 		where type_id=#{_parameter}
+		order by seq asc
+ 	</select>
+
+	<select id="findAreaByCode" resultType="com.jietu.admin.model.AreaModel">
+		SELECT code, name FROM `sys_area` WHERE code=#{code};
+	</select>
+
+	<select id="getProvince" resultType="com.jietu.admin.model.AreaModel">
+		SELECT code, name FROM `sys_area` WHERE code LIKE '__0000';
+	</select>
+
+	<select id="getCity" parameterType="java.lang.String" resultType="com.jietu.admin.model.AreaModel">
+		<![CDATA[
+			SELECT code, name FROM `sys_area` WHERE code LIKE '${province}__00' and code <> '${province}0000';
+		]]>
+	</select>
+
+	<select id="getArea" parameterType="java.lang.String" resultType="com.jietu.admin.model.AreaModel">
+		<![CDATA[
+			select code, name from sys_area where code like '${city}__' and code <> '${city}00';
+		]]>
+	</select>
+
+	<select id="getAreaData" resultMap="areaResultMap">
+		SELECT
+			p.`code` as "value",
+			p.`name` as "label",
+			c.`code` as "c_value",
+			c.`name` as "c_label",
+			a.`code` as "a_value",
+			a.`name` as "a_label"
+		FROM
+			sys_area p
+			LEFT JOIN sys_area c ON p.`code` = c.`parent`
+			LEFT JOIN sys_area a ON c.`code` = a.`parent`
+		WHERE
+			p.parent = '0'
+	</select>
+
+	<sql id="selectSql">
+		id,
+		value,
+		description,
+		seq,
+		type_id,
+		create_name,
+		create_date,
+		update_name,
+		update_date
+	</sql>
+
+ 	<sql id="whereSql">
+ 		<where>
+ 			<if test="id!=null and id!=''">
+ 				and id=#{id}
+ 			</if>
+ 			<if test="value!=null and value!=''">
+ 				and value=#{value}
+ 			</if>
+ 			<if test="typeId!=null and typeId!=''">
+ 				and type_id=#{typeId}
+ 			</if>
+ 		</where>
+ 	</sql>
+</mapper> 

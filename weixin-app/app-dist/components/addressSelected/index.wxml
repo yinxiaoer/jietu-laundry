@@ -1,0 +1,29 @@
+<wux-popup visible="{{ show }}"
+           position="bottom"
+           bind:close="onClose">
+    <view class="model-contain">
+        <view class="header">{{title}}</view>
+        <scroll-view  class="address-con" scroll-y>
+            <view class="address-con-box">
+                <radio-group bindchange="updateAddress">
+                    <view class="address-item" wx:for="{{addresses}}" wx:key="{{index}}">
+                        <view>
+                            <radio value="{{item.id}}" checked="{{item.defaulted}}" />
+                        </view>
+                        <view class="address-detail">
+                            <text class="address-name">{{item.locationAddress}}</text>
+                            <view class="user-info">
+                                <text>{{item.detailsAddress}}</text>
+                                <text>{{item.receiverMobile}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </radio-group>
+            </view>
+        </scroll-view>
+        <view class="footer">
+            <wux-icon type="icon-guanbi_" class="icon"></wux-icon>
+            <text class="add_btn" bindtap="addAddress"> 新增收获地址</text>
+        </view>
+    </view>
+</wux-popup>

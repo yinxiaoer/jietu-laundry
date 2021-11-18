@@ -1,0 +1,59 @@
+.comment {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+.comment-main {
+  padding: 27rpx 34rpx;
+  margin-bottom: 100rpx;
+}
+
+.comment-main .tags {
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.comment-main .tags .tag {
+  margin: 0 15rpx;
+  margin-bottom: 27rpx;
+}
+
+.comment-main-header {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 30rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #CCCCCC;
+}
+
+.merchant-pic {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 23rpx;
+}
+
+.comment-rate {
+  padding: 50rpx 0;
+  text-align: center;
+}
+
+.comment-textarea {
+  border: 2rpx solid #999999;
+  padding: 19rpx 26rpx;
+  background: #F5F5F5;
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 32rpx;
+  border-radius: 4rpx;
+}
+.submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

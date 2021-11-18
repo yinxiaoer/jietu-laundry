@@ -1,0 +1,17 @@
+<view class="order-detail">
+    <card>
+        <orderStatus status="{{orderDetail.status}}"></orderStatus>
+    </card>
+    <card>
+        <orderProductCard title="商家名称" products="{{products}}" prices="{{orderDetail}}"></orderProductCard>
+    </card>
+    <card>
+        <deliveryInfo orderDetail="{{orderDetail}}"></deliveryInfo>
+    </card>
+    <card>
+        <orderInfo orderDetail="{{orderDetail}}"></orderInfo>
+    </card>
+    <view class="order-divider">
+        <wux-divider text="我也是有底线的"></wux-divider>
+    </view>
+</view>

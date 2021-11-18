@@ -1,0 +1,50 @@
+<view>
+    <wux-select id="wux-select" />
+    <wux-cascader visible="{{ visible }}"
+                  controlled
+                  value="{{ value }}"
+                  title="所在地区" options="{{ addressOptions }}"
+                  bind:close="onClose"
+                  bind:change="onChangeAddress"
+                  defaultFieldNames="{{defaultFieldNames}}"
+                  bind:load="onLoadOptions" />
+    <view>
+        <wux-cell>
+            <wux-input label="收货人" value="{{addressInfo.receiverName}}"
+                       controlled
+                       placeholder="姓名"
+                       bind:change="updateName"
+                       bind:blur="updateName"
+                       bind:confirm="updateName"/>
+        </wux-cell>
+        <wux-cell>
+            <wux-input label="手机号码" value="{{addressInfo.receiverMobile}}"
+                       placeholder="11位手机号码" type="number"
+                       controlled
+                       bind:change="updateMobile"
+                       bind:blur="updateMobile"
+                       bind:confirm="updateMobile"
+                       maxlength="11"/>
+        </wux-cell>
+        <view bindtap="openMap" class="map-select">
+           <view class="map-select-box">
+               <text class="title">选择地址</text>
+               <text class="address">{{ addressInfo.locationAddress }}</text>
+           </view>
+        </view>
+        <!--<wux-cell title="选择地址" extra="{{ title }}" bind:click="onOpen"></wux-cell>-->
+        <wux-cell>
+            <wux-input label="详细地址"
+                       controlled
+                       value="{{addressInfo.detailsAddress}}"
+                       placeholder="详细地址"
+                       bind:change="updateAddress"
+                       bind:blur="updateAddress"
+                       bind:confirm="updateAddress" />
+        </wux-cell>
+        <wux-cell title="默认地址" extra="{{ isDefault }}" bind:click="changeDefault"></wux-cell>
+    </view>
+    <card>
+        <wux-button block full type="calm" bind:click="save">保存</wux-button>
+    </card>
+</view>

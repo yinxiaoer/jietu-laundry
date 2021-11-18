@@ -1,0 +1,48 @@
+{
+	"nickName": "小品",
+	"portrait": "http://cdn.duitang.com/uploads/item/201406/17/20140617131104_hcJft.thumb.700_0.jpeg",
+	"email": "1113@qq.com",
+	"isMember": true,
+	"labels": [
+		{
+			"code": 111321,
+			"name": "儿砸"
+		}
+	],
+	"addresses": [
+		{
+			"code": 231212412,
+			"provinceId": 12345,
+			"province": "四川",
+			"cityId": 12313,
+			"city": "成都",
+			"districtId": 123,
+			"district": "高兴区",
+			"townId":  123213,
+			"town": "街道名称",
+			"address": "详细地址",
+			"receiverName": "梅尔",
+			"receiverMobile": "15181315555",
+			"receiverTelephone": "10086",
+			"receiverEmail": "12312@qq.com",
+			"isDefault": true
+		},
+		{
+			"code": 231212412,
+			"provinceId": 12345,
+			"province": "四川",
+			"cityId": 12313,
+			"city": "成都",
+			"districtId": 123,
+			"district": "高兴区",
+			"townId":  123213,
+			"town": "街道名称",
+			"address": "详细地址",
+			"receiverName": "梅尔",
+			"receiverMobile": "15181315555",
+			"receiverTelephone": "10086",
+			"receiverEmail": "12312@qq.com",
+			"isDefault": false
+		}
+	]
+}

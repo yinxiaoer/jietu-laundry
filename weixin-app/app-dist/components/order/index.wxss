@@ -1,0 +1,77 @@
+.order {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22rpx;
+}
+
+.order .left {
+  flex-shrink: 0;
+  width: 72rpx;
+}
+
+.order .left .pic {
+  height: 72rpx;
+  width: 72rpx;
+  overflow: hidden;
+  border-radius: 4rpx;
+}
+
+.order .right {
+  width: 100%;
+  margin-left: 23rpx;
+}
+
+.order .right .base-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 8rpx;
+}
+
+.order .right .base-info .top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order .right .base-info .top .merchant-name {
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.order .right .base-info .top .time {
+  color: #666666;
+  font-size: 22rpx;
+}
+
+
+.order .right .base-info .order-status {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.order .right .detail-info {
+  padding: 37rpx 0;
+  color: #333333;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order .price-item {
+  font-size: 28rpx;
+  color: red;
+}
+
+.order .right .handle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order .right .handle .button {
+  margin-left: 28rpx;
+}

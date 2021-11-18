@@ -1,0 +1,14 @@
+.icon_list {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
+  .icon_item_demo {
+    width: 20%;
+    float: left;
+    margin-bottom: 10rpx;
+  }
+  .icon_type {
+    display: block;
+    font-size: 22rpx;
+  }

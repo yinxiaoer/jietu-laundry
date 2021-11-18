@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-button": "../../packages/@wuxui/button",
+    "wux-badge": "../../packages/@wuxui/badge",
+    "price": "../price/index",
+    "wux-popup": "../../packages/@wuxui/popup",
+    "wux-icon": "../../packages/@wuxui/icon",
+    "imgIcon": "../imgIcon/index"
+  }
+}

@@ -1,0 +1,25 @@
+<% if (itemsObj && items.length > 0) { %>
+	<h3><%=itemsTitle%></h3>
+	<ul data-tpl="parameter-desc">
+		<% for(var m=0; m<items.length; m++) { %>
+			<% var item = items[m]; %>
+			<li>
+				<strong><%=item.name%></strong>:
+				<em>
+					<% if (item.required) { %>
+					required
+					<% } %>
+					(<%=item.type%>)
+				</em>
+				<p><%-item.desc%></p>
+				<ul>
+					<% if (item.descList && item.descList.length > 0) { %>
+						<% for(var n=0; n<item.descList.length; n++) { %>
+							<li><%-item.descList[n]%></li>
+						<% } %>
+					<% } %>
+				</ul>
+			</li>
+		<% } %>
+	</ul>
+<% } %>

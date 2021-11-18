@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-icon":"../imgIcon/index",
+    "wux-icon": "../../packages/@wuxui/icon/index"
+  }
+}

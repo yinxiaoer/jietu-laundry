@@ -1,0 +1,24 @@
+.user-base {
+  height: 360rpx;
+  background: linear-gradient(#019AEA, #61C3F7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #E5E5E5;
+  font-size: 30rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.picture-card {
+  background: #019AEA;
+}
+
+.user-base__avatar {
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  background: #61C3F7;
+  border-radius: 50%;
+}

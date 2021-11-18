@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-popup": "../../packages/@wuxui/popup/index",
+    "wux-tabs": "../../packages/@wuxui/tabs/index",
+    "wux-tab": "../../packages/@wuxui/tab/index",
+    "wux-icon": "../../packages/@wuxui/icon/index",
+    "wux-checkbox": "../../packages/@wuxui/checkbox/index",
+    "wux-checkbox-group": "../../packages/@wuxui/checkbox-group/index"
+  }
+}

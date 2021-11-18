@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.merchant.MerchantDao">
+
+    <select id="findCircumMerchant" parameterType="merchant" resultType="merchantDistance">
+        SELECT
+            m.`id`,
+            m.`name`,
+            m.`status`,
+            m.`address`,
+            m.`logo`,
+            IFNULL(ms.sales, 0) as 'month_sales',
+            m.`total_sales`,
+            m.`grade`,
+            ROUND(
+                6378138 * 2 * ASIN(
+                SQRT(
+                    POW(
+                        SIN((#{latitude}*PI()/180-m.latitude*PI()/180)/2),2)
+                        + COS(#{latitude}*PI()/180)*COS(m.latitude*PI()/180)
+                        * POW(SIN((#{longitude}*PI()/180-m.longitude*PI()/180)/2),2)
+                    )
+                )
+            ) AS 'distance'
+        FROM
+            mt_merchant m
+        LEFT JOIN mt_month_sales ms ON m.id = ms.merchant_id AND ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+        WHERE m.status != 0
+        ORDER BY distance ASC
+        <if test="page != null">
+            limit ${(page-1)*limit},${limit}
+        </if>
+    </select>
+
+    <select id="getMerchantDetails" resultType="merchantDistance">
+        SELECT
+            m.`id`,
+            m.`name`,
+            m.`status`,
+            m.`address`,
+            m.`logo`,
+            IFNULL(ms.sales, 0) as 'month_sales',
+            m.`total_sales`,
+            m.`grade`,
+            m.`scope_of_services`,
+            m.`business_hours_start`,
+            m.`business_hours_end`,
+            ROUND(
+                6378138 * 2 * ASIN(
+                SQRT(
+                    POW(
+                        SIN((#{latitude}*PI()/180-m.latitude*PI()/180)/2),2)
+                        + COS(#{latitude}*PI()/180)*COS(m.latitude*PI()/180)
+                        * POW(SIN((#{longitude}*PI()/180-m.longitude*PI()/180)/2),2)
+                    )
+                )
+            ) AS 'distance'
+        FROM
+            mt_merchant m
+        left join mt_month_sales ms on m.id = ms.merchant_id and ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+        WHERE m.id = #{merchantId}
+    </select>
+
+    <select id="getById" parameterType="long" resultType="merchant">
+        select
+          <include refid="fieldSql" />
+        from
+          mt_merchant
+        where id=#{id}
+    </select>
+
+    <sql id="fieldSql">
+		`id`,
+		`name`,
+		`status`,
+		`info`,
+		`address`,
+		`business_license_code`,
+		`contact_name`,
+		`contact_mobile`,
+		`contact_mail`,
+		`user_id`,
+		`longitude`,
+		`latitude`,
+		`total_sales`,
+		`grade`,
+		`logo`,
+		`scope_of_services`,
+		`business_hours_start`,
+		`business_hours_end`,
+		`create_name`,
+		`create_date`,
+		`update_name`,
+		`update_date`
+	</sql>
+</mapper>

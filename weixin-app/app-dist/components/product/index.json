@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tuImage": "../tu-image/index",
+    "imgIcon": "../imgIcon/index",
+    "price": "../price/index",
+    "tuPopup": "../tu-popup/index",
+    "wux-button": "../../packages/@wuxui/button"
+  }
+}

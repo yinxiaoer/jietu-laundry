@@ -1,0 +1,45 @@
+.order-status {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-status text {
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.order-status .block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-status .block-circle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 24rpx;
+}
+
+.order-status .block-circle .icon {
+  position: absolute;
+  right: -40rpx;
+}
+
+.order-status .circle {
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 50%;
+  border: 1px solid #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-status .circle.active {
+  border: 1px solid #129EEF;
+}

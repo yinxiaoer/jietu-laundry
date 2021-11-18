@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.order.OrderCommentDao">
+
+    <resultMap id="orderResultMap" type="orderComment">
+        <id property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="customerName" column="customer_name"/>
+        <result property="customerPortrait" column="customer_portrait"/>
+        <result property="grade" column="grade"/>
+        <result property="comment" column="comment"/>
+        <result property="merchantReply" column="merchant_reply"/>
+        <result property="createDate" column="create_date"/>
+        <collection property="imageList" ofType="merchantImage">
+            <result property="url" column="img_url"/>
+        </collection>
+    </resultMap>
+
+    <insert id="save" parameterType="orderComment" useGeneratedKeys="true" keyProperty="id">
+		insert into or_order_comment (
+			`order_id`,
+			`merchant_id`,
+			`customer_id`,
+			`grade`,
+			`comment`,
+			`merchant_reply`
+		) values (
+			#{orderId},
+			#{merchantId},
+			#{customerId},
+			#{grade},
+			#{comment},
+			#{merchantReply}
+		)
+	</insert>
+
+    <select id="getMerchantComment" parameterType="orderComment" resultMap="orderResultMap">
+        SELECT
+            oc.id,
+            oc.order_id,
+            oc.merchant_id,
+            oc.customer_id,
+            c.nickname as 'customer_name',
+            c.portrait as 'customer_portrait',
+            oc.grade,
+            oc.`comment`,
+            oc.`merchant_reply`,
+            oc.create_date,
+            mi.url as 'img_url'
+        FROM
+            (
+                SELECT id, order_id, merchant_id, customer_id, grade, `comment`,merchant_reply, create_date
+                FROM or_order_comment
+                WHERE merchant_id = #{merchantId} AND grade between #{startGrade} and #{endGrade}
+                <if test="imageComment">
+                    AND EXISTS (select order_id from mt_merchant_image mmi where ooc.order_id = mmi.order_id and mmi.types = 1)
+                </if>
+                ORDER BY create_date DESC
+                LIMIT ${(page-1)*limit},${limit}
+            ) oc
+            LEFT JOIN cst_customer c ON oc.customer_id = c.id
+            LEFT JOIN mt_merchant_image mi ON oc.order_id = mi.order_id
+            AND oc.merchant_id = mi.merchant_id
+            AND mi.types = 1
+        ORDER BY
+            oc.create_date DESC,
+            mi.sort_order ASC
+    </select>
+
+    <select id="getMerchantCommentCount" resultType="map">
+        SELECT
+            IFNULL(sum( grade > 3 ), 0) AS 'goodComment',
+            IFNULL(sum( grade &lt; 2 ), 0) AS 'negativeComment',
+            IFNULL(( SELECT count( DISTINCT order_id ) FROM mt_merchant_image WHERE types = 1 AND merchant_id = #{merchantId} ), 0) AS 'imageComment',
+            IFNULL(sum( grade > 3 ), 0) / count( * ) AS 'satisficing'
+        FROM
+          or_order_comment
+        WHERE
+        merchant_id = #{merchantId}
+    </select>
+</mapper>

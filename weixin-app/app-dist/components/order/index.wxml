@@ -1,0 +1,30 @@
+<card>
+    <view class="order">
+        <view class="left" bindtap="goDetail">
+            <view class="pic">
+                <tu-image src="{{orderItem.orderGoodsList[0].picUrl}}" urlType="absolute"></tu-image>
+            </view>
+        </view>
+        <view class="right">
+            <view class="base-info" bindtap="goDetail">
+                <view class="top">
+                    <text class="merchant-name">{{orderItem.merchantName}}</text>
+                    <text class="time">下单时间：{{orderItem.createDate}}</text>
+                </view>
+                <view class="order-status">{{orderItem.statusName}}</view>
+            </view>
+            <view class="detail-info" bindtap="goDetail">
+                <view class="product-info">
+                    {{orderItem.orderGoodsList[0].name}}
+                    等{{orderItem.orderGoodsList.length}}件商品
+                </view>
+                <div class="price-item">￥{{orderItem.payAmount}}</div>
+            </view>
+            <view class="handle">
+                <wux-button class="button" bind:click="goMerchant" wx:if="{{orderItem.status!=0}}">再来一单</wux-button>
+                <wux-button class="button" wx:if="{{orderItem.status==0}}" bind:click="goPay" type="calm">立即支付</wux-button>
+                <wux-button class="button" wx:if="{{orderItem.status==2}}" bind:click="comment" type="calm">评价</wux-button>
+            </view>
+        </view>
+    </view>
+</card>

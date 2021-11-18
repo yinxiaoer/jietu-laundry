@@ -1,0 +1,26 @@
+{
+  "country": "$ref-CountryWsDTO",
+  "countryIsocode": "string",
+  "country2": "$ref-CountryWsDTO",
+  "email": "string",
+  "firstName": "string",
+  "id": "string",
+  "lastName": "string",
+  "line1": "string",
+  "phone": "string",
+  "postalCode": "string",
+  "streetName": "string",
+  "streetNumber": "string",
+  "title": "string",
+  "titleCode": "string",
+  "town": "string",
+  "list": [
+    {
+      "country": "$ref-CountryWsDTO",
+      "email": "string"
+    }
+  ],
+  "items": [
+    "$ref-CountryWsDTO"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "wux-tabs": "../../packages/@wuxui/tabs/index",
+    "wux-tab": "../../packages/@wuxui/tab/index",
+    "order": "../../components/order/index",
+    "wux-refresher": "../../packages/@wuxui/refresher/index"
+  },
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,30 @@
+<template>
+  <view class="head">
+    <image class="head-icon" src="https://s10.mogucdn.com/mlcdn/c45406/171122_3a9505cl22fk767gg7j6cfe3878f8_176x176.png"></image>
+    <text class="head-text">头部模板</text>
+  </view>
+</template>
+
+<script>
+export default {
+}
+</script>
+
+<style>
+.head {
+  height: 80rpx;
+  background-color:#b8e1f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.head-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+.head-text {
+  color: #666;
+  font-size: 26rpx;
+  padding-left: 15rpx;
+}
+</style>

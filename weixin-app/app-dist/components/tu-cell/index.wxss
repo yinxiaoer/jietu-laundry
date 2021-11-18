@@ -1,0 +1,52 @@
+/* components/tu-userinfo/index.wxss */
+.container{
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.container .left_title{
+  color: #333;
+  font-size: 28rpx;
+  width: 40%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 30rpx;
+}
+.container .right{
+  width: 60%;
+  height: 80rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.container .right .thumb{
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+}
+.container .right .icon{
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+}
+.container .right .right_title{
+  color: #666666;
+  font-size: 26rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-right: 20rpx;
+}
+.container .right .islink{
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+}
+.hasborder{
+  border-bottom: 1rpx solid #ccc;
+}
+.hasTop{
+  margin-top: 26rpx;
+}

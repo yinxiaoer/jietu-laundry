@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-input": "../../../../packages/@wuxui/input/index",
+    "wux-button": "../../../../packages/@wuxui/button/index"
+  }
+}

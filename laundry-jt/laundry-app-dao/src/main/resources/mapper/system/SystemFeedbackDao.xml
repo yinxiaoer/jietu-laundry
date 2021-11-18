@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.system.SystemFeedbackDao">
+
+	<insert id="save" parameterType="systemFeedback" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_feedback (
+			`customer_id`,
+			`type_id`,
+			`content`
+		) values (
+			#{customerId},
+			#{typeId},
+			#{content}
+		)
+	</insert>
+
+	<insert id="saveFeedbackImage" parameterType="systemFeedbackImage" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_feedback_image (
+			`feedback_id`,
+			`sort_order`,
+			`url`
+		) values (
+			#{feedbackId},
+			#{sortOrder},
+			#{url}
+		)
+	</insert>
+
+</mapper>

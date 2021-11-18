@@ -1,0 +1,42 @@
+<wux-toast id="wux-toast" />
+
+<view class="comment">
+    <view>
+        <view class="comment-main">
+            <view class="tags">
+                <tuTag wx:for="{{tags}}"
+                       wx:key="index"
+                       bind:change="selectedTag"
+                       class="tag"
+                       active="{{selectedTag===item.id}}"
+                       dataSet="{{item.id}}"
+                       controlled>{{item.value}}</tuTag>
+            </view>
+            <view class="comment-textarea">
+                <wux-textarea hasCount rows="8" cursorSpacing="80"
+                              bind:change="commentChange"
+                              maxlength="400"
+                              controlled
+                              value="{{comment}}"
+                              placeholder="请填写你的投诉建议"/>
+            </view>
+            <view>
+                <wux-upload listType="picture-card"
+                            fileList="{{ fileList }}"
+                            controlled
+                            name="file"
+                            formData="{{formData}}"
+                            header="{{header}}"
+                            url="{{config.baseURL}}/fileUpload"
+                            bind:change="uploadChange"
+                            bind:success="uploadSuccess"
+                            bind:complete="uploadComplete"
+                            bind:fail="uploadFail"
+                            bind:remove="remove">
+                    <wux-icon type="icon-yilou"></wux-icon>
+                </wux-upload>
+            </view>
+        </view>
+    </view>
+    <wux-button class="submit" type="calm" block full bind:click="onSubmit">提交</wux-button>
+</view>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.goods.GoodsDao">
+
+    <resultMap id="categoryResultMap" type="goodsCategory">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="desc" column="desc" />
+        <result property="merchantId" column="merchant_id" />
+        <collection property="goodsList" javaType="list" ofType="goods">
+            <id property="id" column="g_id" />
+            <result property="name" column="g_name" />
+            <result property="info" column="g_info" />
+            <result property="serviceDesc" column="g_service_desc" />
+            <result property="sortOrder" column="g_sort_order" />
+            <result property="picUrl" column="g_pic_url" />
+            <result property="price" column="g_price" />
+            <result property="retailPrice" column="g_retail_price" />
+            <result property="marketPrice" column="g_market_price" />
+        </collection>
+    </resultMap>
+    
+    <select id="getGoodsCategory" resultMap="categoryResultMap">
+        SELECT
+            c.id,
+            c.`name`,
+            c.`desc`,
+            c.merchant_id,
+            g.id AS 'g_id',
+            g.`name` AS 'g_name',
+            g.info AS 'g_info',
+            g.service_desc AS 'g_service_desc',
+            g.sort_order AS 'g_sort_order',
+            g.pic_url AS 'g_pic_url',
+            g.price AS 'g_price',
+            g.retail_price AS 'g_retail_price',
+            g.market_price AS 'g_market_price'
+        FROM
+            gd_goods_category c
+            LEFT JOIN gd_goods g ON c.id = g.category_id
+        WHERE
+            c.merchant_id = #{merchantId}
+    </select>
+
+    <select id="getById" resultType="goods">
+        select
+            `id`,
+            `merchant_id`,
+            `name`,
+            `category_id`,
+            `info`,
+            `service_desc`,
+            `on_sale`,
+            `sort_order`,
+            `deleted`,
+            `pic_url`,
+            `price`,
+            `retail_price`,
+            `market_price`
+        from
+            gd_goods
+        where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,173 @@
+.hljs {
+	background: transparent;
+}
+.parent {
+	color: #999;
+}
+.list-group-item > .badge {
+	float: none;
+	margin-right: 6px;
+}
+.panel-title > .methods {
+	float: right;
+}
+.badge {
+	border-radius: 0;
+	text-transform: uppercase;
+	width: 75px;
+	font-weight: normal;
+	color: #f3f3f6;
+	line-height: normal;
+}
+.badge_get {
+	background-color: #63a8e2;
+}
+.badge_post {
+	background-color: #6cbd7d;
+}
+.badge_put {
+	background-color: #22bac4;
+}
+.badge_delete {
+	background-color: #d26460;
+}
+.badge.is-deprecated {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+.list-group, .panel-group {
+	margin-bottom: 0;
+}
+.panel-group .panel+.panel-white {
+	margin-top: 0;
+}
+.panel-group .panel-white {
+	border-bottom: 1px solid #F5F5F5;
+	border-radius: 0;
+}
+.panel-white:last-child {
+	border-bottom-color: white;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.panel-white .panel-heading {
+	background: white;
+}
+.panel-title a {
+	position: relative;
+}
+.tab-pane ul {
+	padding-left: 2em;
+}
+.tab-pane h2 {
+	font-size: 1.2em;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #ddd;
+}
+.tab-pane h3 {
+	font-size: 1.1em;
+}
+.tab-content {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+}
+#sidebar {
+	margin-top: 30px;
+}
+.top-resource-description {
+	border-bottom: 1px solid #ddd;
+	background: #fcfcfc;
+	padding: 15px 15px 0 15px;
+	margin: -15px -15px 10px -15px;
+}
+.resource-description {
+	border-bottom: 1px solid #fcfcfc;
+	background: #fcfcfc;
+	padding: 15px 15px 0 15px;
+	margin: -15px -15px 10px -15px;
+}
+.list-group .badge {
+	float: left;
+}
+.method_description {
+	margin-left: 85px;
+}
+.method_description p:last-child {
+	margin: 0;
+}
+.list-group-item {
+	cursor: pointer;
+}
+.list-group-item:hover {
+	background-color: #f5f5f5;
+}
+.security-info {
+	font-size: 0.8em;
+	padding-bottom: 20px;
+}
+
+.tab-content.no-style {
+	border:0;
+	padding:0;
+	margin:0;
+}
+
+.tab-pane .nav-pills {
+	padding:0;
+}
+
+.modal .form-horizontal {
+	padding: 0 15px;
+}
+.form-control[data-status="not-saved"] {
+	border: 1px solid dimgray;
+}
+.form-control[data-status="saving"] {
+	border: 1px dashed green;
+}
+.form-control[data-status="saved"] {
+	border: 1px solid green;
+}
+.form-control[data-status="error"] {
+	border: 1px solid red;
+}
+.modal-content-with-label {
+	padding-top: 23px;
+}
+.status-label {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius:5px 5px 0 0;
+	font-size: 11px;
+	left: 0;
+	padding: 6px;
+}
+.nav-pills>li>a {
+	padding: 2px 10px;
+}
+
+.format-json-outlet {
+	background-color: rgb(245, 245, 245);
+	padding: 10px 15px 15px 15px;
+	border: 1px solid rgba(204, 204, 204, 0.57);
+	border-radius:4px;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.spacer-left {
+	margin-left: 5px;
+}
+
+.space-left-l {
+	margin-left: 10px;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}

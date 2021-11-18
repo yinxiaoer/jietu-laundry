@@ -1,0 +1,15 @@
+.home-swiper .slide-link {
+  width: 100%;
+}
+
+.home-swiper .slide-image {
+  width: 100%;
+}
+
+.merchant-list {
+  padding: 48rpx 24rpx 0;
+}
+
+.share {
+  display: none;
+}

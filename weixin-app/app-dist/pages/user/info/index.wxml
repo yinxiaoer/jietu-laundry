@@ -1,0 +1,59 @@
+  <view>
+    <wux-select id="wux-select" />
+    <wux-toast id="wux-toast" />
+    <view class="page__bd">
+        <view class="picter user-base">
+            <wux-upload listType="picture-card"
+                        defaultFileList="{{ fileList }}"
+                        max="1"
+                        controlled
+                        name="file"
+                        formData="{{formData}}"
+                        header="{{header}}"
+                        url="{{config.baseURL}}/fileUpload"
+                        bind:change="uploadChange"
+                        bind:success="uploadSuccess"
+                        bind:complete="uploadComplete"
+                        bind:fail="uploadFail"
+                        count="1">
+                <wxc-avatar class="user-base__avatar" mold="circle" src="{{userInfo.avatarUrl}}"></wxc-avatar>
+            </wux-upload>
+        </view>
+        <wux-cell hover-class="none">
+            <wux-input label="昵称" controlled value="{{userInfo.nickName}}"
+                       placeholder="昵称"
+                       bind:change="changeNickName"
+                       bind:blur="changeNickName"
+                       bind:confirm="changeNickName"/>
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-input label="手机号码"
+                       controlled
+                       value="{{userInfo.mobile}}"
+                       placeholder="11位手机号码"
+                       type="number"
+                       bind:blur="changePhone"
+                       bind:change="changePhone"
+                       bind:confirm="changePhone" maxlength="11"/>
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-input label="省份证号"
+                       controlled value="{{userInfo.idCard}}"
+                       type="idcard" placeholder="省份证号"
+                       bind:blur="changeIdCard"
+                       bind:change="changeIdCard"
+                       bind:confirm="changeIdCard"/>
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-input label="邮箱" controlled value="{{userInfo.email}}"
+                       placeholder="例如：xxx@xx.com"
+                       bind:blur="changeEmail"
+                       bind:change="changeEmail"
+                       bind:confirm="changeEmail"/>
+        </wux-cell>
+        <wux-cell title="性别" extra="{{ userInfo.sex }}" bind:click="changeSex"></wux-cell>
+    </view>
+    <card>
+        <wux-button block full type="calm" bind:click="save">保存</wux-button>
+    </card>
+</view>

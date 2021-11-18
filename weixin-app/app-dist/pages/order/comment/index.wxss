@@ -1,0 +1,46 @@
+.comment {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+.comment-main {
+  padding: 27rpx 34rpx;
+  margin-bottom: 100rpx;
+}
+
+.comment-main-header {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 30rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #CCCCCC;
+}
+
+.merchant-pic {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 23rpx;
+}
+
+.comment-rate {
+  padding: 50rpx 0;
+  text-align: center;
+}
+
+.comment-textarea {
+  padding: 19rpx 26rpx;
+  background: #cccccc;
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 32rpx;
+}
+
+.submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

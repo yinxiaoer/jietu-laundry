@@ -1,0 +1,65 @@
+{
+  "networkTimeout": {
+    "request": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#019AEA",
+    "navigationBarTitleText": "洁兔洗衣",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#019AEA",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/image/home.png",
+        "selectedIconPath": "static/image/home-active.png"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "订单",
+        "iconPath": "static/image/order.png",
+        "selectedIconPath": "static/image/order-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "static/image/user.png",
+        "selectedIconPath": "static/image/user-active.png"
+      }
+    ]
+  },
+  "pages": [
+    "pages/home/index",
+    "pages/authorization/index",
+    "pages/icon/index",
+    "pages/user/index",
+    "pages/user/address/index",
+    "pages/user/address/update/index",
+    "pages/user/info/index",
+    "pages/user/recharge/index",
+    "pages/order/index",
+    "pages/home/merchant/index",
+    "pages/checkout/index",
+    "pages/order/detail/index",
+    "pages/order/comment/index",
+    "pages/user/suggest/index",
+    "pages/user/collection/index",
+    "pages/user/history/index",
+    "pages/user/userinfo/index",
+    "pages/payment/index",
+    "pages/payment/success/index",
+    "pages/user/userinfo/nickname/index",
+    "pages/user/recharge/success/index",
+    "pages/user/userLaundry/index"
+  ]
+}

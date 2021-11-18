@@ -1,0 +1,166 @@
+<%
+//PRINT%>// @flow
+<%//PRINTEND
+
+	for (var i = 0; i < refs.length; i += 1) {
+		if (refs[i] !== className) {
+//PRINT%>
+import <%=refs[i]%> from './<%=refs[i]%>.class';<%
+//PRINTEND
+		}
+	}
+
+	if (options.isValidator) {
+//PRINT%>
+
+const _isValidType = (type: string, value: any): boolean => {
+	switch (type) {
+		case 'Array': return (value instanceof Array);
+		default: return (typeof value === type.toLowerCase());
+	}
+};
+<%//PRINTEND
+	}
+//PRINT%>const _array = (arr: Array<any>): Array<any> => arr || [];
+
+class <%=className%> {
+<%
+//PRINTEND
+
+	for (var i = 0; i < attributes.length; i += 1) {
+		var attr = attributes[i];
+		if (attr.type === 'string' || attr.type === 'number' || attr.type === 'boolean' || attr.type === 'Object') {
+//PRINT%>
+	<%=attr.nameCamel%>: <%=attr.type%>;<%
+//PRINTEND
+		}
+		if (attr.type === 'ref') {
+//PRINT%>
+	<%=attr.nameCamel%>: <%=attr.ref%>;<%
+//PRINTEND
+		}
+		if (attr.type === 'Array' && attr.subType === 'ref') {
+//PRINT%>
+	<%=attr.nameCamel%>: Array<<%=attr.subRef%>>;<%
+//PRINTEND
+		}
+		if (attr.type === 'Array' && attr.subType && attr.subType !== 'ref') {
+//PRINT%>
+	<%=attr.nameCamel%>: Array<<%=attr.subType%>>;<%
+//PRINTEND
+		}
+		if (attr.type === 'Array' && !attr.subType && attr.subType !== 'ref') {
+//PRINT%>
+	<%=attr.nameCamel%>: Array<any>;<%
+//PRINTEND
+		}
+	}
+//PRINT%>
+
+	constructor(<%=classNameDecapitalize%>: <%=className%>) {
+
+		<%=classNameDecapitalize%> = <%=classNameDecapitalize%> || {};
+<%
+//PRINTEND
+
+	for (var i = 0; i < attributes.length; i += 1) {
+		var attr = attributes[i];
+		if (attr.type === 'Object') {
+//PRINT%>		<%=classNameDecapitalize%>.<%=attr.name%> = <%=classNameDecapitalize%>.<%=attr.name%> || {};
+<%
+//PRINTEND
+		}
+	}
+
+	for (var i = 0; i < attributes.length; i += 1) {
+		var attr = attributes[i];
+		if (attr.type === 'string' || attr.type === 'number' || attr.type === 'boolean') {
+//PRINT%>
+		this.<%=attr.nameCamel%> = <%=classNameDecapitalize%>.<%=attr.name%>;<%
+//PRINTEND
+		}
+		if (attr.type === 'ref') {
+//PRINT%>
+		this.<%=attr.nameCamel%> = new <%=attr.ref%>(<%=classNameDecapitalize%>.<%=attr.nameCamel%>);<%
+//PRINTEND
+		}
+		if (attr.type === 'Array' && attr.subType === 'ref') {
+//PRINT%>
+		this.<%=attr.nameCamel%> = _array(<%=classNameDecapitalize%>.<%=attr.nameCamel%>).map(this.map<%=attr.nameCapitalize%>);<%
+//PRINTEND
+		}
+		if (attr.type === 'Array' && attr.subType !== 'ref') {
+//PRINT%>
+		this.<%=attr.nameCamel%> = <%=classNameDecapitalize%>.<%=attr.name%>;<%
+//PRINTEND
+		}
+	}
+//PRINT%>
+	}
+<%
+//PRINTEND
+	for (var i = 0; i < attributes.length; i += 1) {
+		var attr = attributes[i];
+		if (attr.type === 'Array' && attr.subType === 'ref') {
+//PRINT%>
+	map<%=attr.nameCapitalize%> = (<%=attr.subRefDecapitalize%>: <%=attr.subRef%>): <%=attr.subRef%> => new <%=attr.subRef%>(<%=attr.subRefDecapitalize%>);<%
+//PRINTEND
+		}
+	}
+
+	for (var i = 0; i < attributes.length; i += 1) {
+		var attr = attributes[i];
+		var type;
+
+		if (attr.type === 'Array') {
+			if (attr.subType === 'ref') {
+				type = `Array<${attr.subRef}>`;
+			} else {
+				type = `Array<${attr.subType}>`;
+			}
+		} else if (attr.type === 'ref') {
+			type = attr.ref;
+		} else {
+			type = attr.type;
+		}
+
+		if (attr.type !== 'Object') {
+
+			if (options.isGetter) {
+//PRINT%>
+
+	get <%=attr.nameCamel%>(): <%-type%> {
+		return this.<%=attr.nameCamel%>;
+	}<%
+//PRINTEND
+			}
+
+			if (options.isSetter) {
+//PRINT%>
+
+	set <%=attr.nameCamel%>(value: <%-type%>) {
+		this.<%=attr.nameCamel%> = value;
+	}<%
+//PRINTEND
+			}
+
+			if (options.isValidator) {
+//PRINT%>
+
+	valid<%=attr.nameCapitalize%>(): boolean {
+		try {
+			const v:any = this.<%=attr.name%>;
+			return (v && _isValidType('<%=attr.type%>', v));
+		} catch (err) {
+			return false;
+		}
+	}<%
+//PRINTEND
+			}
+		}
+	}
+
+//PRINT%>
+}
+
+export default <%=className%>;

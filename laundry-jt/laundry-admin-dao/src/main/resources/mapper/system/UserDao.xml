@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.system.UserDao">
+
+	<insert id="insert" parameterType="UserEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_user (
+			`username`,
+			`realname`,
+			`password`,
+			`email`,
+			`phone`,
+			`available`,
+			`role_id`,
+			`create_name`,
+			`create_date`
+		) VALUES (
+			#{username},
+			#{realname},
+			#{password},
+			#{email},
+			#{phone},
+			#{available},
+			#{roleId},
+			#{createName},
+			#{createDate}
+		)
+	</insert>
+
+	<update id="update" parameterType="userEntity">
+		UPDATE sys_user SET
+			`username`=#{username},
+			`realname`=#{realname},
+			`email`=#{email},
+			`phone`=#{phone},
+			`role_id`=#{roleId},
+			`update_name`=#{updateName},
+			`update_date`=#{updateDate}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM sys_user where id=#{id}
+	</delete>
+
+	<!-- 重置密码 -->
+	<update id="updatePassword" parameterType="UserEntity">
+		UPDATE sys_user SET password=#{password} WHERE id=#{id}
+	</update>
+	
+	<!-- 切换用户可用状态 -->
+	<update id="updateStatus" parameterType="UserEntity">
+		UPDATE sys_user SET available=#{available} WHERE id=#{id}
+	</update>
+
+	<!-- 切换用户可用状态 -->
+	<update id="updateOpenid" >
+		UPDATE sys_user SET openid=#{openid} WHERE id=#{id}
+	</update>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="java.lang.Long" parameterType="UserEntity">
+		SELECT count(*) FROM sys_user 
+		<include refid="whereSql" />
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="UserEntity" resultType="userEntity">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			sys_user
+ 		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by ${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+
+	<select id="findByUsername" parameterType="java.lang.String" resultType="userEntity">
+		select
+			<include refid="fieldSql" />
+		from
+			sys_user
+		where username=#{username}
+	</select>
+
+ 	<select id="getById" parameterType="long" resultType="userEntity">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			sys_user
+ 		where id=#{id}
+ 	</select>
+
+	<select id="findByRoleId" parameterType="java.lang.String" resultType="userEntity">
+		select
+			<include refid="fieldSql" />
+		from
+			sys_user
+		  where role_id=#{roleId}
+	</select>
+
+	<sql id="whereSql">
+		<where>
+			<if test="username!=null and username!=''">
+				and username=#{username}
+			</if>
+			<if test="realname!=null and realname!=''">
+				and realname=#{realname}
+			</if>
+			<if test="phone!=null and phone!=''">
+				and phone = #{phone}
+			</if>
+			<if test="email!=null and email!=''">
+				and email = #{email}
+			</if>
+			<if test="available!=null">
+				and available=#{available}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="fieldSql">
+		id,
+		username,
+		realname,
+		password,
+		email,
+		available,
+		phone,
+		role_id,
+		openid,
+		create_name,
+		create_date,
+		update_name,
+		update_date
+	</sql>
+</mapper> 

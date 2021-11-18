@@ -1,0 +1,11 @@
+<view class="authorization">
+    <view class="image">
+        <tu-image src="/static/image/login_logo.png"></tu-image>
+    </view>
+    <button class="wx-login" open-type="getPhoneNumber" bindgetphonenumber="getNumber">
+        <wux-icon type="icon-weixin" size="28" style="display: flex;align-items: center;"></wux-icon>
+        微信手机号快捷登录
+    </button>
+</view>
+
+

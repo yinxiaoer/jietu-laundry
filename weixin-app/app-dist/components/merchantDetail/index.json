@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "wux-icon": "../../packages/@wuxui/icon/index",
+    "tuImage": "../tu-image/index",
+    "imgIcon": "../imgIcon/index",
+    "tu-image": "../tu-image"
+  }
+}

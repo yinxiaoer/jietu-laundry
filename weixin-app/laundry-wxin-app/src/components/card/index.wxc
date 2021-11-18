@@ -1,0 +1,27 @@
+<template>
+    <view class="card">
+        <slot></slot>
+    </view>
+</template>
+<script>
+    export default {
+        config: {
+            usingComponents: {}
+        },
+        behaviors: [],
+        properties: {},
+        data: {},
+        methods: {}
+    }
+</script>
+
+<style lang="less">
+    @import "../../sheet/less/index";
+
+    .card {
+        background: @colorWhite;
+        margin: @margin-box;
+        border-radius: @box-radius;
+        box-shadow: @box-shadow;
+    }
+</style>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "layout-head": "../../common/layout/head",
+    "layout-foot": "../../common/layout/foot",
+    "wux-icon": "../../packages/@wuxui/icon/index"
+  }
+}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.goods.GoodsDao">
+
+	<insert id="insert" parameterType="goods" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO gd_goods (
+			`merchant_id`,
+			`name`,
+			`category_id`,
+			`info`,
+			`service_desc`,
+			`on_sale`,
+			`sort_order`,
+			`deleted`,
+			`pic_url`,
+			`price`,
+			`retail_price`,
+			`market_price`,
+			`create_name`
+		) VALUES (
+			#{merchantId},
+			#{name},
+			#{categoryId},
+			#{info},
+			#{serviceDesc},
+			#{onSale},
+			#{sortOrder},
+			#{deleted},
+			#{picUrl},
+			#{price},
+			#{retailPrice},
+			#{marketPrice},
+			#{createName}
+		)
+	</insert>
+
+	<update id="update" parameterType="goods">
+		UPDATE gd_goods SET
+		<if test="merchantId != null and merchantId !=''">
+			`merchant_id`=#{merchantId},
+		</if>
+		<if test="name != null and name !=''">
+			`name`=#{name},
+		</if>
+		<if test="categoryId != null and categoryId !=''">
+			`category_id`=#{categoryId},
+		</if>
+		<if test="info != null and info !=''">
+			`info`=#{info},
+		</if>
+		<if test="serviceDesc != null and serviceDesc !=''">
+			`service_desc`=#{serviceDesc},
+		</if>
+		<if test="sortOrder != null">
+			`sort_order`=#{sortOrder},
+		</if>
+		<if test="deleted != null">
+			`deleted`=#{deleted},
+		</if>
+		<if test="picUrl != null and picUrl !=''">
+			`pic_url`=#{picUrl},
+		</if>
+		<if test="price != null">
+			`price`=#{price},
+		</if>
+		<if test="retailPrice != null">
+			`retail_price`=#{retailPrice},
+		</if>
+		<if test="marketPrice != null">
+			`market_price`=#{marketPrice},
+		</if>
+		`update_name`=#{updateName}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		update gd_goods set deleted = true WHERE `id`=#{id}
+	</delete>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="long" parameterType="goods">
+		SELECT count(*) FROM gd_goods g
+		left join gd_goods_category c on g.category_id = c.id
+		<include refid="whereSql" />
+	</select>
+
+ 	<select id="findLimitByQuery" parameterType="goods" resultType="goods">
+ 		select
+			g.`id`,
+			g.`name`,
+			g.`merchant_id`,
+			g.`category_id`,
+			c.`name` as 'category_name',
+			g.`info`,
+			g.`on_sale`,
+			g.`sort_order`,
+			g.`pic_url`,
+			g.`price`,
+			g.`retail_price`,
+			g.`market_price`
+ 		from
+ 			gd_goods g
+		left join gd_goods_category c on g.category_id = c.id
+		<include refid="whereSql" />
+		order by g.sort_order desc
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+
+ 	<select id="getById" parameterType="long" resultType="goods">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+ 			gd_goods
+ 		where id=#{id}
+ 	</select>
+
+	<sql id="whereSql">
+		<where>
+			and deleted = false
+			<if test="name != null and name != ''">
+				and g.name like concat(#{name}, "%")
+			</if>
+			<if test="merchantId != null and merchantId != ''">
+				and g.merchant_id=#{merchantId}
+			</if>
+			<if test="categoryId != null and categoryId != ''">
+				and g.category_id=#{categoryId}
+			</if>
+			<if test="onSale != null">
+				and g.on_sale=#{onSale}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="fieldSql">
+		`id`,
+		`merchant_id`,
+		`name`,
+		`category_id`,
+		`info`,
+		`service_desc`,
+		`on_sale`,
+		`sort_order`,
+		`deleted`,
+		`pic_url`,
+		`price`,
+		`retail_price`,
+		`market_price`,
+		`create_name`,
+		`create_date`,
+		`update_name`,
+		`update_date`
+	</sql>
+
+</mapper>

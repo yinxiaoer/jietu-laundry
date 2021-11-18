@@ -1,0 +1,12 @@
+{
+	"desc": "检查用户登录状态",
+	"security": [],
+	"protected": false,
+	"status": "",
+	"response": {
+		"statusCode": 200,
+		"schema": {
+			"type": "application/json"
+		}
+	}
+}

@@ -1,0 +1,46 @@
+<view class="address-main" bindtap="removeOpen">
+    <view wx:for="{{addresses}}" class="address-item" wx:key="index">
+        <!-- 列表层 -->
+        <view class='list' style='{{item.txtStyle}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index='{{index}}'>
+            <!-- 收货信息 -->
+            <view class='info' bindtap='select_addr' data-id="{{item.id}}">
+                <view>
+                    {{item.receiverName}}
+                    <span class="phone">{{item.receiverMobile}}</span>
+                    <span wx:if="{{item.defaulted}}" class='def'>默认</span>
+                </view>
+                <view>{{item.locationAddress}}  {{item.detailsAddress}}</view>
+            </view>
+            <!-- 编辑图标 -->
+            <view class='edit' bindtap='updateAddress' data-id='{{item.id}}' >
+                <wux-icon type="icon-yiwancheng1" size="50"></wux-icon>
+            </view>
+        </view>
+        <!-- 删除按钮 -->
+        <view class="handle-list">
+            <view class="set-default"
+                  data-disabled="{{item.defaulted}}"
+                  data-id="{{item.id}}"
+                  bindtap="setDefault">设为默认</view>
+            <wux-icon class="delete {{item.defaulted ? 'disabled':''}}"
+                      data-disabled="{{item.defaulted}}"
+                      data-id="{{item.id}}" size="50" bindtap="delAddress"  type="icon-shanchu"></wux-icon>
+        </view>
+    </view>
+</view>
+<view style="height: {{system.height-200}}px;"
+      wx-if="{{addresses.length===0}}">
+    <wux-prompt style="height: 100vh"
+                visible="{{true}}"
+                icon="http://res.leju.com/resources/app/pc/live/v3/images/nodata.png"
+                text="暂无收获地址"
+                title="空空如也"></wux-prompt>
+</view>
+<view class="add">
+    <wux-button block full type="calm" bind:click="addAddress">
+        <view class="add-btn">
+            <imgIcon src="/static/image/add.png"></imgIcon>
+            新增
+        </view>
+    </wux-button>
+</view>

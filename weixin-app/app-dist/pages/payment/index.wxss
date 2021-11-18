@@ -1,0 +1,85 @@
+/* pages/payment/index.wxss */
+/* pages/payment/success/index.wxss */
+.container{
+  height: 100vh;
+  background: #F5F5F5;
+  padding: 0 24rpx;
+}
+.container .toptitle{
+  width: 100%;
+  height: 126rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.container .toptitle .text{
+  color: #343434;
+  font-size: 32rpx;
+  padding-top: 22rpx;
+}
+.container .toptitle .money{
+  font-size: 32rpx;
+  color: #FD6D50;
+  padding: 22rpx 12rpx 0 0;
+}
+.container .content .pay_balance{
+  width: 100%;
+  height: 172rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.container .content .pay_balance .pay_way{
+  color: #686868;
+  font-size: 36rpx;
+  padding-left: 40rpx;
+}
+.container .content .pay_balance .pay_money{
+  color: #686868;
+  font-size: 32rpx;
+  padding-left: 114rpx;
+}
+.container .content .pay_balance .pay_success{
+  color: #fff;
+  font-size: 36rpx;
+  padding-left: 212rpx;
+}
+.container .content .pay_weixin{
+  width: 100%;
+  height: 172rpx;
+  margin-top: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content:flex-start;
+}
+.container .content .pay_weixin .pic{
+  margin-left: 38rpx;
+}
+.container .content .pay_weixin .weixin{
+  color: #686868;
+  font-size: 36rpx;
+  padding-left: 36rpx;
+}
+.container .content .pay_weixin .weixin_success{
+  color: #fff;
+  font-size: 36rpx;
+  padding-left: 318rpx;
+}
+.activeborder{
+  border: 1rpx solid #5BC0F6;
+}
+.container .content .pay_balance .activecolor{
+  color: #5BC0F6;
+}
+
+.container .content .pay_balance.disabled {
+  opacity: 0.5;
+}
+.container .content .pay_weixin .activecolor{
+  color: #5BC0F6;
+}

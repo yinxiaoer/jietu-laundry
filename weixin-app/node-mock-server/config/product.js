@@ -1,0 +1,18 @@
+module.exports = {
+	develop: 'prod',
+	port:3001,
+	baseUrl: 'http://laundry-mock.susekdyw.cn',
+	restPath: './backend',
+	uiPath: '/',
+	title: 'Api mock server',
+	version: 1,
+	urlPath: '/backend',
+	contentType: 'application/json',
+	accessControlExposeHeaders: 'X-Total-Count',
+	accessControlAllowOrigin: '*',
+	accessControlAllowMethods: 'GET, GET, PUT, GET, DELETE, PATCH, HEAD',
+	accessControlAllowHeaders: 'origin, x-requested-with, content-type',
+	accessControlAllowCredentials: 'true',
+	headers: {},
+	open: false,
+}

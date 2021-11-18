@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.goods.GoodsImageDao">
+
+	<insert id="insert" parameterType="goodsImage" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO gd_goods_image (
+			`goods_id`,
+			`url`,
+			`types`,
+			`create_name`
+		) VALUES (
+			#{goodsId},
+			#{url},
+			#{types},
+			#{createName}
+		)
+	</insert>
+
+	<delete id="delete" parameterType="long">
+		delete from gd_goods_image WHERE `id`=#{id}
+	</delete>
+
+ 	<select id="getById" parameterType="long" resultType="goodsImage">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+ 			gd_goods_image
+ 		where id=#{id}
+ 	</select>
+
+ 	<select id="findByGoodsId" parameterType="long" resultType="goodsImage">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+ 			gd_goods_image
+ 		where goods_id=#{goodsId}
+ 	</select>
+
+	<sql id="fieldSql">
+		`id`,
+		`goods_id`,
+		`types`,
+		`url`,
+		`create_name`,
+		`create_date`,
+		`update_name`,
+		`update_date`
+	</sql>
+
+</mapper>

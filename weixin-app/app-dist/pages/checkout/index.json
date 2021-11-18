@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "card": "../../components/card",
+    "tu-iamge": "../../components/tu-image",
+    "price": "../../components/price",
+    "dateSelected": "../../components/dateSelected",
+    "orderProductCard": "../../components/orderProductCard",
+    "addressSelected": "../../components/addressSelected",
+    "wux-cell": "../../packages/@wuxui/cell/index",
+    "wux-cell-group": "../../packages/@wuxui/cell-group/index",
+    "wux-accordion-group": "../../packages/@wuxui/accordion-group/index",
+    "wux-accordion": "../../packages/@wuxui/accordion/index",
+    "wux-input": "../../packages/@wuxui/input/index"
+  },
+  "navigationBarTitleText": "提交订单"
+}

@@ -1,0 +1,16 @@
+<template>
+  <view>Test Page</view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: 'test',
+    usingComponents: {}
+  },
+  data: {}
+}
+</script>
+
+<style>
+</style>

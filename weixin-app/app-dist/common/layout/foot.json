@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "card": "../../components/card/index"
+  },
+  "component": true
+}

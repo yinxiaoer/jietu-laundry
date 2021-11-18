@@ -1,0 +1,27 @@
+<view>
+    <!-- wxp template -->
+    <view>
+        <swiper class="home-swiper"
+                indicator-dots="{{swiperConfig.indicatorDots}}"
+                autoplay="{{swiperConfig.autoplay}}"
+                interval="{{swiperConfig.interval}}"
+                duration="{{swiperConfig.duration}}"
+                circular="{{swiperConfig.circular}}}"
+                style="height: {{swiperConfig.height}}px">
+            <block wx:for="{{actives}}" wx:key="item.id">
+                <swiper-item  style="height: {{swiperConfig.height}}px">
+                    <navigator url="/" class="slide-link" class="slide-image" style="height: {{swiperConfig.height}}px">
+                        <tuImage src="{{item.image.url}}" urlType="absolute">
+                        </tuImage>
+                    </navigator>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="merchant-list">
+            <view wx:for="{{merchants}}" wx:key="{{index}}">
+                <merchant-card item="{{item}}" bind:click="goToMerchant"></merchant-card>
+            </view>
+        </view>
+    </view>
+    <layout-foot _pid="{{_pid}}"></layout-foot>
+</view>

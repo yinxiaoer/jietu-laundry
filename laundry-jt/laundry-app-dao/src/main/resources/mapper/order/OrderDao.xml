@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.order.OrderDao">
+
+    <resultMap id="orderResultMap" type="order">
+        <id property="id" column="id"/>
+        <result property="sn" column="sn"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="merchantName" column="merchant_name"/>
+        <result property="merchantLogo" column="merchant_logo"/>
+        <result property="status" column="status"/>
+        <result property="receiverName" column="receiver_name"/>
+        <result property="receiverMobile" column="receiver_mobile"/>
+        <result property="receiverAddress" column="receiver_address"/>
+        <result property="buyerRemark" column="buyer_remark"/>
+        <result property="goodsTailAmount" column="goods_tail_amount"/>
+        <result property="freightFee" column="freight_fee"/>
+        <result property="discountAmount" column="discount_amount"/>
+        <result property="payAmount" column="pay_amount"/>
+        <result property="currencyCode" column="currency_code"/>
+        <result property="fetchStartDate" column="fetch_start_date"/>
+        <result property="fetchEndDate" column="fetch_end_date"/>
+        <result property="deliverStartDate" column="deliver_start_date"/>
+        <result property="deliverEndDate" column="deliver_end_date"/>
+        <result property="payType" column="pay_type"/>
+        <result property="createDate" column="create_date"/>
+        <collection property="orderGoodsList" ofType="orderGoods">
+            <id property="id" column="g_id"/>
+            <result property="name" column="g_name"/>
+            <result property="picUrl" column="g_pic_url"/>
+            <result property="number" column="g_number"/>
+            <result property="price" column="g_price"/>
+            <result property="retailPrice" column="g_retail_price"/>
+            <result property="marketPrice" column="g_market_price"/>
+        </collection>
+    </resultMap>
+
+    <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
+		insert into or_order (
+			`sn`,
+			`customer_id`,
+			`merchant_id`,
+			`status`,
+			`receiver_name`,
+			`receiver_mobile`,
+			`receiver_address`,
+			`buyer_remark`,
+			`goods_tail_amount`,
+			`freight_fee`,
+			`discount_amount`,
+			`pay_amount`,
+			`currency_code`,
+			`fetch_start_date`,
+			`fetch_end_date`,
+			`deliver_start_date`,
+			`deliver_end_date`,
+			`pay_type`
+		) values (
+			#{sn},
+			#{customerId},
+			#{merchantId},
+			#{status},
+			#{receiverName},
+			#{receiverMobile},
+			#{receiverAddress},
+			#{buyerRemark},
+			#{goodsTailAmount},
+			#{freightFee},
+			#{discountAmount},
+			#{payAmount},
+			#{currencyCode},
+			#{fetchStartDate},
+			#{fetchEndDate},
+			#{deliverStartDate},
+			#{deliverEndDate},
+			#{payType}
+		)
+	</insert>
+
+    <update id="update">
+        UPDATE or_order
+        <set>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="payType != null">
+                `pay_type` = #{payType},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="saveOrderGoods" parameterType="orderGoods">
+		insert into or_order_goods (
+			`order_id`,
+			`pic_url`,
+			`name`,
+			`number`,
+			`price`,
+			`retail_price`,
+			`market_price`
+		) values(
+			#{orderId},
+			#{picUrl},
+			#{name},
+			#{number},
+			#{price},
+			#{retailPrice},
+			#{marketPrice}
+		)
+	</insert>
+
+    <update id="updateStatus">
+        UPDATE or_order SET
+            `status` = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getCustomerOrderList" parameterType="order" resultMap="orderResultMap">
+        SELECT
+        o.`id`,
+        o.`sn`,
+        o.`merchant_id`,
+        m.`name` as 'merchant_name',
+        m.`logo` as 'merchant_logo',
+        o.`status`,
+        o.`pay_amount`,
+        o.`create_date`,
+        og.`id` as 'g_id',
+        og.`name` as 'g_name',
+        og.`pic_url` as 'g_pic_url',
+        og.`number` as 'g_number',
+        og.`price` as 'g_price'
+        FROM
+        (
+            select `id`,`sn`,`merchant_id`,`status`,`pay_amount`,`create_date`
+            from or_order
+            <where>
+                <if test="statusList != null and statusList != ''">
+                    and `status` in (${statusList})
+                </if>
+                <if test="customerId != null">
+                    and customer_id = #{customerId}
+                </if>
+            </where>
+            order by create_date desc
+            limit ${(page-1)*limit},${limit}
+        ) o
+        LEFT JOIN or_order_goods og ON o.id = og.order_id
+        LEFT JOIN mt_merchant m ON o.merchant_id=m.id
+    </select>
+
+    <select id="getOrderDetails" resultMap="orderResultMap">
+        SELECT
+            o.`id`,
+            o.`sn`,
+            o.customer_id,
+            o.`merchant_id`,
+            m.`name` as 'merchant_name',
+            m.`logo` as 'merchant_logo',
+            o.`status`,
+            o.`receiver_name`,
+            o.`receiver_mobile`,
+            o.`receiver_address`,
+            o.`buyer_remark`,
+            o.`goods_tail_amount`,
+            o.`freight_fee`,
+            o.`discount_amount`,
+            o.`pay_amount`,
+            o.`currency_code`,
+            o.`fetch_start_date`,
+            o.`fetch_end_date`,
+            o.`deliver_start_date`,
+            o.`deliver_end_date`,
+            o.`pay_type`,
+            o.`create_date`,
+            og.`id` as 'g_id',
+            og.`name` as 'g_name',
+            og.`pic_url` as 'g_pic_url',
+            og.`number` as 'g_number',
+            og.`price` as 'g_price',
+            og.`retail_price` as 'g_retail_price',
+            og.`market_price` as 'g_market_price'
+        FROM
+            or_order o
+        LEFT JOIN or_order_goods og ON o.id = og.order_id
+        LEFT JOIN mt_merchant m ON o.merchant_id=m.id
+        WHERE o.id=#{id} AND o.customer_id=#{customerId}
+    </select>
+
+    <update id="updateTimeOutOrder">
+        update `or_order` set
+            status = 4
+        where TIMESTAMPDIFF(MINUTE,create_date, now()) > 30 and `status` = 0
+    </update>
+</mapper>

@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "我的地址",
+  "usingComponents": {
+    "card": "../../../components/card/index",
+    "wux-button": "../../../packages/@wuxui/button/index",
+    "wux-cell": "../../../packages/@wuxui/cell/index",
+    "wux-cell-group": "../../../packages/@wuxui/cell-group/index",
+    "wux-tag": "../../../packages/@wuxui/tag/index",
+    "wux-prompt": "../../../packages/@wuxui/prompt/index",
+    "wux-icon": "../../../packages/@wuxui/icon/index",
+    "imgIcon": "../../../components/imgIcon"
+  }
+}

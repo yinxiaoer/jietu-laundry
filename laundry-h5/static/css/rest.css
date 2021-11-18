@@ -1,0 +1,42 @@
+.el-dialog__header{
+    background: #18202b;
+}
+.el-dialog__title{
+    font-size: 14px;
+    color:#fff;
+    
+}
+.el-dialog__header{
+    padding: 5px 15px 5px;
+}
+.el-dialog__headerbtn{
+    top:8px;
+}
+.el-dialog__body{
+  padding: 10px 20px;
+}
+
+/*Vux*/
+/*popupRadio*/
+.vux-cell-bd p{
+    margin:0;
+}
+/*x-header*/
+.vux-header{
+    background-color:#36acf4 !important;
+    font-size:14px;
+    color:#fff;
+}
+.vux-header-title-area, .vux-header .vux-header-title{
+    margin: 0 !important;
+}
+label.weui-label{
+    font-weight:normal !important;
+}
+label.vux-label{
+    font-weight:normal !important;
+}
+.weui-btn_primary{
+    background-color:#36acf4 !important;
+    font-size:14px;
+}

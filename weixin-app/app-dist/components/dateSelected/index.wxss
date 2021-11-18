@@ -1,0 +1,46 @@
+.model-contain {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.date-items {
+  width: 214rpx;
+  flex-shrink: 0;
+  height: 60vh;
+  background: #F2F2F2;
+}
+
+.date-item {
+  width: 100%;
+}
+
+.time-con {
+  width: 100%;
+  background: #ffffff;
+  height: 60vh;
+  box-sizing: border-box;
+  padding: 24rpx 36rpx 0;
+}
+
+.time-con .time-con-box {
+  width: 100%;
+}
+
+.time-con .time-con-box .time-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22rpx 0;
+  font-size: 28rpx;
+}
+
+.time-con .time-con-box .time-item.disabled {
+  opacity: 0.5;
+}
+
+.time-con .time-con-box .time-item.active {
+  color: #019AEA;
+}

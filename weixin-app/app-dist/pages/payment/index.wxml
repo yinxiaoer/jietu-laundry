@@ -1,0 +1,20 @@
+<!--pages/payment/success/index.wxml-->
+<view class="container">
+  <view class="toptitle">
+    <text class="text">需支付：</text>
+    <text class="money">￥{{payAmount}}</text>
+  </view>
+  <view class="content">
+    <view class="pay_balance {{payType=='0'?'activeborder':''}} {{ balance < payAmount ? 'disabled' : ''}}" data-id="0" bindtap="selectPay">
+      <text class="pay_way {{payType=='0'?'activecolor':''}}">余额支付</text>
+      <text class="pay_money">￥{{balance}}</text>
+      <icon class="pay_success {{payType=='0'?'activecolor':''}}" type></icon>
+    </view>
+    <view class="pay_weixin {{payType=='1'?'activeborder':''}}" data-id="1" bindtap="selectPay">
+      <img-icon src="/static/image/youhuiquan.png" class="pic"></img-icon>
+      <text class="weixin {{payType=='1'?'activecolor':''}}">微信支付</text>
+      <icon class="pay_success {{payType=='1'?'activecolor':''}}" type></icon>
+    </view>
+  </view>
+  <wux-button type="{{payType===null? 'dark': 'calm'}}" disabled="{{payType===null}}" full bind:click="confirmPay">立即支付</wux-button>
+</view>

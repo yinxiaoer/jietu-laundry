@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+    "layout-head": "../../common/layout/head",
+    "layout-foot": "../../common/layout/foot",
+    "wxc-list": "../../packages/@minui/wxc-list/dist/index",
+    "wxc-icon": "../../packages/@minui/wxc-icon/dist/index",
+    "card": "../../components/card/index",
+    "price": "../../components/price/index",
+    "wxc-avatar": "../../packages/@minui/wxc-avatar/dist/index",
+    "wxc-cc": "../../packages/@minui/wxc-cc/dist/index",
+    "wxc-panel": "../../packages/@minui/wxc-panel/dist/index",
+    "wxc-flex": "../../packages/@minui/wxc-flex/dist/index",
+    "wxc-badge": "../../packages/@minui/wxc-badge/dist/index",
+    "wux-icon": "../../packages/@wuxui/icon/index",
+    "tu-image": "../../components/tu-image"
+  },
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#4297FF"
+}

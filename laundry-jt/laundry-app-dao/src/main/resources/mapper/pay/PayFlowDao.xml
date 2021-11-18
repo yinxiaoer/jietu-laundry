@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.pay.PayFlowDao">
+
+    <insert id="save" parameterType="payFlow" useGeneratedKeys="true" keyProperty="id">
+		insert into py_pay_flow (
+			`status`,
+			`types`,
+			`customer_id`,
+			`merchant_id`,
+			`order_id`,
+			`pay_type`,
+			`pay_amount`,
+			`desc`
+		) values (
+			#{status},
+			#{types},
+			#{customerId},
+			#{merchantId},
+			#{orderId},
+			#{payType},
+			#{payAmount},
+			#{desc}
+		)
+	</insert>
+
+	<update id="update"	parameterType="payFlow">
+		update py_pay_flow
+		<set>
+			<if test="status != null">
+				`status` = #{status},
+			</if>
+			<if test="errorMsg != null and errorMsg != ''">
+				`error_msg` = #{errorMsg},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultType="payFlow">
+		SELECT
+			`id`,
+			`status`,
+			`types`,
+			`customer_id`,
+			`merchant_id`,
+			`order_id`,
+			`pay_type`,
+			`pay_amount`,
+			`desc`,
+			`error_msg`,
+			`create_date`,
+			`update_date`
+		FROM py_pay_flow
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateTimeOutFlow">
+        update `py_pay_flow` set
+            status = 3
+        where TIMESTAMPDIFF(MINUTE,create_date, now()) > 30 and `status` = 0
+    </update>
+
+</mapper>

@@ -1,0 +1,9 @@
+<%
+	var classDepc = method.isDeprecated ? ' is-deprecated' : '';
+%>
+<span class="badge badge_<%=method.nameLower%><%=classDepc%>" data-tpl="method-badge">
+	<%=method.name %>
+	<%if (method.isProtected) { %>
+    	&nbsp;<span class="glyphicon glyphicon-lock" title="Authentication required"></span>
+	<% } %>
+</span>

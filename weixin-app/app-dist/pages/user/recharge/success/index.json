@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tu-image": "../../../../components/tu-image/index",
+    "wux-button": "../../../../packages/@wuxui/button/index"
+  }
+}

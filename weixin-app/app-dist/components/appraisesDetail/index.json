@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wxc-avatar": "../../packages/@minui/wxc-avatar/dist/index",
+    "rater": "../../packages/@wuxui/rater",
+    "tuImage": "../tu-image"
+  }
+}

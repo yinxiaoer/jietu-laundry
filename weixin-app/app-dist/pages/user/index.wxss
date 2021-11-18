@@ -1,0 +1,69 @@
+page {
+  background: #E5E5E5;
+}
+.func-wrap {
+  background: #FFFFFF;
+}
+.user-base {
+  height: 226rpx;
+  background:linear-gradient(rgba(66,151,255,1)  0%,rgba(75,95,254,1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #E5E5E5;
+  font-size: 30rpx;
+  position: relative;
+}
+.user-base__nickname {
+  margin-top: 5rpx;
+  margin-left: 23rpx;
+}
+.user-base__avatar {
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  padding: 2rpx;
+  margin-left: 26rpx;
+  background: #61C3F7;
+  border-radius: 50%;
+}
+.func-wrap {
+  margin-top: 24rpx;
+}
+
+.money-bag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19rpx 34rpx;
+}
+
+.money-bag .left {
+  width: 350rpx;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.money-bag .right {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.money-bag .right .icon-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.money-bag .right .icon-text .icon {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.share {
+  display: none;
+}

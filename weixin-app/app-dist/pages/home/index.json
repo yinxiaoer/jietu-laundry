@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "layout-head": "../../common/layout/head",
+    "layout-foot": "../../common/layout/foot",
+    "wxc-flex": "../../packages/@minui/wxc-flex/dist/index",
+    "merchant-card": "../../components/merchantCard",
+    "tuImage": "../../components/tu-image",
+    "wux-dialog": "../../packages/@wuxui/dialog/index"
+  },
+  "enablePullDownRefresh": true
+}

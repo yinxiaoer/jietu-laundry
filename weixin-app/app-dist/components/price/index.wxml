@@ -1,0 +1,7 @@
+<!--components/price/index.wxml-->
+<view class="price" style="color: {{color}}; font-size: {{fontSize}}; font-weight: {{fontWeight}}">
+    <text class="symbol">￥</text>
+    <text class="value">
+        <slot></slot>
+    </text>
+</view>

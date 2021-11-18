@@ -1,0 +1,280 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"uglifyFileName": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.1",
+	"appid": "wx84374c9ba927e0b6",
+	"projectname": "%E6%B4%81%E5%85%94",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 35,
+			"list": [
+				{
+					"id": 0,
+					"name": "新增收获地址",
+					"pathName": "pages/user/address/update/index",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "商户主页",
+					"pathName": "pages/home/merchant/index",
+					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "地址列表",
+					"pathName": "pages/user/address/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/user/index",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "提交订单",
+					"pathName": "pages/checkout/index",
+					"query": "merchantId=4"
+				},
+				{
+					"id": 5,
+					"name": "我的订单",
+					"pathName": "pages/order/index",
+					"query": "id=1"
+				},
+				{
+					"id": 6,
+					"name": "订单详情",
+					"pathName": "pages/order/detail/index",
+					"query": "id=1"
+				},
+				{
+					"id": 7,
+					"name": "评价",
+					"pathName": "pages/order/comment/index",
+					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/user/recharge/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "意见反馈",
+					"pathName": "pages/user/suggest/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/user/info/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "意见反馈",
+					"pathName": "pages/user/suggest/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商户首页",
+					"pathName": "pages/home/merchant/index",
+					"query": "id=6"
+				},
+				{
+					"id": -1,
+					"name": "我的地址",
+					"pathName": "pages/user/address/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心、",
+					"pathName": "pages/user/index",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "提交订单",
+					"pathName": "pages/checkout/index",
+					"query": "merchantId=6"
+				},
+				{
+					"id": -1,
+					"name": "收藏列表",
+					"pathName": "pages/user/collection/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收藏",
+					"pathName": "pages/user/collection/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商户主页",
+					"pathName": "pages/home/merchant/index",
+					"query": "id=6"
+				},
+				{
+					"id": -1,
+					"name": "收藏列表",
+					"pathName": "pages/user/collection/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "足迹",
+					"pathName": "pages/user/history/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/authorization/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付方式",
+					"pathName": "pages/payment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/payment/success/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/user/userinfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择支付",
+					"pathName": "pages/payment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提交订单",
+					"pathName": "pages/checkout/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 27,
+					"name": "提交订单",
+					"pathName": "pages/checkout/index",
+					"query": "merchantId=6",
+					"scene": null
+				},
+				{
+					"id": 28,
+					"name": "商户主页",
+					"pathName": "pages/home/merchant/index",
+					"query": "id=6",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改资料",
+					"pathName": "pages/user/userinfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择支付",
+					"pathName": "pages/payment/index",
+					"query": "payAmount=15&orderId=19",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改",
+					"pathName": "pages/user/info/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付完成",
+					"pathName": "pages/payment/success/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付",
+					"pathName": "pages/payment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "充值页面",
+					"pathName": "pages/user/recharge/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "充值页面",
+					"pathName": "pages/user/recharge/success/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

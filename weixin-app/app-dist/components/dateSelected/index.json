@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-popup": "../../packages/@wuxui/popup/index",
+    "wux-tabs": "../../packages/@wuxui/tabs/index",
+    "wux-tab": "../../packages/@wuxui/tab/index"
+  }
+}

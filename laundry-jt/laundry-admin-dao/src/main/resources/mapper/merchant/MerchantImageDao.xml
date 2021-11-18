@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.merchant.MerchantImageDao">
+
+    <insert id="insert" parameterType="merchantImage" useGeneratedKeys="true" keyProperty="id">
+      insert into mt_merchant_image (
+		`merchant_id`,
+		`order_id`,
+		`types`,
+		`sort_order`,
+		`url`
+      ) values (
+        #{merchantId},
+		#{orderId},
+		#{types},
+		#{sortOrder},
+		#{url}
+      )
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        delete from mt_merchant_image where id = #{id}
+    </delete>
+
+    <select id="getMerchantImageList" parameterType="merchantImage" resultType="merchantImage">
+        select
+        <include refid="fieldSql"/>
+        from mt_merchant_image
+        where merchant_id = #{merchantId} and types = #{types}
+        order by sort_order asc
+    </select>
+
+    <update id="updateMerchantImageSeq">
+        update mt_merchant_image set
+          `sort_order` = #{sortOrder}
+        where id = #{id}
+    </update>
+
+    <sql id="fieldSql">
+		`id`,
+		`merchant_id`,
+		`order_id`,
+		`types`,
+		`sort_order`,
+		`url`
+	</sql>
+
+</mapper>

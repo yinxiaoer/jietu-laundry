@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.customer.CustomerAddressDao">
+
+	<insert id="save" parameterType="customerAddress" useGeneratedKeys="true" keyProperty="id">
+		insert into cst_customer_address (
+			`customer_id`,
+			`longitude`,
+			`latitude`,
+			`location_name`,
+			`location_address`,
+			`details_address`,
+			`receiver_name`,
+			`receiver_mobile`,
+		<if test="receiverTelephone != null and receiverTelephone != ''">
+			`receiver_telephone`,
+		</if>
+		<if test="receiverEmail != null and receiverEmail != ''">
+			`receiver_email`,
+		</if>
+			`defaulted`
+		) values (
+			#{customerId},
+			#{longitude},
+			#{latitude},
+			#{locationName},
+			#{locationAddress},
+			#{detailsAddress},
+			#{receiverName},
+			#{receiverMobile},
+		<if test="receiverTelephone != null and receiverTelephone != ''">
+			#{receiverTelephone},
+		</if>
+		<if test="receiverEmail != null and receiverEmail != ''">
+			#{receiverEmail},
+		</if>
+			#{defaulted}
+		)
+	</insert>
+
+	<update id="update" parameterType="customerAddress">
+		update cst_customer_address
+		<set>
+			<if test="customerId != null and customerId != ''">
+				`customer_id` = #{customerId},
+			</if>
+			<if test="longitude != null and longitude != ''">
+				`longitude` = #{longitude},
+			</if>
+			<if test="latitude != null and latitude != ''">
+				`latitude` = #{latitude},
+			</if>
+			<if test="locationName != null and locationName != ''">
+				`location_name` = #{locationName},
+			</if>
+			<if test="locationAddress != null and locationAddress != ''">
+				`location_address` = #{locationAddress},
+			</if>
+			<if test="detailsAddress != null and detailsAddress != ''">
+				`details_address` = #{detailsAddress},
+			</if>
+			<if test="receiverName != null and receiverName != ''">
+				`receiver_name` = #{receiverName},
+			</if>
+			<if test="receiverMobile != null and receiverMobile != ''">
+				`receiver_mobile` = #{receiverMobile},
+			</if>
+			<if test="receiverTelephone != null and receiverTelephone != ''">
+				`receiver_telephone` = #{receiverTelephone},
+			</if>
+			<if test="receiverEmail != null and receiverEmail != ''">
+				`receiver_email` = #{receiverEmail},
+			</if>
+			<if test="defaulted != null and defaulted != ''">
+				`defaulted` = #{defaulted},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<update id="updateNotDefault" >
+		update cst_customer_address set
+			`defaulted` = false
+		where customer_id = #{customerId} and id != #{id}
+	</update>
+
+	<update id="updateDefault" >
+		update cst_customer_address set
+			`defaulted` = true
+		where id = #{id} and customer_id = #{customerId}
+	</update>
+
+	<select id="getById" resultType="customerAddress">
+		SELECT
+			<include refid="fieldSql"/>
+		FROM cst_customer_address
+		WHERE id=#{id}
+	</select>
+
+	<select id="findByCustomerId" resultType="customerAddress">
+		SELECT
+		<include refid="fieldSql"/>
+		FROM cst_customer_address
+		WHERE customer_id=#{customerId}
+	</select>
+
+	<delete id="delete">
+		delete from cst_customer_address
+		where id = #{id} and customer_id = #{customerId}
+	</delete>
+
+	<sql id="fieldSql">
+		id,
+		customer_id,
+		longitude,
+		latitude,
+		location_name,
+		location_address,
+		details_address,
+		receiver_name,
+		receiver_mobile,
+		receiver_telephone,
+		receiver_email,
+		defaulted
+	</sql>
+</mapper>

@@ -1,0 +1,50 @@
+<template>
+  <view class="icon_list">
+    <view wx:for="{{icons}}" wx:for-item="icon" wx:key="index" class="icon_item_demo">
+      <wxc-icon size="50" type="{{icon}}"></wxc-icon>
+      <text class="icon_type">{{icon}}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+    export default {
+        config: {
+            usingComponents: {
+                'wxc-icon': '@minui/wxc-icon'
+            }
+        },
+        data: {
+            icons: [
+                'yes', 'check', 'help', 'no', 'warning',
+                'add', 'close', 'star', 'star-active', 'more',
+                'right', 'arrow-left', 'arrow-right', 'arrow-up', 'arrow-down',
+                'minus', 'cart', 'home', 'search', 'search-square',
+                'camera', 'scan', 'corcer-l', 'corcer-r', 'alipay',
+                'yen', 'mogujie', 'group', 'pintuan', 'share',
+                'notice', 'shop', 'delete', 'comment', 'edit',
+                'feedback', 'location', 'address', 'after-sales', 'footprint',
+                'weixin', 'top', 'purse', 'unreceived', 'truck',
+                'rate', 'coupon', 'message','clear'
+            ]
+        },
+        methods: {}
+    }
+</script>
+
+<style>
+  .icon_list {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
+  .icon_item_demo {
+    width: 20%;
+    float: left;
+    margin-bottom: 10rpx;
+  }
+  .icon_type {
+    display: block;
+    font-size: 22rpx;
+  }
+</style>

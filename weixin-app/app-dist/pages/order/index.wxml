@@ -1,0 +1,12 @@
+<view class="order-header-tab">
+    <wux-tabs controlled current="{{ currentTab }}" theme="calm" bindchange="onChange">
+        <wux-tab key="" title="全部订单"></wux-tab>
+        <wux-tab key="2" title="待评价"></wux-tab>
+        <wux-tab key="201,202" title="退款/售后"></wux-tab>
+    </wux-tabs>
+</view>
+<view class="order-list">
+    <view class="order-item" wx:for="{{orders}}" wx:key="index">
+        <order item="{{item}}"></order>
+    </view>
+</view>

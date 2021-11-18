@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "../packages/@wuxui/icon/index",
+    "imgIcon": "../imgIcon/index"
+  }
+}

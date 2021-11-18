@@ -1,0 +1,15 @@
+.tag {
+  display: inline-block;
+  color: #666666;
+  font-size: 26rpx;
+  padding: 18rpx 46rpx;
+  border: 1px solid #999999;
+  border-radius: 4rpx;
+  text-align: center;
+  min-width: 100rpx;
+}
+
+.tag.active {
+  border-color: #129EEF;
+  color: #129EEF;
+}

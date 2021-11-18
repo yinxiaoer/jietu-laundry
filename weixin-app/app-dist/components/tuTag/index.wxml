@@ -1,0 +1,3 @@
+<view class="tag {{isActive ? 'active' : ''}}" bindtap="change">
+    <slot></slot>
+</view>

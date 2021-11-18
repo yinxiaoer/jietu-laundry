@@ -1,0 +1,158 @@
+<template>
+    <view class="i-class i-tab-bar-item">
+        <i-badge dot="{{ dot }}" count="{{ dot ? 0 : count }}">
+            <view>
+                <wxc-icon wx:if="{{ icon }}"
+                          class="i-tab-bar-item-icon {{ current ? 'item-index--i-tab-bar-item-icon-current' : '' }}"
+                          color="{{ current ? selectedColor : color }}"
+                          size="36"
+                          type="{{icon}}"></wxc-icon>
+                <image wx:else class="i-tab-bar-item-img" src="{{ current ? currentImg : img }}"></image>
+                <view class="i-tab-bar-item-title {{ current ? 'i-tab-bar-item-title-current' : '' }}"
+                      wx:if="{{ current && selectedColor }}" style="color:{{ selectedColor }}">{{ title }}</view>
+                <view class="i-tab-bar-item-title {{ current ? 'i-tab-bar-item-title-current' : '' }}" wx:else>
+                    {{ title }}</view>
+            </view>
+        </i-badge>
+    </view>
+</template>
+<script>
+    export default {
+        config: {
+            "usingComponents":
+                {
+                    "i-badge": "../badge/index.wxc",
+                    'wxc-icon': '@minui/wxc-icon',
+                }
+        },
+        externalClasses: ['i-class'],
+
+        relations: {
+            '../tab-bar/index': {
+                type: 'parent'
+            }
+        },
+
+        properties: {
+            icon: {
+                type: String,
+                value: ''
+            },
+            selectedColor: {
+                type: String,
+                value: '',
+            },
+            color: {
+                type: String,
+                value: '',
+            },
+            currentIcon: {
+                type: String,
+                value: ''
+            },
+            img: {
+                type: String,
+                value: ''
+            },
+            currentImg: {
+                type: String,
+                value: ''
+            },
+            key: {
+                type: String,
+                value: ''
+            },
+            title: {
+                type: String,
+                value: ''
+            },
+            dot: {
+                type: Boolean,
+                value: false
+            },
+            count: {
+                type: Number,
+                value: 0
+            }
+        },
+
+        data: {
+            current: false,
+            currentColor: ''
+        },
+
+        methods: {
+            changeCurrent (current) {
+                this.setData({ current });
+            },
+            changeCurrentColor (currentColor) {
+                this.setData({ currentColor });
+            },
+            handleClickItem () {
+                const parent = this.getRelationNodes('../tab-bar/index')[0];
+                parent.emitEvent(this.data.key);
+            }
+        }
+    }
+</script>
+
+<style lang="less">
+    @import "../../sheet/less/index";
+    @import "../styles/_base.less";
+    @import "../styles/_mixins.less";
+
+    .i-tab-bar-item{
+        flex: 1;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        -webkit-box-pack: center;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        text-align: center;
+
+        &-icon{
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            box-sizing: border-box;
+            color: @subsidiary-color;
+            &-current{
+                color: @primary-color;
+            }
+        }
+        &-img{
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 22px;
+            height: 22px;
+        }
+
+        &-title{
+            font-size: @h4;
+            line-height: @line-height-h4;
+            margin: 3px 0 0;
+            line-height: 1;
+            text-align: center;
+            box-sizing: border-box;
+            color: @subsidiary-color;
+            &-current{
+                color: @primary-color;
+            }
+        }
+
+        &-img{
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            box-sizing: border-box;
+            color: @subsidiary-color;
+        }
+    }
+</style>

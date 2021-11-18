@@ -1,0 +1,43 @@
+<div class="modal fade" tabindex="0" id="_modal_preferences" data-tpl="preferences-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					×
+				</button>
+				<h4 class="modal-title">
+					Preferences
+				</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#_modal_preferences_response" data-toggle="tab">
+							Response
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="_modal_preferences_response">
+
+						<form class="form-horizontal js-form-change-save" action="/service/preferences" method="post">
+							<div class="form-group">
+								<label for="preferenceResponseDelay">
+									Simulated response delay (milliseconds)
+								</label>
+								<%
+									var responseDelay = 0;
+									if (apiData && apiData[0] && apiData[0].preferences) {
+										responseDelay = apiData[0].preferences.responseDelay;
+									}
+								%>
+								<input id="preferenceResponseDelay" name="responseDelay" class="form-control" value="<%=responseDelay %>" />
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

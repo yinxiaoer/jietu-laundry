@@ -1,0 +1,48 @@
+<wux-toast id="wux-toast" />
+
+<view class="comment">
+    <card>
+        <view class="comment-main">
+            <view class="comment-main-header">
+                <view class="merchant-pic">
+                    <tu-image src="{{orderDetail.merchantLogo}}" urlType="absolute"></tu-image>
+                </view>
+                <text>{{orderDetail.merchantName}}</text>
+            </view>
+            <view class="comment-rate">
+                <wux-rater slot="footer"
+                           fontSize="30"
+                           margin="{{ 15 }}"
+                           bind:change="updateRater"
+                           star="☻"
+                           allowHalf/>
+            </view>
+            <view>
+                <view class="comment-textarea">
+                    <wux-textarea hasCount
+                                  rows="3"
+                                  cursorSpacing="80" maxlength="300"
+                                  bind:change="changeCommentCon"
+                                  placeholder="亲商家服务怎么样，请写下您的评价"/>
+                </view>
+            </view>
+            <view>
+                <wux-upload listType="picture-card"
+                            fileList="{{ fileList }}"
+                            controlled
+                            name="file"
+                            formData="{{formData}}"
+                            header="{{header}}"
+                            url="{{config.baseURL}}/fileUpload"
+                            bind:change="uploadChange"
+                            bind:success="uploadSuccess"
+                            bind:complete="uploadComplete"
+                            bind:fail="uploadFail"
+                            bind:remove="remove">
+                    <wux-icon type="icon-yilou"></wux-icon>
+                </wux-upload>
+            </view>
+        </view>
+    </card>
+    <wux-button class="submit" type="calm" block full bind:click="submit">提交</wux-button>
+</view>

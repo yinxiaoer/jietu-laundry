@@ -1,0 +1,31 @@
+/* pages/user/userinfo/nickname/index.wxss */
+.container{
+  width: 100%;
+  height: 100vh;
+  background:#ececec; 
+}
+.container .toptitile{
+  width: 100%;
+  height: 114rpx;
+  font-size: 32rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+}
+.container .save{
+ position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  height: 98rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  background: #CCCCCC;
+}
+.container .isFull{
+  background: #5BC0F6;
+}

@@ -1,0 +1,51 @@
+<view class="order-status">
+    <view class="block">
+        <view class="block-circle">
+            <view class="circle {{status==0 ? 'active' : '' }}">
+                <icon type="icon-daifukuanweixuanzhong" wx:if="{{status!=0}}"></icon>
+                <imgIcon src="/static/image/qianbao.png" wx:if="{{status==0}}"></imgIcon>
+            </view>
+            <icon class="icon" type="icon-lianjie" size="16" color="{{status==0 ? ' #129EEF ' : '#CCCCCC'}}"></icon>
+        </view>
+        <text>预约洗衣</text>
+    </view>
+    <view class="block">
+        <view class="block-circle">
+            <view class="circle {{status==101 || status == 102 ? 'active' : '' }}">
+                <icon type="icon-daiquhuoweixuanzhong" wx:if="{{status!=101 && status != 102}}"></icon>
+                <imgIcon src="/static/image/icon-daiquhuo.png" wx:if="{{status==101 || status == 102}}"></imgIcon>
+            </view>
+            <icon class="icon" type="icon-lianjie" size="16" color="{{status==101 || status == 102 ? ' #129EEF ' : '#CCCCCC'}}"></icon>
+        </view>
+        <text>取货中</text>
+    </view>
+    <view class="block">
+        <view class="block-circle">
+            <view class="circle {{status==103 ? 'active' : '' }}">
+                <icon type="icon-yilou" wx:if="{{status!=103}}"></icon>
+                <imgIcon src="/static/image/xiyiji.png" wx:if="{{status==103}}"></imgIcon>
+            </view>
+            <icon class="icon" type="icon-lianjie" size="16" color="{{status==103 ? ' #129EEF ' : '#CCCCCC'}}"></icon>
+        </view>
+        <text>洗涤中</text>
+    </view>
+    <view class="block">
+        <view class="block-circle">
+            <view class="circle {{status==105 || status == 104 ? 'active' : '' }}">
+                <icon type="icon-daisonghuoweixuanzhong" wx:if="{{status!=105 && status !=104}}"></icon>
+                <imgIcon src="/static/image/icon-daisonghuo.png" wx:if="{{status==105 || status == 104}}"></imgIcon>
+            </view>
+            <icon class="icon" type="icon-lianjie" size="16" color="{{status==104 ? ' #129EEF ' : '#CCCCCC'}}"></icon>
+        </view>
+        <text>送货中</text>
+    </view>
+    <view class="block">
+        <view class="block-circle">
+            <view class="circle {{status==1 || status ==3 || status == 4 ? 'active' : '' }}">
+                <icon type="icon-yiwancheng2" wx:if="{{status!=1 && status !=3 && status!=4}}"></icon>
+                <imgIcon src="/static/image/icon-yiwanchengxuanzhong.png" wx:if="{{status==1 || status ==3 || status == 4}}"></imgIcon>
+            </view>
+        </view>
+        <text>已完成</text>
+    </view>
+</view>

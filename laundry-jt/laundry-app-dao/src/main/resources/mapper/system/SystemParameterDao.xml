@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.system.SystemParameterDao">
+
+ 	<select id="findByType" parameterType="java.lang.String" resultType="systemParameter">
+ 		select 
+ 			<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter
+ 		where type_id=#{typeId}
+		order by seq asc
+ 	</select>
+
+	<select id="getById" parameterType="java.lang.String" resultType="systemParameter">
+		select
+		<include refid="selectSql"/>
+		from
+		sys_system_parameter
+		where id=#{id}
+	</select>
+
+	<sql id="selectSql">
+		id,
+		value,
+		description,
+		seq,
+		type_id
+	</sql>
+</mapper>

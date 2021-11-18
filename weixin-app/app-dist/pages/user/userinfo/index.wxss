@@ -1,0 +1,5 @@
+.container{
+  height: calc(100vh - 24rpx);
+  padding: 24rpx 24rpx 0 24rpx;
+  background: #ececec;
+}

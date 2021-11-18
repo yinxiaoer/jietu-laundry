@@ -1,0 +1,27 @@
+<div class="modal fade js-modal" id="_modal_collection_<%=collection.id%>" tabindex="-1" role="dialog" aria-labelledby="collectionLabel" data-tpl="collection-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="collectionLabel">Collection: <%=collection.name%></h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					<%=collection.description%>
+				</p>
+				<p class="js-outlet"></p>
+				<br/>
+				<p>
+					<button class="js-btn btn btn-primary js-collection-activate" data-id="<%=collection.id%>">Activate collection</button>
+					<% if (collection.isDeleteable !== false) { %>
+					&nbsp;<button class="js-btn btn btn-danger js-collection-delete" data-id="<%=collection.id%>">Delete collection</button>
+					<% } %>
+					<% if (collection.isOpenable !== false) { %>
+					&nbsp;<a class="btn btn-default js-open-ide" data-path="<%=collection.path%>">Open in IDE</a>
+					<% } %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

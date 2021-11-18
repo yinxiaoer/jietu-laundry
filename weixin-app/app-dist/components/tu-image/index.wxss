@@ -1,0 +1,5 @@
+/* components/tu-image/index.wxss */
+image {
+  width: 100%;
+  height: 100%;
+}

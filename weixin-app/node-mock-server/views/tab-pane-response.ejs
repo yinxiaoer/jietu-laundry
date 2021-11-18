@@ -1,0 +1,28 @@
+<div data-tpl="tab-pane-response" class="tab-pane" id="_<%=service.id%>_<%=method.id%>_response">
+	<% if (response && response.statusCode) { %>
+		<h2>
+			HTTP status code
+			<a href="http://httpstatus.es/<%=response.statusCode%>" target="_blank">
+				<%=response.statusCode%>
+			</a>
+		</h2>
+	<% } %>
+
+	<% if (response && response.schema && response.schema.url) { %>
+	<p><strong>Type: <%=response.schema.type%></strong></p>
+	<p>
+		<strong>Schema: </strong>
+		<a target="_blank" href="<%=response.schema.url%>">Open in new tab</a>
+	</p>
+	<% } %>
+
+	<% if (response && response.schema && response.schema.urlFile) { %>
+	<p>
+		<strong>Schema File: </strong>
+		<a target="_blank" href="<%=response.schema.urlFile%>">Open file in new tab</a>
+	</p>
+	<% } %>
+	<% if (responseFilePath) { %>
+	<a class="btn btn-default js-open-ide" data-path="<%=responseFilePath%>">Open response schema file</a>
+	<% } %>
+</div>

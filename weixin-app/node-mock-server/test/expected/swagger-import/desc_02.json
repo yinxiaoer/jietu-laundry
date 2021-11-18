@@ -1,0 +1,39 @@
+{
+  "desc": "add new address",
+  "desc2": "",
+  "security": [],
+  "protected": false,
+  "status": "swagger-imported",
+  "request": {
+    "uri": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "desc": "id"
+        }
+      ]
+    },
+    "body": {
+      "parameters": [
+        {
+          "name": "address",
+          "required": true,
+          "type": "",
+          "desc": "address",
+          "schemaType": "application/json "
+        }
+      ]
+    },
+    "schema": {
+      "type": "application/json "
+    }
+  },
+  "response": {
+    "statusCode": "200",
+    "schema": {
+      "type": ""
+    }
+  }
+}

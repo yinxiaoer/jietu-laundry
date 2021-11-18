@@ -1,0 +1,21 @@
+.order-detail {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 34rpx;
+}
+
+.order-status .icon {
+  font-size: 24rpx;
+}
+
+.order-divider {
+  padding: 0 130rpx;
+  font-size: 22rpx;
+  color: #666666;
+}

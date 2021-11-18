@@ -1,0 +1,12 @@
+<view class='container'>
+    <tu-cell title="头像" icon="icon-wode" isLink isBorder bind:changeItem="selectpic"></tu-cell>
+    <tu-cell title="手机号" extra="{{userInfo.mobile}}" isBorder bind:changeItem="selectitem"></tu-cell>
+    <tu-cell title="我的二维码" icon="icon-dingdan" isLink isBorder bind:changeItem="selectitem"></tu-cell>
+    <tu-cell title="昵称" extra="{{userInfo.nickname}}" isLink isBorder bind:changeItem="changeNickname"></tu-cell>
+    <!-- <tu-cell title="姓名" extra="未知" isLink isBorder url="username/index" bind:changeitem="selectitem"></tu-cell> -->
+    <tu-cell title="性别" extra="{{userInfo.sex === null?'未知':userInfo.sex}}" isLink bind:changeItem="selectsex"></tu-cell>
+    <!-- <tu-cell title="登录密码" extra="修改" isLink isBorder isTop bind:changeItem="selectitem"></tu-cell> -->
+    <!-- <tu-cell title="第三方账号绑定" isLink bind:changeitem="selectitem"></tu-cell> -->
+    <tu-popselect chooseArray="{{choice}}" visible="{{visible}}" title="{{toptitle}}" bind:close="close" bind:chooseclose="chooseclosed"></tu-popselect>
+    <tu-cell title="注销登录" isTop bind:changeItem="loginOut"></tu-cell>
+</view>

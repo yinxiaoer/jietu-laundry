@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-cell": "../../packages/@wuxui/cell/index",
+    "wux-button": "../../packages/@wuxui/button/index"
+  }
+}

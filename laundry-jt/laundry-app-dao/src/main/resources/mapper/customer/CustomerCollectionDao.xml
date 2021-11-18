@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.customer.CustomerCollectionDao">
+
+	<insert id="save" parameterType="customerCollection" useGeneratedKeys="true" keyProperty="id">
+		insert into cst_customer_collection (
+			`customer_id`,
+			`merchant_id`
+		) values (
+			#{customerId},
+			#{merchantId}
+		)
+	</insert>
+
+	<delete id="delete">
+		delete from cst_customer_collection
+		where merchant_id = #{merchantId} and customer_id = #{customerId}
+	</delete>
+
+	<select id="getCollectionList" resultType="merchant">
+		SELECT
+			mm.`id`,
+			mm.`name`,
+			mm.`address`,
+			mm.`logo`,
+			IFNULL(ms.sales, 0) as 'month_sales',
+			mm.`total_sales`,
+			mm.`grade`
+		FROM
+			cst_customer_collection cc
+		LEFT JOIN mt_merchant mm ON cc.merchant_id = mm.id
+		LEFT JOIN mt_month_sales ms ON cc.merchant_id = ms.merchant_id AND ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+		WHERE cc.customer_id = #{customerId}
+		ORDER BY cc.create_date DESC
+		limit ${(page-1)*limit}, ${limit}
+	</select>
+
+	<select id="findByCustomerIdAndMerchantId" resultType="customerCollection">
+		select
+			id,
+			customer_id,
+			merchant_id,
+			create_date
+		from cst_customer_collection
+		where customer_id = #{customerId} and merchant_id = #{merchantId}
+	</select>
+</mapper>

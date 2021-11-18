@@ -1,0 +1,70 @@
+<view class="checkout">
+    <card>
+        <wux-cell wux-class="red-text active"
+                  title="{{defaultAddress.locationAddress}}"
+                  is-link
+                  bind:click="showAddressSelected"
+                  data-id="{{defaultAddress.id}}">
+            <view class="address-info" wx:if="{{defaultAddress.id}}">
+                <text>{{defaultAddress.detailsAddress}}</text>
+                <text>{{defaultAddress.receiverName}}</text>
+                <text>{{defaultAddress.receiverMobile}}</text>
+            </view>
+            <view class="address-info" wx:else>
+                <text>请选择收货地址</text>
+            </view>
+        </wux-cell>
+        <wux-cell is-link>
+           <view class="cell-label" bindtap="showDateStartSeleted">
+                <text>选择取件时间</text>
+                <text wx:if="{{form.takeStartDate}}">{{form.takeStartDate}}</text>
+           </view>
+        </wux-cell>
+        <wux-cell is-link  bindtap="showDateEndSeleted">
+            <view class="cell-label">
+                <text>选择送件时间</text>
+                <text wx:if="{{form.sendStartDate}}">{{form.sendStartDate}}</text>
+            </view>
+        </wux-cell>
+    </card>
+    <card>
+        <orderProductCard title="商家名称" products="{{cart}}" prices="{{prices}}"></orderProductCard>
+    </card>
+    <card>
+        <view class="user-order-info">
+            <wux-input label="备注"
+                       value="{{remark}}"
+                       controlled
+                       placeholder="请输入备注信息"
+                       bind:blur="updateRemark"
+                       bind:change="updateRemark"
+                       bind:confirm="updateRemark"/>
+        </view>
+    </card>
+    <view class="checkout-bottom">
+        <view class="left">
+            <text>合计：</text>
+            <price wx:if="{{prices}}" color="#FFFFFF" fontSize="32rpx" fontWeight="500">{{prices.payAmount}}</price>
+        </view>
+        <view class="payment {{form.sendEndDate === null ? 'disabled' : ''}}"  bindtap="createOrder">
+            前往支付
+        </view>
+    </view>
+    <dateSelected show="{{visibleStartDateSelected}}"
+                  bind:close="closeDateSelected"
+                  timeList="{{timeList}}"
+                  title="选择取件时间"
+                  startDate="{{takeInitDate}}"></dateSelected>
+    <dateSelected show="{{visibleEndDateSelected}}"
+                  wx:if="{{sendInitDate}}"
+                  bind:close="closeEndDateSelected"
+                  showZH="{{false}}"
+                  timeList="{{timeList}}"
+                  title="选择送件时间"
+                  startDate="{{sendInitDate}}"></dateSelected>
+    <addressSelected show="{{visibleAddressSelected}}"
+                     addresses="{{addresses}}"
+                     bind:update="updateAddress"
+                     bind:add="addAddress"
+                     bind:close="closeAddressSelected"> </addressSelected>
+</view>

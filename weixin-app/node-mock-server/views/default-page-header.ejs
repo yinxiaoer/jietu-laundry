@@ -1,0 +1,70 @@
+<div class="page-header" data-tpl="default-page-header">
+	<h1>
+		<%=title %>
+		<small>version v<%=version %></small>
+		<div class="dropdown pull-right">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="#_modal_preferences" data-toggle="modal" data-target="#_modal_preferences">Preferences</a>
+				</li>
+				<% if (isSwaggerImportAvailable) { %>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a href="#_modal_swagger_import" data-toggle="modal" data-target="#_modal_swagger_import">Swagger Import</a>
+					</li>
+				<% } %>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="#" class="js-validate">Validate all mock responses (except error)</a>
+				</li>
+			</ul>
+		</div>
+	</h1>
+</div>
+<div class="js-controlled-collapse">
+	<br/>
+	<div class="align-center">
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default" data-toggle="collapse" href="#collapseDtos" aria-expanded="false" aria-controls="collapseDtos">DTO's</button>
+			<button type="button" class="btn btn-default" data-toggle="collapse" href="#collapseCollections" aria-expanded="false" aria-controls="collapseCollections">Collections</button>
+		</div>
+	</div>
+	<br />
+	<br />
+	<div class="collapse" id="collapseDtos">
+		<div class="well">
+			<div class="list-group">
+				<% for(var i=0; i<dataDto.length; i++) { %>
+					<% var dto = dataDto[i]; %>
+					<a href="#" data-toggle="modal" data-target="#_modal_dto_<%=dto.nameClean%>" class="list-group-item">
+						<%= dto.nameClean %>
+					</a>
+					<% include dto-modal.ejs %>
+				<% } %>
+			</div>
+		</div>
+	</div>
+	<div class="collapse" id="collapseCollections">
+		<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#_modal_collection_new">
+			+ add new collection
+		</a>
+		<% include collection-new-modal.ejs %>
+		<br />
+		<br />
+		<div class="well">
+			<div class="list-group">
+
+				<% for(var i=0; i<dataCollections.length; i++) { %>
+					<% var collection = dataCollections[i]; %>
+					<a href="#" data-toggle="modal" data-target="#_modal_collection_<%=collection.id%>" class="list-group-item">
+						<%= collection.name %> (<%= collection.description %>)
+					</a>
+					<% include collection-modal.ejs %>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</div>

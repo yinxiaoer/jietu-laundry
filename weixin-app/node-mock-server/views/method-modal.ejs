@@ -1,0 +1,68 @@
+<div class="modal fade" tabindex="0" id="_<%=service.id%>_<%=method.id%>" data-tpl="method-modal">
+	<div class="modal-dialog">
+		<div class="modal-content modal-content-with-label">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					×
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<% include method-badge %>
+					/<%=service.name%>
+					<span class="label label-<%=method.statusClass%> status-label">Status: <%=method.desc.status%></span>
+				</h4>
+				<% if (method.isDeprecated) { %>
+					<br/>
+					<div class="alert alert-danger">
+						<p><strong>Deprecated:</strong> please don't use this service!</p>
+					</div>
+				<% } %>
+			</div>
+			<div class="modal-body">
+
+				<div class="alert alert-info">
+					<p><%=method.desc.desc%></p>
+				</div>
+
+				<% var descFilePath = method.desc.descFilePath%>
+				<% if (descFilePath) { %>
+				<a class="btn btn-default js-open-ide" data-path="<%=descFilePath%>">Open description file</a>
+				<br/>
+				<br/>
+				<% } %>
+
+				<% if (method.security.length > 1) { %>
+				<div class="security-info">
+					Security: <%=method.security%>
+				</div>
+				<% } %>
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#_<%=service.id%>_<%=method.id%>_mock" data-toggle="tab">
+							Mock
+						</a>
+					</li>
+					<li>
+						<a href="#_<%=service.id%>_<%=method.id%>_response" data-toggle="tab">
+							Response
+						</a>
+					</li>
+					<li>
+						<a href="#_<%=service.id%>_<%=method.id%>_request" data-toggle="tab">
+							Request
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<% var request = method.desc.request%>
+					<% var response = method.desc.response%>
+					<% var requestFilePath = method.desc.requestFilePath%>
+					<% var responseFilePath = method.desc.responseFilePath%>
+
+					<% include tab-pane-mock.ejs %>
+					<% include tab-pane-response.ejs %>
+					<% include tab-pane-request.ejs %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

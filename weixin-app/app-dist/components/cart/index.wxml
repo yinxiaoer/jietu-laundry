@@ -1,0 +1,34 @@
+<wux-popup visible="{{openedCon}}"
+           position="bottom"
+           maskClosable="{{true}}"
+           z-index="50"
+           bind:close="closeDetail">
+    <view class="cart-con {{openedCon ? 'open':''}}">
+        <view class="con-header">
+            <view class="con-header-clear" bindtap="clearCart">清空衣娄</view>
+        </view>
+        <view class="con-main">
+            <view class="con-shop">
+                <view wx:for="{{shops}}" wx:key="{{item.id}}" class="item">
+                    <view class="name">{{item.name}}</view>
+                    <view class="price">￥{{item.price}}</view>
+                    <view class="handle">
+                        <imgIcon class="reduce" size="44rpx" data-item="{{item}}" bindtap="reduce"  src="/static/image/reduce.png"/>
+                        <text class="number">{{item.number}}</text>
+                        <imgIcon size="44rpx" src="/static/image/add.png" data-item="{{item}}" class="add" bindtap="add"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</wux-popup>
+<view class="cart {{number === 0 ? 'empty' : ''}}">
+    <view class="cart-left">
+        <view class="cart-icon" bindtap="changeOpen">
+            <wux-icon type="icon-yilou_xuanzhong" color='#FFFFFF'></wux-icon>
+            <wux-badge class="badge" wx:if="{{number}}" count="{{number}}"></wux-badge>
+        </view>
+        <text class="price">合计：￥{{shoppingCartAmount}}</text>
+    </view>
+    <view class="buy" bindtap="buy">立即下单</view>
+</view>

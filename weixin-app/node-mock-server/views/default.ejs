@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<% include head.ejs %>
+
+<body id="index" class="home">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" role="main">
+				<% include default-page-header.ejs %>
+				<% if (swaggerImport && swaggerImport.dateTime) { %>
+					<div class="alert alert-success" role="alert">Swagger import: <%=swaggerImport.dateTime%></div>
+				<% } %>
+				<% if (validation && validation.type) { %>
+					<div class="alert alert-<%=validation.type%>" role="alert">
+						Validation: <%=validation.dateTime%>
+						&nbsp;
+						&nbsp;
+						<script>window.validationResult = <%-JSON.stringify(validation.messages)%></script>
+						<p>
+							(
+								Errors: <%=validation.counter.error%>,
+								Warnings: <%=validation.counter.warn%>,
+								Infos: <%=validation.counter.info%>,
+								Success: <%=validation.counter.success%>
+							)
+						</p>
+						<a
+							class="js-open-validation-result"
+							href="#_modal_validate_result"
+							data-toggle="modal"
+							data-target="#_modal_validate_result"
+						>
+							Open Result
+						</a>
+					</div>
+				<% } %>
+				<% for(var i=0; i<apiData.length; i++) { %>
+					<% var group = apiData[i]; %>
+					<% include group.ejs %>
+				<% } %>
+				<a
+					class="btn btn-primary"
+					href="#_modal_add_endpoint"
+					data-toggle="modal"
+					data-target="#_modal_add_endpoint"
+				>
+					+ add new endpoint
+				</a>
+				<br />
+				<br />
+			</div>
+			<div class="col-md-3">
+				<div id="sidebar" class="hidden-print affix" role="complementary">
+					<% include menu.ejs %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include add-endpoint-modal.ejs %>
+	<% include swagger-import-modal.ejs %>
+	<% include preferences-modal.ejs %>
+	<% include validate-result-modal.ejs %>
+	<% include validate-single-modal.ejs %>
+	<% include validate-modal.ejs %>
+	<% include scripts.ejs %>
+</body>
+
+</html>

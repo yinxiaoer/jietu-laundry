@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+    </style>
+    <clipPath id="clip-path-1">
+      <rect x="-221.5" y="-24.5" width="1366" height="1170"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path-1)">
+    <image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAMAAAAcqPc3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAaVBMVEUAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAACGV7KTAAAAIXRSTlMAJoUzDhcW6P0LW/zZDF3fHHYoBQoJAgjp/lzaXuAEEQGvim++AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAGVJREFUKM/FkTcWgCAAQ2MHFSvYG/e/pPJwAJyc+GOGvBQEYQQgTlILIJOEIi+kTal0hsqRZY2m7R6fngsTDm/oPIMYTQQwyZliIU7+VekMm9trf32Oj4/nXtbOnP//S/9+Or9fNzBSFdub+n+4AAAAAElFTkSuQmCC" width="23" height="22"/>
+  </g>
+</svg>

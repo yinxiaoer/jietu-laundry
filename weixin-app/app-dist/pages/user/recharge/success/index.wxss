@@ -1,0 +1,45 @@
+/* pages/payment/success/index.wxss */
+.container{
+  height: 100vh;
+  background: #F5F5F5;
+  padding: 0 46rpx;
+}
+.container .content{
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-top: 76rpx;
+}
+.container .content .imagebox{
+  width: 152rpx;
+  height: 152rpx;
+}
+.container .content .detailtext{
+  padding-left: 20rpx;
+}
+.container .content .detailtext .paysuccess{
+  color: #019AEA;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 90rpx;
+}
+.container .content .detailtext .order .ordernum{
+  color: #919191;
+  font-size: 24rpx;
+}
+.container .content .detailtext .order .order_number{
+  color: #1A1A1A;
+  font-size: 28rpx;
+}
+.container .content .detailtext .pay .haspay{
+  color: #919191;
+  font-size: 24rpx;
+}
+.container .content .detailtext .pay .paymoney{
+  color: #FD6D50;
+  font-size: 28rpx;
+}
+.container .confirm{
+  margin-top: 212rpx;
+}

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.merchant.MerchantDao">
+
+	<insert id="insert" parameterType="merchant" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO mt_merchant (
+			`name`,
+			`status`,
+			`info`,
+			`address`,
+			`business_license_code`,
+			`contact_name`,
+			`contact_mobile`,
+			`contact_mail`,
+			`user_id`,
+			`longitude`,
+			`latitude`,
+			`logo`,
+			`scope_of_services`,
+			`business_hours_start`,
+			`business_hours_end`,
+			`create_name`
+		) VALUES (
+			#{name},
+			#{status},
+			#{info},
+			#{address},
+			#{businessLicenseCode},
+			#{contactName},
+			#{contactMobile},
+			#{contactMail},
+			#{userId},
+			#{longitude},
+			#{latitude},
+			#{logo},
+			#{scopeOfServices},
+			#{businessHoursStart},
+			#{businessHoursEnd},
+			#{createName}
+		)
+	</insert>
+
+	<update id="update" parameterType="merchant">
+		UPDATE mt_merchant SET
+		<if test="name != null and name != ''">
+			`name`=#{name},
+		</if>
+		<if test="info != null and info != ''">
+			`info`=#{info},
+		</if>
+		<if test="address != null and address != ''">
+			`address`=#{address},
+		</if>
+		<if test="businessLicenseCode != null and businessLicenseCode != ''">
+			`business_license_code`=#{businessLicenseCode},
+		</if>
+		<if test="contactName != null and contactName != ''">
+			`contact_name`=#{contactName},
+		</if>
+		<if test="contactMobile != null and contactMobile != ''">
+			`contact_mobile`=#{contactMobile},
+		</if>
+		<if test="contactMail != null and contactMail != ''">
+			`contact_mail`=#{contactMail},
+		</if>
+		<if test="longitude != null and longitude != ''">
+			`longitude`=#{longitude},
+		</if>
+		<if test="latitude != null and latitude != ''">
+			`latitude`=#{latitude},
+		</if>
+		<if test="logo != null and logo != ''">
+			`logo`=#{logo},
+		</if>
+		<if test="scopeOfServices != null and scopeOfServices != ''">
+			`scope_of_services`=#{scopeOfServices},
+		</if>
+		<if test="businessHoursStart != null and businessHoursStart != ''">
+			`business_hours_start`=#{businessHoursStart},
+		</if>
+		<if test="businessHoursEnd != null and businessHoursEnd != ''">
+			`business_hours_end`=#{businessHoursEnd},
+		</if>
+		`update_name`=#{updateName}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM mt_merchant WHERE `id`=#{id}
+	</delete>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="long" parameterType="merchant">
+		SELECT count(*) FROM mt_merchant
+		<include refid="whereSql" />
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="merchant" resultType="merchant">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			mt_merchant m
+		left join mt_month_sales ms on m.id = ms.merchant_id and ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by ${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+ 	
+ 	<select id="getById" parameterType="long" resultType="merchant">
+ 		select
+			<include refid="fieldSql" />
+ 		from 
+ 			mt_merchant m
+		left join mt_month_sales ms on m.id = ms.merchant_id and ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+ 		where m.id = #{id}
+ 	</select>
+
+ 	<select id="findByUserId" parameterType="long" resultType="merchant">
+ 		select
+			<include refid="fieldSql" />
+ 		from
+ 			mt_merchant m
+		left join mt_month_sales ms on m.id = ms.merchant_id and ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+ 		where m.user_id=#{userId}
+ 	</select>
+
+	<select id="getAll" parameterType="long" resultType="merchant">
+		select
+		<include refid="fieldSql" />
+		from mt_merchant m
+		left join mt_month_sales ms on m.id = ms.merchant_id and ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+	</select>
+
+	<update id="updateStatus">
+		update mt_merchant set
+			`status` = #{status}
+		where id = #{id}
+	</update>
+
+	<sql id="fieldSql">
+		m.`id`,
+		m.`name`,
+		m.`status`,
+		m.`info`,
+		m.`address`,
+		m.`business_license_code`,
+		m.`contact_name`,
+		m.`contact_mobile`,
+		m.`contact_mail`,
+		m.`user_id`,
+		m.`longitude`,
+		m.`latitude`,
+		m.`logo`,
+		ms.sales as 'month_sales',
+		m.`total_sales`,
+		m.`grade`,
+		m.`scope_of_services`,
+		m.`business_hours_start`,
+		m.`business_hours_end`,
+		m.`create_name`,
+		m.`create_date`,
+		m.`update_name`,
+		m.`update_date`
+	</sql>
+
+	<sql id="whereSql">
+		<where>
+			<if test="name != null and name != ''">
+				and name like concat(#{name}, "%")
+			</if>
+			<if test="contactName != null and contactName != ''">
+				and contact_name like concat(#{contactName}, "%")
+			</if>
+			<if test="contactMobile != null and contactMobile != ''">
+				and contact_mobile = #{name}
+			</if>
+		</where>
+	</sql>
+</mapper>

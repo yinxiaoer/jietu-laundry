@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人资料",
+  "usingComponents": {
+    "tu-cell": "../../../components/tu-cell/index",
+    "tu-popselect": "../../../components/tu-popselect/index"
+  }
+}

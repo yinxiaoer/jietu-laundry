@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tu-iamge": "../tu-image",
+    "price": "../price",
+    "wux-cell": "../../packages/@wuxui/cell/index",
+    "wux-icon": "../../packages/@wuxui/icon/index"
+  }
+}

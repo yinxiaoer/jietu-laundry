@@ -1,0 +1,52 @@
+<!--components/merchant/index.wxml-->
+<view class='container'>
+  <view class='content'>
+    <view class='title'>
+      <imgIcon src="/static/image/address_info.png"></imgIcon>
+      <text class='location'>{{detail.address}}</text>
+      <view class='phone'>
+        <wux-icon type="icon-dianhua" color="#666666"></wux-icon>
+      </view>
+    </view>
+    <view class='imgBox'>
+      <scroll-view scroll-x style="width: 100%;">
+        <view class="scrollimg">
+          <view class="imgpic" wx:for="{{detail.merchantInfoImages}}" wx:key="{{detail.merchant_id}}">
+            <tuImage
+                  src="{{item.url}}"
+                  urlType="absolute"
+                  ></tuImage>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="money-bag">
+    <view class="left">
+      余额: ￥{{balance}}
+    </view>
+    <view class="right">
+      <view class="icon-text" bindtap="goRecharge">
+        <view class="icon">
+          <tu-image src="/static/image/congzhi.png"></tu-image>
+        </view>
+        <text>充值</text>
+      </view>
+    </view>
+  </view>
+  <view class='merchantinfo'>
+    <text class='infotitle'>营业信息</text>
+    <view class='infobox'>
+      <imgIcon src="/static/image/yingye.png"></imgIcon>
+      <text>营业时间：{{detail.businessHoursStart}}-{{detail.businessHoursEnd}}</text>
+    </view>
+    <view class='infobox'>
+      <imgIcon src="/static/image/address.png"></imgIcon>
+      <text>配送方式：两小时取件</text>
+    </view>
+    <view class='infobox'>
+      <imgIcon src="/static/image/peisongshijian.png"></imgIcon>
+      <text>配送时间：{{detail.businessHoursStart}}-{{detail.businessHoursEnd}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+.authorization {
+  height: 100vh;
+  position: relative;
+}
+
+.authorization .image {
+  position: absolute;
+  width: 364rpx;
+  height: 407rpx;
+  top: 102rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.authorization .wx-login {
+  position: fixed;
+  bottom: 211rpx;
+  left: 45rpx;
+  width: 660rpx;
+  height: 90rpx;
+  color: #24DB5A;
+  background: transparent;
+  border: 1rpx solid #45E79E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

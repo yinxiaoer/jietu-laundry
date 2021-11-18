@@ -1,0 +1,7 @@
+/.idea/
+/node_modules/
+/test/
+/src/libraries/
+/src/swagger/
+/src/templates/
+/demo/

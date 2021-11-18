@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "rater": "../../packages/@wuxui/rater",
+    "appraises-detail":"../appraisesDetail"
+  }
+}

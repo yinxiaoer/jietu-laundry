@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.merchant.MerchantMonthSalesDao">
+
+    <insert id="insert" parameterType="merchantMonthSales">
+        insert into mt_month_sales (
+            `merchant_id`,
+            `date`,
+            `sales`
+        ) values (
+            #{merchantId},
+            #{date},
+            #{sales}
+        )
+    </insert>
+
+    <update id="addSales">
+       update mt_month_sales set
+          `sales` = `sales` + 1
+       where `merchant_id` = #{merchantId} and `date` = #{date}
+    </update>
+
+    <select id="findByMerchantIdAndDate" resultType="merchantMonthSales">
+        select
+            `id`,
+            `merchant_id`,
+            `date`,
+            `sales`
+        from mt_month_sales
+        where `merchant_id` = #{merchantId} and `date` = #{date}
+    </select>
+</mapper>

@@ -1,0 +1,8 @@
+<view class="foot">
+    <!--<i-tab-bar current="{{ current }}" bindchange="handleChange">-->
+    <!--<i-tab-bar-item key="homepage" icon="home" color="#333333" selectColor="#000000" title="首页"></i-tab-bar-item>-->
+    <!--<i-tab-bar-item key="group" icon="shop" color="#333333" selectColor="#019AEA" title="分类"></i-tab-bar-item>-->
+    <!--<i-tab-bar-item key="remind" icon="cart" color="#333333" selectColor="#019AEA" count="3" title="购物车"></i-tab-bar-item>-->
+    <!--<i-tab-bar-item key="group" icon="group" color="#333333" selectColor="#019AEA" dot title="我的"></i-tab-bar-item>-->
+    <!--</i-tab-bar>-->
+</view>

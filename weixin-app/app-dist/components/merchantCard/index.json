@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tuImage": "../tu-image",
+    "rater": "../../packages/@wuxui/rater",
+    "wux-icon": "../../packages/@wuxui/icon",
+    "wux-timeago": "../../packages/@wuxui/timeago"
+  }
+}

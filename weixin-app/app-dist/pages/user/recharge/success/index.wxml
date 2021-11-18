@@ -1,0 +1,20 @@
+<!--pages/payment/success/index.wxml-->
+<view class="container">
+    <view class="content">
+        <view class="imagebox">
+            <tu-image src="/static/image/pay-success.png"></tu-image>
+        </view>
+        <view class="detailtext">
+            <text class="paysuccess">余额充值成功！</text>
+            <view class="pay">
+                <text class="haspay">已付款：</text>
+                <text class="paymoney">￥{{payAmount}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="confirm">
+        <wux-button block full type="calm" bind:click="finish">
+            完成
+        </wux-button>
+    </view>
+</view>

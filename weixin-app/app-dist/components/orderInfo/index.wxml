@@ -1,0 +1,16 @@
+<wux-cell title="订单信息"></wux-cell>
+
+<view class="order-info">
+    <view class="order-info-item">
+        <text>订单单号：</text>
+        <text>{{orderDetail.sn}}</text>
+    </view>
+    <view class="order-info-item">
+        <text>下单时间：</text>
+        <text>{{orderDetail.createDate}}</text>
+    </view>
+    <view class="order-info-item">
+        <text>支付方式：</text>
+        <text>微信支付</text>
+    </view>
+</view>

@@ -1,0 +1,34 @@
+<!--pages/user/recharge/index.wxml-->
+<view class="container">
+  <view class="topTitle">
+    <text class="title_1">充值金额</text>
+    <text class="title_2">充值有优惠({{userInfo.mobile}})</text>
+  </view>
+  <view class="content">
+    <view class="recharge_list">
+      <recharge wx:for="{{topUpList}}"
+              wx:key="index"
+              bind:change="selectedRecharge"
+              class="recharge"
+              active="{{selectedId===item.seq}}"
+              dataSet="{{item}}"
+              rechargeType="default"
+              controlled></recharge>
+      <recharge rechargeType="self-define"
+                class="recharge"
+                controlled
+                active="{{selectedId === '0'}}"
+                bind:change="selectedRecharge"></recharge>
+    </view>
+    <wux-cell>
+      <wux-input label="金额"
+                 wx:if="{{selectedId === '0'}}"
+                 placeholder="请输入充值金额"
+                 controlled
+                 value="{{amount}}"
+                 type="number"
+                 bind:change="setDefineMoney"></wux-input>
+    </wux-cell>
+    <wux-button class="submit" disabled="{{amount === null}}" type="calm" block bind:click="recharge">充值</wux-button>
+  </view>
+</view>

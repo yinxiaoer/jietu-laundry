@@ -1,0 +1,7 @@
+{
+  "validation": {
+    "empty.json": {
+      "counter": 0
+    }
+  }
+}

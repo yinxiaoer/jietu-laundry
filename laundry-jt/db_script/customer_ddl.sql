@@ -1,0 +1,40 @@
+CREATE TABLE `cst_customer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '用户名',
+  `nickname` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '昵称',
+  `portrait` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '头像',
+  `id_card` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '身份证号',
+  `mobile` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '手机号',
+  `age` tinyint(4) DEFAULT '0' COMMENT '年龄',
+  `sex` tinyint(4) DEFAULT '1' COMMENT '性别',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '邮箱',
+  `vip` tinyint(4) DEFAULT '1' COMMENT '是否为会员',
+  `openid` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '微信用户唯一标识',
+  `unionid` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '微信用户唯一标识',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_openid` (`openid`) USING BTREE,
+  KEY `idx_mobile` (`mobile`) USING BTREE,
+  KEY `idx_idCard` (`id_card`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
+
+CREATE TABLE `cst_customer_address` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `customer_id` bigint(20) NOT NULL COMMENT '客户id',
+  `province_id` char(10) NOT NULL DEFAULT '' COMMENT '省',
+  `city_id` char(10) NOT NULL DEFAULT '' COMMENT '市',
+  `district_id` char(10) NOT NULL DEFAULT '' COMMENT '区',
+  `town_id` char(10) NOT NULL DEFAULT '' COMMENT '街道',
+  `address` varchar(100) NOT NULL DEFAULT '' COMMENT '地址',
+  `receiver_name` varchar(30) NOT NULL DEFAULT '' COMMENT '收货人姓名',
+  `receiver_mobile` varchar(15) NOT NULL DEFAULT '' COMMENT '收货人手机号',
+  `receiver_telephone` varchar(20) DEFAULT '' COMMENT '收货人固话',
+  `receiver_email` varchar(100) DEFAULT '' COMMENT '收货人邮箱',
+  `defaulted` tinyint(4) DEFAULT '0' COMMENT '是否为默认地址',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_customer_id` (`customer_id`),
+  KEY `idx_area` (`province_id`,`city_id`,`district_id`,`town_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户地址类';

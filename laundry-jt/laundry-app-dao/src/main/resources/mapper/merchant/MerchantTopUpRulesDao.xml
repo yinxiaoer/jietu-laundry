@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.merchant.MerchantTopUpRulesDao">
+
+	<select id="findByMerchantId" resultType="merchantTopUpRules">
+		select
+			`id`,
+			`merchant_id`,
+			`top_up_amount`,
+			`presenter_amount`,
+			`desc`,
+			`seq`,
+			`create_date`,
+			`update_date`
+		from mt_topup_rules
+		where merchant_id = #{merchantId}
+		order by seq asc
+	</select>
+
+	<select id="getTopUpRules" resultType="merchantTopUpRules">
+		select
+			`id`,
+			`merchant_id`,
+			`top_up_amount`,
+			`presenter_amount`,
+			`desc`,
+			`seq`,
+			`create_date`,
+			`update_date`
+		from mt_topup_rules
+		where `merchant_id` = #{merchantId} and top_up_amount &lt;= #{topUpAmount}
+		order by top_up_amount desc limit 1
+	</select>
+</mapper>

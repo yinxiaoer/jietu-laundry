@@ -1,0 +1,31 @@
+<wux-popup visible="{{ show }}"
+           position="bottom"
+           bind:close="onClose">
+    <view class="model-contain">
+        <view class="date-items">
+            <wux-tabs defaultCurrent="{{dates[0].value}}"
+                      direction="vertical"
+                      theme="default"
+                      bind:change="selectedDate">
+                <wux-tab key="{{item.value}}"
+                         data-item="{{item}}"
+                         wx:for="{{dates}}"
+                         wx:key="{{item.value}}"
+                         title="{{item.label}}"
+                         class="date-item"></wux-tab>
+            </wux-tabs>
+        </view>
+        <scroll-view  class="time-con" scroll-y>
+            <view class="time-con-box">
+                <view class="time-item {{item.value === selectedTime.value ? 'active': ''}} {{item.disabled ? 'disabled' : ''}}"
+                      wx:for="{{times}}"
+                      wx:key="{{item.value}}"
+                      data-item="{{item}}"
+                      bindtap="selectedTime">
+                    <text>{{item.label}}</text>
+                    <text>{{item.money}}</text>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</wux-popup>

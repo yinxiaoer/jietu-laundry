@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<% include head %>
+
+<body id="index" class="home" data-tpl="service-schema">
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" role="main">
+			<div class="page-header">
+				<h1>
+					<%=pageTitle%>
+				</h1>
+				<h2>
+					<small>
+						<span class="badge badge_<%=methodLower%>">
+							<%=method%>
+						</span>
+						<%=subTitle%>
+					</small>
+				</h2>
+				<div class="js-format-json">
+
+					<div class="js-format-json__json" style="display:none;">
+						<%=schemaJSON%>
+					</div>
+
+					<div>
+
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#formatted" aria-controls="formatted" role="tab" data-toggle="tab">Formatted</a>
+							</li>
+							<li role="presentation">
+								<a href="#raw" aria-controls="raw" role="tab" data-toggle="tab">Raw</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="formatted">
+								<div class="format-json-outlet js-format-json__outlet-formatted"></div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="raw">
+								<pre>
+									<code>
+										<%=schemaJSON%>
+									</code>
+								</pre>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<% include scripts %>
+</body>
+
+</html>

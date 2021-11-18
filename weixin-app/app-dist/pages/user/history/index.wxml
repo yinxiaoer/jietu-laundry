@@ -1,0 +1,5 @@
+<view>
+    <view wx:for="{{historyList}}" wx:key="index" class="history-item">
+        <merchant-card item="{{item}}" itemType="history" bind:click="goMerchant"></merchant-card>
+    </view>
+</view>

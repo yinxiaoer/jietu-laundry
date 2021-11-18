@@ -1,0 +1,89 @@
+<div class="modal fade" id="_modal_dto_<%=dto.nameClean%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-tpl="dto-modal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">DTO: <%=dto.nameClean%></h4>
+			</div>
+			<div class="modal-body">
+				<div class="well">
+					<p>
+						<strong>Schema: </strong>
+						<a target="_blank" href="<%=dto.schemaUrl%>">Open in new tab</a>
+					</p>
+					<p>
+						<strong>Schema File: </strong>
+						<a target="_blank" href="<%=dto.schemaFileUrl%>">Open file in new tab</a>
+					</p>
+					<a class="btn btn-default js-open-ide" data-path="<%=dto.path%>">Open in IDE</a>
+				</div>
+
+				<h4>Generate JavaScript Class from schema</h4>
+				<form class="form-horizontal" action="<%=dto.url%>/service/class-dto" method="get" target="_blank">
+					<div class="form-group">
+						<%
+							if (isCustomDTOToClassAvailable) {
+								%>
+						<div class="radio">
+							<label>
+								<input type="radio" name="es" value="custom" checked="checked" />
+								Custom Template
+							</label>
+						</div>
+								<%
+							}
+						%>
+						<div class="radio">
+							<label>
+								<input type="radio" name="es" value="es6" />
+								ECMAScript 2015 (ES6)
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<%
+									if (isCustomDTOToClassAvailable) {
+										%>
+								<input type="radio" name="es" value="es6flow" />
+										<%
+									} else {
+										%>
+								<input type="radio" name="es" value="es6flow" checked="checked" />
+										<%
+									}
+								%>
+								ECMAScript 2015 (ES6) + Flow
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="setter" value="true" />
+								write setter
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="getter" value="true" />
+								write getter
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="validator" value="true" />
+								write validator
+							</label>
+						</div>
+						<input name="path" type="hidden" value="<%=dto.path%>" />
+						<input name="name" type="hidden" value="<%=dto.nameClean%>" />
+					</div>
+					<div class="form-group">
+						Please view result in "View source" mode.
+						<button type="submit" class="btn btn-default">Generate</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>

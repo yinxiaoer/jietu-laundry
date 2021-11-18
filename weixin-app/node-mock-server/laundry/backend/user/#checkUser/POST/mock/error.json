@@ -1,0 +1,10 @@
+{
+	"success": false,
+	"data": null,
+	"errors": [
+		{
+			"errorCode": 11123479, // 需要一个错误码的规则
+			"message": "用户验证权限失败"
+		}
+	]
+}

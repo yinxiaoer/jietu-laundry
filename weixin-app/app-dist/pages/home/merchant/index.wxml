@@ -1,0 +1,110 @@
+<!--pages/home/merchant/index.js.wxml-->
+<view class="merchant-info">
+    <tu-image class="merchant-info__logo" src="{{merchantDetail.logo}}" urlType="absolute"></tu-image>
+    <view class="merchant-info__detail">
+        <view class="name">
+            <text class="title">{{merchantDetail.name}}</text>
+            <view wx:if="{{!isCollection}}" class="collection-btn" bindtap="addCollection">
+                <text>+</text>
+                关注
+            </view>
+            <view wx:if="{{isCollection}}" class="collection-btn" bindtap="removeCollection">
+                取消关注
+            </view>
+<!--            <wux-icon wx:if="{{!isCollection}}" size="35"  type="icon-shoucang1" bindtap="addCollection"></wux-icon>-->
+<!--            <wux-icon wx:if="{{isCollection}}" size="35" type="icon-shoucangxuanzhong" style="color: #ffffff;" bindtap="removeCollection"></wux-icon>-->
+        </view>
+        <view class="main">
+            <rater value="{{merchantDetail.grade}}"
+                   controlled
+                   fontSize="16"
+                   activeColor="#F24439">
+                {{merchantDetail.grade}}
+            </rater>
+            <text>月销售：{{merchantDetail.monthSales}}</text>
+            <text>{{merchantDetail.distance}}</text>
+        </view>
+        <view class="address">{{merchantDetail.address}}</view>
+    </view>
+</view>
+<view class="main-box">
+    <view class="tab-header">
+        <wux-tabs defaultCurrent="{{tabKey}}" theme="dark" bind:change="changeTab">
+            <wux-tab key="product" title="衣柜"></wux-tab>
+            <wux-tab key="comment"  title="评价({{commentCount.totalCount> 999 ? '999+' : commentCount.totalCount}})"></wux-tab>
+            <wux-tab key="merchant" title="商家"></wux-tab>
+        </wux-tabs>
+    </view>
+    <view class="product-box" wx:if="{{tabKey==='product'}}">
+        <wux-tabs controlled
+                  current="{{categoryKey}}"
+                  theme="default"
+                  height="{{height}}"
+                  class="category"
+                  scroll
+                  bind:change="changeCategory"
+                  direction="vertical">
+            <wux-tab wx:for="{{categoryList}}" key="{{item.id}}" wx:key="{{item.id}}" title="{{item.name}}"></wux-tab>
+        </wux-tabs>
+        <scroll-view class="product" style="height:{{height}};" scroll-y>
+            <view class="product-wrapper">
+                <view class="product-item"  wx:for="{{products}}" wx:key="{{item.id}}">
+                    <product class="product-item"
+                             bind:showDetail="showDetail"
+                             cartData="{{ { cart:cart, product: item } }}"
+                             bind:add="add"
+                             bind:update="update"></product>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="comment" wx:if="{{tabKey==='comment'}}">
+        <scroll-view style="height:{{height}}" scroll-y bindscrolltolower="handleCommentScroll">
+            <view class='header'>
+                <view class='header_L'>
+                    <text class='L_grade'>{{merchantDetail.grade}}</text>
+                    <text class='L_title'>商家评分</text>
+                </view>
+                <view class='header_mid'>
+                    <text class='mid_title'>配送：</text>
+                    <rater value="{{merchantDetail.grade}}"
+                           controlled
+                           fontSize="16"
+                           activeColor="#F24439" class='mid_grade'>{{merchantDetail.grade}}</rater>
+                </view>
+                <view class='header_R'>
+                    <text class='R_grade'>{{commentCount.satisficing * 100}}%</text>
+                    <text class='R_title'>服务满意度</text>
+                </view>
+            </view>
+            <view class='block'>
+            </view>
+            <merchant-appraise appraiselist="{{commentList}}"
+                               commentCount="{{commentCount}}"
+                               commentPagination="{{commentPagination}}"></merchant-appraise>
+        </scroll-view>
+    </view>
+    <view class="merchant" wx:if="{{tabKey==='merchant'}}">
+      <merchant-detail balance="{{balance}}" detail="{{merchantDetail}}"></merchant-detail>
+    </view>
+</view>
+<view class="cart-box" wx:if="{{showCart && tabKey==='product'}}" >
+    <cart bind:buy="buy" shops="{{cart}}" shoppingCartAmount="{{shoppingCartAmount}}" bind:clear="clearCart" bind:update="update"></cart>
+</view>
+<tuPopup visible="{{showDetail}}" maskClosable="{{false}}" bind:close="closeDetail">
+    <view slot="content" class="model-detail">
+        <view class="detail-title">{{detail.name}}</view>
+        <tu-image class="detail-picture" src="{{detail.picUrl}}" urlType="absolute"></tu-image>
+        <view class="sales">月销量：{{merchantDetail.monthSales}}</view>
+        <view class="detail-info">
+            <text class="detail-title">洗衣提示:</text>
+            <text class="detail-content">{{detail.serviceDesc}}</text>
+        </view>
+        <view class="detail-footer">
+            <text class="price">￥{{detail.price}}</text>
+            <wux-button type="calm" bindtap="modelAdd">加入衣娄</wux-button>
+        </view>
+    </view>
+</tuPopup>
+
+

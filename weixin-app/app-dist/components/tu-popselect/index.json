@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-backdrop": "../../packages/@wuxui/backdrop/index",
+    "wux-upload": "../../packages/@wuxui/upload/index"
+  }
+}

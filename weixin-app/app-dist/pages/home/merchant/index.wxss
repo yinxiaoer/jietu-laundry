@@ -1,0 +1,257 @@
+/* pages/home/merchant/index.js.wxss */
+.category {
+  padding-bottom: 125rpx;
+  min-width: 100rpx;
+  background: #F7F7F7;
+}
+
+.category .wux-tabs {
+  background-color: #F7F7F7;
+}
+
+.merchant-info {
+  background: linear-gradient(#019AEA, #61C3F7);
+  padding: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.merchant-info .merchant-info__logo {
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 8rpx;
+  border: 3px solid #FFFFFF;
+  flex-shrink: 0;
+}
+
+.merchant-info .merchant-info__detail {
+  width: 100%;
+  height: 132rpx;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.merchant-info .merchant-info__detail .name {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 45rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.merchant-info .merchant-info__detail .name .title {
+  width: 360rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.merchant-info .merchant-info__detail .main {
+  font-size: 24rpx;
+  line-height: 45rpx;
+  color: #FFFFFF;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.merchant-info .merchant-info__detail .address {
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+.product-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-box .product {
+  width: 100%;
+  margin-left: 20rpx;
+  background: #ffffff;
+}
+
+.tab-header {
+  border-bottom:1rpx solid rgba(18, 98, 140, 0.1);
+}
+
+.tab-header .wux-tabs--horizontal {
+  padding: 0 130rpx;
+  justify-content: space-between;
+}
+
+.tab-header .wux-tabs__tab {
+  color: #333333;
+}
+
+.tab-header .wux-tabs__tab-bar {
+  width: 60%;
+  background: #019AEA !important;
+  color: #333333;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.product {
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+
+.product-wrapper .product-item {
+  margin-bottom: 50rpx;
+}
+
+.main-box {
+  position: fixed;
+  top: 180rpx;
+  left: 0;
+  width: 100%;
+}
+
+.cart-box {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  bottom: 0;
+  left: 0;
+}
+
+.model-detail {
+  text-align: left;
+  padding: 30rpx;
+}
+
+.model-detail .detail-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 26rpx;
+}
+
+.model-detail .detail-picture {
+  width: 100%;
+  height: 460rpx;
+  display: block;
+  border-radius: 16rpx;
+  margin-bottom: 15rpx;
+}
+
+.model-detail .sales {
+  font-size: 24rpx;
+  color: #525252;
+  margin-bottom: 26rpx;
+}
+
+.model-detail .detail-info {
+  margin-bottom: 22rpx;
+  font-size: 26rpx;
+  color: #525252;
+  display: flex;
+  flex-direction: column;
+}
+
+.model-detail .details-info .detail-title {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.model-detail .detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FF0000;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.comment .header{
+  width: 100%;
+  height: 140rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.comment .header .header_L{
+  width: 25%;
+  height: 100%;
+}
+.comment .header .header_L .L_grade{
+  width: 100%;
+  height: 80rpx;
+  display: inline-block;
+  font-size: 48rpx;
+  color: #F24439;
+  text-align: center;
+  line-height: 90rpx;
+}
+.comment .header .header_L .L_title{
+  width: 100%;
+  height: 60rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 60rpx;
+}
+.comment .header .header_mid{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comment .header .header_mid .mid_title{
+  font-size: 24rpx;
+  color: #999999;
+}
+.comment .header .header_mid .mid_grade{
+  font-size: 24rpx;
+  color: #999999;
+}
+.comment .header .header_R{
+  width: 25%;
+  height: 100%;
+}
+.comment .header .header_R .R_grade{
+  width: 100%;
+  height: 80rpx;
+  display: inline-block;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  color: #333333;
+}
+.comment .header .header_R .R_title{
+  width: 100%;
+  height: 60rpx;
+  display: inline-block;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+.comment .block{
+  width: 100%;
+  height: 20rpx;
+  background: #CCCCCC;
+}
+
+.share {
+  display: none;
+}
+
+.collection-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffffff;
+  padding: 0 10rpx;
+}

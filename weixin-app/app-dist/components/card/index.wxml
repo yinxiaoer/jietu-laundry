@@ -1,0 +1,3 @@
+<view class="card" style="margin: {{margin}}">
+    <slot></slot>
+</view>

@@ -1,0 +1,21 @@
+<!--components/product/index.wxml-->
+<view class="product">
+    <tuImage class="product-pic"
+             src="{{product.picUrl}}"
+             mode="aspectFill"
+             urlType="absolute"
+             lazy-load="{{true}}"
+             bindtap="showDetail"></tuImage>
+    <view class="product-detail">
+        <view class="product-detail__name" bindtap="showDetail">{{product.name}}</view>
+        <view  class="product-detail__info" bindtap="showDetail">{{product.info}}</view>
+        <view class="product-detail__value">
+            <price bindtap="showDetail" fontSize="32rpx" fontWeight="bold">{{product.price}}</price>
+            <view class="card-handle">
+                <imgIcon class="reduce" wx:if="{{visibleNumber}}" size="44rpx" bindtap="reduce"  src="/static/image/reduce.png"/>
+                <text class="number" wx:if="{{visibleNumber}}">{{number}}</text>
+                <imgIcon size="44rpx" src="/static/image/add.png" class="add" bindtap="add"/>
+            </view>
+        </view>
+    </view>
+</view>

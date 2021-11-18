@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.app.dao.customer.CustomerVipCardDao">
+
+	<insert id="save" parameterType="customerVipCard" useGeneratedKeys="true" keyProperty="id">
+		insert into cst_customer_vip_card (
+			`customer_id`,
+			`merchant_id`,
+			`balance`
+		) values (
+			#{customerId},
+			#{merchantId},
+			#{balance}
+		)
+	</insert>
+
+	<select id="getVipCardList" parameterType="customerVipCard" resultType="merchantBalance">
+		SELECT
+			mm.`id`,
+			mm.`name`,
+			mm.`address`,
+			mm.`logo`,
+			IFNULL(ms.sales, 0) as 'month_sales',
+			mm.`total_sales`,
+			mm.`grade`,
+			cvc.balance
+		FROM
+			cst_customer_vip_card cvc
+		LEFT JOIN mt_merchant mm ON cvc.merchant_id = mm.id
+		LEFT JOIN mt_month_sales ms ON cvc.merchant_id = ms.merchant_id AND ms.`date` = DATE_FORMAT(NOW(),'%Y%m')
+		WHERE cvc.customer_id = #{customerId}
+		ORDER BY cvc.create_date DESC
+		limit ${(page-1)*limit}, ${limit}
+	</select>
+
+	<select id="findByCustomerIdAndMerchantId" resultType="customerVipCard">
+		select
+			`id`,
+			`customer_id`,
+			`merchant_id`,
+			`balance`
+		from cst_customer_vip_card
+		where customer_id = #{customerId} and merchant_id = #{merchantId}
+	</select>
+
+	<update id="balancePay" >
+		update cst_customer_vip_card set
+			`balance` = `balance` - #{payAmount}
+		where `id` = #{id}
+	</update>
+
+	<update id="balanceTopUp" >
+		update cst_customer_vip_card set
+			`balance` = `balance` + #{topUpAmount}
+		where `id` = #{id}
+	</update>
+
+	<select id="countTotalBalance" resultType="bigdecimal">
+		select sum(balance) from cst_customer_vip_card where customer_id = #{customerId}
+	</select>
+</mapper>

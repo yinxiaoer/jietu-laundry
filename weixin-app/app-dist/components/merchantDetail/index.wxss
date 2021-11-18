@@ -1,0 +1,114 @@
+/* components/merchant/index.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  background:#E6E6E6;
+}
+.content{
+  padding: 0 24rpx;
+  background: #fff;
+}
+.title{
+  width: 100%0;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-bottom: 1rpx solid #E6E6E6;
+}
+.location{
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #333333;
+  font-size: 28rpx;
+  width:472px;
+  font-weight:500;
+  padding-left: 20rpx;
+}
+.phone{
+  width: 103rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-left:1rpx solid #E6E6E6;
+}
+.imgBox{
+  width: 100%;
+  height: 233rpx;
+  padding-top: 28rpx;
+  overflow: hidden;
+}
+.scrollimg{
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 172rpx;
+}
+.imgpic{
+  flex-shrink: 0;
+  width: 172rpx;
+  height: 172rpx;
+  padding-left: 16rpx;
+}
+.merchantinfo{
+  width: 100%;
+  height: auto;
+  margin-top: 18rpx;
+  background: #fff;
+}
+.infotitle{
+  display: block;
+  color: #333;
+  font-size: 30rpx;
+  width: 100%;
+  height:80rpx;
+  line-height: 80rpx;
+  padding-left: 24rpx;
+}
+.infobox{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 25rpx;
+}
+.infobox text{
+  color: #666666;
+  font-size: 28rpx;
+}
+
+
+.money-bag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19rpx 34rpx;
+  background: #ffffff;
+  margin-top: 18rpx;
+}
+
+.money-bag .left {
+  width: 350rpx;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.money-bag .right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.money-bag .right .icon-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.money-bag .right .icon-text .icon {
+  width: 52rpx;
+  height: 52rpx;
+}

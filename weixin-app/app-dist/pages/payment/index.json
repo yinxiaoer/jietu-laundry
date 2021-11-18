@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "img-icon": "../../components/imgIcon/index",
+    "wux-button": "../../packages/@wuxui/button/index"
+  },
+  "navigationBarTitleText": "洁兔收银台"
+}

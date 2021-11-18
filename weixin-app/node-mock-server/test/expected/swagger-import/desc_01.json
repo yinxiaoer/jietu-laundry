@@ -1,0 +1,37 @@
+{
+  "desc": "getAddress",
+  "desc2": "",
+  "security": [],
+  "protected": false,
+  "status": "swagger-imported",
+  "request": {
+    "uri": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "desc": "id"
+        },
+        {
+          "name": "types",
+          "required": true,
+          "type": "array",
+          "desc": "types"
+        },
+        {
+          "name": "values",
+          "required": true,
+          "type": "array",
+          "desc": "values"
+        }
+      ]
+    }
+  },
+  "response": {
+    "statusCode": "200",
+    "schema": {
+      "type": "*/*"
+    }
+  }
+}

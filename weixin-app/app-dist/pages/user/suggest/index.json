@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "tu-image": "../../components/tu-image/index",
+    "tuTag": "../../components/tuTag/index",
+    "wux-button": "../../packages/@wuxui/button/index",
+    "wux-rater": "../../packages/@wuxui/rater/index",
+    "wux-textarea": "../../packages/@wuxui/textarea/index",
+    "wux-upload": "../../packages/@wuxui/upload/index",
+    "wux-toast": "../../packages/@wuxui/toast/index",
+    "wux-icon": "../../packages/@wuxui/icon/index"
+  },
+  "navigationBarTitleText": "意见反馈"
+}

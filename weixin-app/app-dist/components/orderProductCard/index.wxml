@@ -1,0 +1,29 @@
+<wux-cell title="{{title}}">
+    <wux-icon type="icon-dianhua" color="#666666" class="header-icon"></wux-icon>
+</wux-cell>
+<view class="checkout-products">
+    <view wx:for="{{products}}" class="item" wx:key="{{item.goodsId}}">
+        <tu-iamge class="item-pic"
+                  urlType="absolute"
+                  src="{{item.picUrl}}"></tu-iamge>
+        <view class="item-detail">
+            <view class="item-detail-top">
+                <text>{{item.name}}</text>
+                <price color="#333333" fontSize="28rpx">{{item.price}}</price>
+            </view>
+            <view class="item-detail-bottom">
+                <text>X{{item.number}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="other-price">
+    <view class="price-item">
+        <text>配送费</text>
+        <price wx:if="{{prices}}" color="#333333" fontSize="28rpx">{{prices.freightFee}}</price>
+    </view>
+</view>
+<view class="total-price">
+    <text>合计：</text>
+    <price wx:if="{{prices}}" color="#333333" fontSize="30rpx" fontWeight="bold">{{prices.payAmount}}</price>
+</view>

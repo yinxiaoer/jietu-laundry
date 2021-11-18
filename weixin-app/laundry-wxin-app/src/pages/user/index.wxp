@@ -1,0 +1,165 @@
+<template>
+  <view>
+    <view class="user-base">
+      <wxc-avatar class="user-base__avatar"
+                  mold="circle"
+                  src="{{userInfo.avatarUrl}}"></wxc-avatar>
+      <view class="user-base__nickname">
+        {{userInfo.nickName}}
+      </view>
+      <card class="order">
+        <view>
+          <wxc-list title="我的订单" desc="全部订单" mode="none"></wxc-list>
+          <view class="order-list">
+            <wxc-flex class="wrap" cross="top" main="around" wrap="nowrap">
+              <view class="order-item">
+                <wxc-icon type="purse" size="50"></wxc-icon>
+                <wxc-badge class="order-item-count">9</wxc-badge>
+                待付款
+              </view>
+              <view class="order-item">
+                <wxc-icon type="footprint" size="50"></wxc-icon>
+                待取货
+              </view>
+              <view class="order-item">
+                <wxc-icon type="truck" size="50"></wxc-icon>
+                待送货
+              </view>
+              <view class="order-item">
+                <wxc-icon type="edit" size="50"></wxc-icon>
+                待评价
+              </view>
+              <view class="order-item">
+                <wxc-icon type="rate" size="50"></wxc-icon>
+                已完成
+              </view>
+            </wxc-flex>
+          </view>
+        </view>
+      </card>
+    </view>
+    <card class="func">
+      <view class="func-wrap">
+        <view class="func-wrap__item" >
+          <wxc-list title="优惠券"
+                    src="https://s10.mogucdn.com/mlcdn/c45406/170603_7ida8bdc21j18b91aa2ii3lk38b9i_38x38.png"/>
+        </view>
+        <view class="func-wrap__item" >
+          <wxc-list title="收获地址"
+                    icon="address"
+                    icon-color="#FF6600"
+          />
+        </view>
+        <view class="func-wrap__item" >
+          <wxc-list title="足迹"
+                    icon="footprint"
+                    icon-color="#FF0077"/>
+        </view>
+        <view class="func-wrap__item" >
+          <wxc-list title="意见反馈"
+                    icon="feedback"
+                    icon-color="#69A0DD"/>
+        </view>
+      </view>
+    </card>
+  </view>
+</template>
+
+<script>
+const { getToken, globalData } = getApp()
+export default {
+  config: {
+    navigationBarTitleText: '个人中心',
+    usingComponents: {
+        'wxc-list': '@minui/wxc-list',
+        'wxc-icon': '@minui/wxc-icon',
+        'card': '@node_modules/laundry-component/lau-card',
+        'wxc-avatar': '@minui/wxc-avatar',
+        'wxc-cc': '@minui/wxc-cc',
+        'wxc-panel': '@minui/wxc-panel',
+        'wxc-flex': '@minui/wxc-flex',
+        'wxc-badge': '@minui/wxc-badge'
+    }
+  },
+  data: {
+      token: '',
+  },
+  onShow() {
+      console.log(globalData.userInfo);
+      this.setData({
+          userInfo: globalData.userInfo,
+      })
+      const that = this
+      getToken().then(() => {
+          that.setData({
+              token: wx.getStorageSync('yerlLocalToken')
+          });
+      })
+  },
+}
+</script>
+
+<style lang="less">
+  @import "../../sheet/less/index";
+  .func-wrap {
+    background: @colorWhite;
+  }
+
+  .user-base {
+    height: 360px;
+    background: @mainColor;
+    border-radius: 0 0 36px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: @gray4;
+    font-size: @h3;
+    position: relative;
+
+    &__nickname {
+      margin-top: 5px;
+    }
+    &__avatar {
+      display: block;
+      width: 120px;
+      height: 120px;
+      padding: 2px;
+      background: @blue-light;
+      border-radius: 50%;
+    }
+  }
+
+  .order {
+    position: absolute;
+    bottom: -160px;
+    width: 100%;
+
+    .order-list {
+      border-top: 1px solid @borderColor;
+      padding: 30px 16px;
+
+      .order-item {
+        font-size: @h4;
+        line-height: @line-height-h4;
+        color: @titleColor;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .order-item-count {
+          position: absolute;
+          right: 0;
+          top: -15px;
+        }
+      }
+    }
+  }
+
+  .func-wrap {
+    margin-top: 160px;
+  }
+
+</style>

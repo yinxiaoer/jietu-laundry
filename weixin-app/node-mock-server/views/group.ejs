@@ -1,0 +1,13 @@
+<div class="panel panel-default" data-tpl="group">
+	<div class="panel-heading">
+		<h3 id="_<%= group.name%>" class="panel-title">/<%=group.name%></h3>
+	</div>
+	<div class="panel-body">
+		<div class="panel-group">
+			<% for(var k=0; k<group.services.length; k++) { %>
+				<% var service = group.services[k]; %>
+				<% include service %>
+			<% } %>
+		</div>
+	</div>
+</div>

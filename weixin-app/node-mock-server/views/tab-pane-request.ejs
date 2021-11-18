@@ -1,0 +1,51 @@
+<div data-tpl="tab-pane-request" class="tab-pane" id="_<%=service.id%>_<%=method.id%>_request">
+	<%
+		var itemsObj =  (request ? request.uri : undefined);
+		var itemsTitle =  'URI Parameters';
+		if (itemsObj) {
+			var items =  request.uri.parameters;
+		}
+	%>
+	<% include parameter-desc %>
+
+	<%
+	var itemsObj =  (request ? request.query : undefined);
+	var itemsTitle =  'Query Parameters';
+	if (itemsObj) {
+		var items =  request.query.parameters;
+	}
+	%>
+	<% include parameter-desc %>
+
+	<% if (request && request.body) { %>
+		<h3>Body</h3>
+		<p><strong>Type: <%=request.body.type%></strong></p>
+
+			<%
+				var itemsObj =  request.body;
+				var itemsTitle =  'Form Parameters';
+				if (itemsObj) {
+					var items =  request.body.parameters;
+				}
+			%>
+			<% include parameter-desc %>
+	<% } %>
+
+	<% if (request && request.schema && request.schema.url) { %>
+	<p><strong>Type: <%=request.schema.type%></strong></p>
+	<p>
+		<strong>Schema: </strong>
+		<a target="_blank" href="<%=request.schema.url%>">Open in new tab</a>
+	</p>
+	<% } %>
+
+	<% if (request && request.schema && request.schema.urlFile) { %>
+	<p>
+		<strong>Schema File: </strong>
+		<a target="_blank" href="<%=request.schema.urlFile%>">Open file in new tab</a>
+	</p>
+	<% } %>
+	<% if (requestFilePath) { %>
+	<a class="btn btn-default js-open-ide" data-path="<%=requestFilePath%>">Open request schema file</a>
+	<% } %>
+</div>

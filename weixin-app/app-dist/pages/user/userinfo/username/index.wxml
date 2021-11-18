@@ -1,0 +1,15 @@
+<!--pages/user/userinfo/nickname/index.wxml-->
+<view class="container">
+  <view class='toptitile'>
+    <wux-input label="姓名" controlled value="{{name}}"
+                       placeholder="请输入姓名"
+                       bind:blur="changeName"
+                       bind:change="changeName"
+                       bind:confirm="changeName"/>
+  </view>
+  <view class="save">
+    <wux-button block full type="calm" bind:click="submit">
+        提交
+    </wux-button>
+</view>
+</view>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jietu.admin.dao.system.SystemParameterTypeDao">
+	
+	<insert id="insert" parameterType="SystemParameterType">
+		INSERT INTO sys_system_parameter_type (
+			`id`,
+			`name`,
+			`description`,
+			`seq`,
+			`create_name`,
+			`create_date`
+		) VALUES (
+			#{id},
+			#{name},
+			#{description},
+			#{seq},
+			#{createName},
+			#{createDate}
+		)
+	</insert>
+
+	<update id="update" parameterType="SystemParameterType">
+		UPDATE sys_system_parameter_type SET
+			`name`=#{name},
+			`description`=#{description},
+			`seq`=#{seq},
+			`update_name`=#{updateName},
+			`update_date`=#{updateDate}
+		WHERE `id`=#{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		DELETE FROM sys_system_parameter_type WHERE id=#{id}
+	</delete>
+
+ 	<!-- 根据条件查询 -->
+	<select id="findCountByQuery" resultType="java.lang.Long" parameterType="SystemParameterType">
+		SELECT count(*) FROM sys_system_parameter_type
+		<include refid="whereSql" />
+	</select>
+ 	
+ 	<select id="findLimitByQuery" parameterType="SystemParameterType" resultType="SystemParameterType">
+ 		select
+		<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter_type
+		<include refid="whereSql" />
+		<if test="sort != null and sort!=''">
+			order by ${sort} ${order}
+		</if>
+		<if test="page!=null and page>0">
+			limit ${(page-1)*limit},${limit}
+		</if>
+ 	</select>
+ 	
+ 	<select id="getById" parameterType="java.lang.String" resultType="SystemParameterType">
+ 		select
+		<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter_type 
+ 		where 
+ 			id=#{id}
+ 	</select>
+
+
+ 	<select id="getAll" resultType="SystemParameterType">
+ 		select 
+ 			<include refid="selectSql"/>
+ 		from 
+ 			sys_system_parameter_type 
+ 	</select>
+
+	<sql id="selectSql">
+		id,
+		name,
+		description,
+		seq,
+		create_name,
+		create_date,
+		update_name,
+		update_date
+	</sql>
+
+	<sql id="whereSql">
+		<where>
+			<if test="id!=null and id!=''">
+				and id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+				and name=#{name}
+			</if>
+		</where>
+	</sql>
+</mapper> 

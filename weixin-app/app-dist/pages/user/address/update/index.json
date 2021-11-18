@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+      "card": "../../../../../components/card/index",
+      "wux-button": "../../../../../packages/@wuxui/button/index",
+      "wux-cell": "../../../../../packages/@wuxui/cell/index",
+      "wux-input": "../../../../../packages/@wuxui/input/index",
+      "wux-cascader": "../../../../../packages/@wuxui/cascader/index",
+      "wux-select": "../../../../../packages/@wuxui/select/index"
+    }
+}

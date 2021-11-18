@@ -1,0 +1,9 @@
+<view>
+    <!-- wxp template -->
+    <view class="icon_list">
+        <view wx:for="{{icons}}" wx:for-item="icon" wx:key="index" class="icon_item_demo">
+            <wux-icon type="{{icon}}" color="red"></wux-icon>
+        </view>
+    </view>
+    <layout-foot _pid="{{_pid}}"></layout-foot>
+</view>

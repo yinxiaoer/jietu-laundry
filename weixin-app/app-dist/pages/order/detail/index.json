@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "card": "../../components/card/index",
+    "wux-button": "../../packages/@wuxui/button/index",
+    "wux-icon": "../../packages/@wuxui/icon/index",
+    "wux-divider": "../../packages/@wuxui/divider/index",
+    "tu-image": "../../components/tu-image/index",
+    "orderProductCard": "../../components/orderProductCard/index",
+    "orderStatus": "../../components/orderStatus/index",
+    "orderInfo": "../../components/orderInfo/index",
+    "deliveryInfo": "../../components/deliveryInfo/index"
+  }
+}

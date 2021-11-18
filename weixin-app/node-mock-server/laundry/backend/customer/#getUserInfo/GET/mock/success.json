@@ -1,0 +1,17 @@
+{
+	"id": 1,
+	"username": "usernamer",
+	"portrait": "http://cdn.duitang.com/uploads/item/201406/17/20140617131104_hcJft.thumb.700_0.jpeg",
+	"idCard": "113345513131313",
+	"mobile": "15181448888",
+	"age": "da男",
+	"sex": "男",
+	"email": "123213@qq.com",
+	"isMember": true,
+	"labels": [
+		{
+			"code": 123123,
+			"name": "青年"
+		}
+	]
+}
